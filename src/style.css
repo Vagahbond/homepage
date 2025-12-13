@@ -97,6 +97,7 @@ button {
 }
 
 .blurred-bg {
+  transition: all 1s;
   backdrop-filter: blur(20px);
 }
 

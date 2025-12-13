@@ -31,11 +31,21 @@
 
 	function nextScreen(): Screen | undefined {
 		const next = screens.find((s) => s.index === curScreen.index + 1);
+
+		if (!next) {
+			return screens.find((s) => s.index === 0);
+		}
+
 		return next;
 	}
 
 	function prevScreen(): Screen | undefined {
 		const next = screens.find((s) => s.index === curScreen.index - 1);
+
+		if (!next) {
+			return screens.sort((a, b) => b.index - a.index)[0];
+		}
+
 		return next;
 	}
 
@@ -62,31 +72,27 @@
 
 <svelte:window on:keydown={on_key_down} />
 
-{#if curScreen.index > 0}
-	<button
-		onclick={() => {
-			curScreen = prevScreen() ?? curScreen;
-		}}
-		id="scroll-left-button"
-		class="scroll-button"
-		transition:scale
-	>
-		<Arrow direction="left" />
-	</button>
-{/if}
+<button
+	onclick={() => {
+		curScreen = prevScreen() ?? curScreen;
+	}}
+	id="scroll-left-button"
+	class="scroll-button"
+	transition:scale
+>
+	<Arrow direction="left" />
+</button>
 
-{#if nextScreen()}
-	<button
-		onclick={() => {
-			curScreen = nextScreen() ?? curScreen;
-		}}
-		id="scroll-right-button"
-		class="scroll-button"
-		transition:scale
-	>
-		<Arrow direction="right" />
-	</button>
-{/if}
+<button
+	onclick={() => {
+		curScreen = nextScreen() ?? curScreen;
+	}}
+	id="scroll-right-button"
+	class="scroll-button"
+	transition:scale
+>
+	<Arrow direction="right" />
+</button>
 
 <div class="container">
 	{#if curScreen.name === 'home'}
