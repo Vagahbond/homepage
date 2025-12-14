@@ -1,7 +1,7 @@
 <script lang="ts">
 	import avatar from '$lib/assets/avatar.jpg';
 	import ProjectCard from '$lib/components/projectCard.svelte';
-	import { AccentColor, getAccentColor } from '$lib/utils/colors';
+	import { AccentColor } from '$lib/utils/colors';
 
 	interface Project {
 		name: string;
@@ -46,13 +46,11 @@
 		}
 	];
 
-	let lastColor: AccentColor;
+	const initialIndex = Math.floor(Math.random() * projects.length);
 
-	function genProjectColor() {
-		const newColor = getAccentColor(lastColor);
-		lastColor = newColor;
-
-		return newColor;
+	function getProjectColor(index: number) {
+    const colors = Object.values(AccentColor)
+		return colors[(initialIndex + index) % colors.length];
 	}
 </script>
 
@@ -63,7 +61,7 @@
 	</div>
 	<div class="timeline-top bordered"></div>
 	{#each projects as project, index (index)}
-		{@const color = genProjectColor()}
+		{@const color = getProjectColor(index)}
 		<div class="project-item">
 			{#if !(index % 2)}
 				<div class="project-picture">
@@ -74,7 +72,7 @@
 						style:--accent={color}
 					/>
 				</div>
-				<div class="project-center blurred-bg bordered">
+				<div class="project-center blurred-bg bordered" style:--accent={color}>
 					<div class="project-circle" style:--accent={color}></div>
 				</div>
 				<ProjectCard {project} {color} />
@@ -199,7 +197,7 @@
 		border-radius: 6px;
 		background-color: var(--accent);
 		width: 1vw;
-		height: 98%;
+		height: 90%;
 		transition: all 1s;
 	}
 

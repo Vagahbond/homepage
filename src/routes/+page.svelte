@@ -4,6 +4,7 @@
 	import Home from '$lib/screens/home.svelte';
 	import Projects from '$lib/screens/projects.svelte';
 	import { scale } from 'svelte/transition';
+	import Contact from '$lib/screens/contact.svelte';
 
 	interface Screen {
 		name: string;
@@ -102,6 +103,10 @@
 	{:else if curScreen.name === 'projects'}
 		<AnimatedFrame {forward}>
 			<Projects />
+		</AnimatedFrame>
+	{:else if curScreen.name === 'contact'}
+		<AnimatedFrame {forward}>
+			<Contact />
 		</AnimatedFrame>
 	{/if}
 </div>
