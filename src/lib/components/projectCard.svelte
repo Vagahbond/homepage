@@ -56,8 +56,8 @@
 		flex-direction: column;
 		justify-content: center;
 		padding: 4em;
-    padding-top: 2em;
-    padding-bottom: 2em;
+		padding-top: 2em;
+		padding-bottom: 2em;
 		background: transparent;
 	}
 

@@ -49,7 +49,7 @@
 	const initialIndex = Math.floor(Math.random() * projects.length);
 
 	function getProjectColor(index: number) {
-    const colors = Object.values(AccentColor)
+		const colors = Object.values(AccentColor);
 		return colors[(initialIndex + index) % colors.length];
 	}
 </script>
@@ -59,7 +59,7 @@
 		<h1>Practice makes perfect</h1>
 		<h4 class="subtitle">Building the expertise your enterprise needs.</h4>
 	</div>
-	<div class="timeline-top bordered"></div>
+	<div class="timeline-top bordered blurred-bg"></div>
 	{#each projects as project, index (index)}
 		{@const color = getProjectColor(index)}
 		<div class="project-item">
@@ -92,7 +92,7 @@
 			{/if}
 		</div>
 	{/each}
-	<div class="timeline-bottom bordered"></div>
+	<div class="timeline-bottom bordered blurred-bg"></div>
 </div>
 
 <style>
