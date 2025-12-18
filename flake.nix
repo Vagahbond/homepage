@@ -27,7 +27,7 @@
     };
     devShells.${system} = {
       default = pkgs.mkShell {
-        buildInputs = [pkgs.bun pkgs.postgresql];
+        buildInputs = [pkgs.nodejs pkgs.postgresql];
         shellHook = ''
           alias pginit='pg_ctl -D data init;';
           alias pgstart='pg_ctl -D data -l pglogfile start -o "-k ./"; ';

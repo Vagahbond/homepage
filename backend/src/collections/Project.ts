@@ -6,7 +6,7 @@ export const Project: CollectionConfig = {
     { name: 'name', type: 'text', label: 'Project name', required: true },
     {
       name: 'description',
-      label: 'Porject description',
+      label: 'Project description',
       type: 'richText',
       required: true,
     },
