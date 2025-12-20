@@ -2,6 +2,7 @@
 	import Doc from '$lib/icons/doc.svelte';
 	import Repo from '$lib/icons/repo.svelte';
 	import Try from '$lib/icons/try.svelte';
+	import { PortableText } from '@portabletext/svelte';
 
 	const { project, color } = $props();
 </script>
@@ -9,9 +10,9 @@
 <div class="project-desc">
 	<div class="project-desc-frame bordered blurred-bg" style:--accent={color}>
 		<h1>{project.name}</h1>
-		<h6 class="project-date">{project.date.getMonth()}-{project.date.getFullYear()}</h6>
+		<h6 class="project-date">{project.date}</h6>
 		<span class="project-desc-text">
-			{project.description}
+			<PortableText value={project.description.root.children} />
 		</span>
 		<div class="icons-container">
 			<a class="project-link" href="https://github.com">

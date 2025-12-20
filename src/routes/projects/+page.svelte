@@ -1,73 +1,36 @@
 <script lang="ts">
-	import avatar from '$lib/assets/avatar.jpg';
 	import ProjectCard from '$lib/components/projectCard.svelte';
 	import { AccentColor } from '$lib/utils/colors';
+	import { onMount } from 'svelte';
 
-	interface Project {
-		name: string;
-		description: string;
-		image: typeof avatar;
-		date: Date;
-	}
+	const { data } = $props();
 
-	let projects: Project[] = [
-		{ name: 'Project 1', description: 'Some project', image: avatar, date: new Date() },
-		{ name: 'Project 2', description: 'Some proSome projectject', image: avatar, date: new Date() },
-		{ name: 'Project 3', description: 'Some projecSome projectt', image: avatar, date: new Date() },
-		{
-			name: 'Project 4',
-			description: 'Some proSome projectSome projectject',
-			image: avatar,
-			date: new Date()
-		},
-		{
-			name: 'Project 5',
-			description: 'Some projSome projectSome projectSome projectect',
-			image: avatar,
-			date: new Date()
-		},
-		{
-			name: 'Project 6',
-			description: 'Some proSome projectSome projectSome projectSome projectject',
-			image: avatar,
-			date: new Date()
-		},
-		{
-			name: 'Project 7',
-			description: 'Some prSome projectSome projectSome projectSome projectoject',
-			image: avatar,
-			date: new Date()
-		},
-		{
-			name: 'Project 8',
-			description: 'Some prSome projectSome projectSome projectoject',
-			image: avatar,
-			date: new Date()
-		}
-	];
+	onMount(() => {
+		console.log('Projects:', data);
+	});
 
-	const initialIndex = Math.floor(Math.random() * projects.length);
+	const initialColorIndex = $derived(Math.floor(Math.random() * data.projects.totalDocs));
 
 	function getProjectColor(index: number) {
 		const colors = Object.values(AccentColor);
-		return colors[(initialIndex + index) % colors.length];
+		return colors[(initialColorIndex + index) % colors.length];
 	}
 </script>
 
-<div class="projects-screen">
+<div class="data.projects-screen">
 	<div class="title bordered blurred-bg">
 		<h1>Practice makes perfect</h1>
 		<h4 class="subtitle">Building the expertise your enterprise needs.</h4>
 	</div>
 	<div class="timeline-top bordered blurred-bg"></div>
-	{#each projects as project, index (index)}
+	{#each data.projects.docs as project, index (index)}
 		{@const color = getProjectColor(index)}
 		<div class="project-item">
 			{#if !(index % 2)}
 				<div class="project-picture">
 					<img
-						alt={project.name}
-						src={project.image}
+						alt={project.image.alt}
+						src={`http://localhost:3000${project.image.url}`}
 						class="bordered blurred-bg"
 						style:--accent={color}
 					/>
@@ -130,7 +93,7 @@
 		height: 2em;
 	}
 
-	.projects-screen {
+	.data.projects-screen {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;

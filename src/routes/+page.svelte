@@ -1,114 +1,22 @@
 <script lang="ts">
-	import Arrow from '$lib/icons/arrow.svelte';
-	import AnimatedFrame from '$lib/components/animatedFrame.svelte';
-	import Home from '$lib/screens/home.svelte';
-	import Projects from '$lib/screens/projects.svelte';
-	import { scale } from 'svelte/transition';
-	import Contact from '$lib/screens/contact.svelte';
 
-	interface Screen {
-		name: string;
-		index: number;
-	}
-
-	const screens: Array<Screen> = [
-		{
-			name: 'home',
-			index: 0
-		},
-		{
-			name: 'projects',
-			index: 1
-		},
-		{
-			name: 'contact',
-			index: 2
-		}
-	];
-
-	let curScreen = $state<Screen>(screens[0]);
-
-	let forward = $state<boolean>(true);
-
-	function nextScreen(): Screen | undefined {
-		const next = screens.find((s) => s.index === curScreen.index + 1);
-
-		if (!next) {
-			return screens.find((s) => s.index === 0);
-		}
-
-		return next;
-	}
-
-	function prevScreen(): Screen | undefined {
-		const next = screens.find((s) => s.index === curScreen.index - 1);
-
-		if (!next) {
-			return screens.sort((a, b) => b.index - a.index)[0];
-		}
-
-		return next;
-	}
-
-	function on_key_down(event: KeyboardEvent) {
-		switch (event.key) {
-			case 'ArrowRight':
-			case 'l': {
-				if (!forward) forward = true;
-				let next = nextScreen();
-				if (next) curScreen = next;
-				break;
-			}
-
-			case 'h':
-			case 'ArrowLeft': {
-				if (forward) forward = false;
-				let prev = prevScreen();
-				if (prev) curScreen = prev;
-				break;
-			}
-		}
-	}
 </script>
 
-<svelte:window on:keydown={on_key_down} />
-
-<button
-	onclick={() => {
-		curScreen = prevScreen() ?? curScreen;
-	}}
-	id="scroll-left-button"
-	class="scroll-button"
-	transition:scale
->
-	<Arrow direction="left" />
-</button>
-
-<button
-	onclick={() => {
-		curScreen = nextScreen() ?? curScreen;
-	}}
-	id="scroll-right-button"
-	class="scroll-button"
-	transition:scale
->
-	<Arrow direction="right" />
-</button>
-
 <div class="container">
-	{#if curScreen.name === 'home'}
-		<AnimatedFrame {forward}>
-			<Home />
-		</AnimatedFrame>
-	{:else if curScreen.name === 'projects'}
-		<AnimatedFrame {forward}>
-			<Projects />
-		</AnimatedFrame>
-	{:else if curScreen.name === 'contact'}
-		<AnimatedFrame {forward}>
-			<Contact />
-		</AnimatedFrame>
-	{/if}
+	<div class="home-screen">
+		<div id="avatar-picture" class="bordered blurred-bg">
+			<img src="/snail.png" />
+		</div>
+		<div class="bordered blurred-bg name">
+			<h1 id="name">Yoni Firroloni</h1>
+			<h4 id="aka">A.K.A.</h4>
+			<h1 id="username">Vagahbond</h1>
+			<h2 id="title">Software Engineer</h2>
+			<h3 id="location">
+				Location: <span id="location-name">New Zealand</span>
+			</h3>
+		</div>
+	</div>
 </div>
 
 <style>
@@ -124,27 +32,89 @@
 		color: var(--fg);
 	}
 
-	.scroll-button {
-		transition: all 0.5s ease-in-out;
+	.home-screen {
 		display: flex;
-		animation: 3s ease infinite spring;
-		position: fixed;
-		cursor: pointer;
+		justify-content: space-evenly;
 
-		z-index: 10;
+		height: 100vh;
+		width: 100vw;
+		min-width: 100vw;
 	}
 
-	#scroll-left-button {
-		height: 6vh;
-		width: 6vh;
-		left: 3em;
-		top: 47vh;
+	#avatar-picture * {
+		margin: auto;
 	}
 
-	#scroll-right-button {
-		height: 6vh;
-		width: 6vh;
-		right: 3em;
-		top: 47vh;
+	#avatar-picture {
+		width: 20em;
+		height: 20em;
+		display: block;
+		margin-top: auto;
+		margin-bottom: auto;
+
+		border-radius: 50%;
+
+		display: flex;
+	}
+
+	#avatar-picture:hover {
+		animation: 2s ease infinite spring;
+	}
+
+	.name {
+		transition: all 0.5s ease-in-out;
+		padding: 1em 5em;
+		margin-top: auto;
+		margin-bottom: auto;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.name * {
+		transition: all 0.5s ease-in-out;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+	}
+
+	#name {
+		height: 1.75em;
+		margin: 0;
+	}
+
+	#title {
+		color: var(--accent);
+	}
+
+	#aka,
+	#username {
+		height: 0;
+		overflow: hidden;
+		white-space: nowrap;
+		margin: 0;
+	}
+
+	#username {
+		color: var(--accent);
+	}
+
+	#location {
+		color: var(--fg);
+		white-space: nowrap;
+		display: block;
+	}
+
+	#location-name {
+		color: var(--accent);
+		white-space: nowrap;
+		display: inline;
+	}
+
+	.name:hover #aka,
+	.name:hover #username {
+		height: 1.75em;
 	}
 </style>

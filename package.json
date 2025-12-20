@@ -3,6 +3,11 @@
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
+	"paths": {
+		"@/*": [
+			"./*"
+		]
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -33,6 +38,8 @@
 		"vite": "^7.2.2"
 	},
 	"dependencies": {
-		"css-doodle": "^0.48.0"
+		"@portabletext/svelte": "^3.0.1",
+		"css-doodle": "^0.48.0",
+		"payload": "^3.69.0"
 	}
 }
