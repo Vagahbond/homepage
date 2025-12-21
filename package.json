@@ -8,6 +8,9 @@
 			"./*"
 		]
 	},
+  "workspaces": [
+    "backend"
+  ],
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -40,6 +43,7 @@
 	"dependencies": {
 		"@portabletext/svelte": "^3.0.1",
 		"css-doodle": "^0.48.0",
-		"payload": "^3.69.0"
+		"dotenv": "^17.2.3",
+		"payload": "^3.68.5"
 	}
 }

@@ -1,7 +1,8 @@
 import payloadHandle from "$lib/utils/payload"
 
 export async function load() {
-	const projects = await payloadHandle.getInstance().find({
+  const payload = await payloadHandle.getInstance() 
+	const projects = await payload.find({
 		collection: 'projects',
 	});
 
