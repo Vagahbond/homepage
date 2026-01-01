@@ -4,13 +4,13 @@
 	import { onMount } from 'svelte';
 	import { getAccentColor } from '$lib/utils/colors';
 	import AnimatedBackground from '$lib/components/animatedBackground.svelte';
-	import Arrow from '$lib/icons/arrow.svelte';
-	import { scale } from 'svelte/transition';
 	import { page } from '$app/state';
 	import AnimatedFrame from '$lib/components/animatedFrame.svelte';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import type { RouteId } from '$app/types';
+	import LangSelector from '$lib/components/langSelector.svelte';
+	import NavButtons from '$lib/components/navButtons.svelte';
 
 	let { children } = $props();
 
@@ -20,14 +20,15 @@
 		accentColor = getAccentColor();
 	});
 
-	const screens: Array<RouteId> = ['/', '/projects', '/contact'];
+	const screens: Array<RouteId> = ['/[lang]', '/[lang]/projects', '/[lang]/contact'];
 
-	let curScreen = $state<RouteId>(page.route.id ?? '/');
+	let curScreen = $state<RouteId>(page.route.id ?? '/[lang]');
 
 	let forward = $state<boolean>(false);
 	let showPage = $state(false);
 
 	function nextScreen(): void {
+		forward = true;
 		const next = screens[screens.indexOf(curScreen) + 1] ?? screens[0];
 		curScreen = next;
 
@@ -35,6 +36,7 @@
 	}
 
 	function prevScreen(): void {
+		forward = false;
 		const index = screens.indexOf(curScreen) - 1;
 		const prev = index < 0 ? screens[screens.length - 1] : screens[index];
 		curScreen = prev;
@@ -46,7 +48,9 @@
 		showPage = false;
 
 		setTimeout(() => {
-			goto(resolve(dest), { state: { forward } }).finally(() => {
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			goto(resolve(dest, { lang: page.params.lang })).finally(() => {
 				showPage = true;
 			});
 		}, 500);
@@ -56,14 +60,12 @@
 		switch (event.key) {
 			case 'ArrowRight':
 			case 'l': {
-				forward = true;
 				nextScreen();
 				break;
 			}
 
 			case 'h':
 			case 'ArrowLeft': {
-				forward = false;
 				prevScreen();
 				break;
 			}
@@ -83,62 +85,15 @@
 
 <svelte-css-wrapper style="--accent: {accentColor}">
 	<AnimatedBackground />
-	<!-- <button
-		onclick={() => {
-			prevScreen();
-		}}
-		id="scroll-left-button"
-		class="scroll-button"
-		transition:scale
-	>
-		<Arrow direction="left" />
-	</button>
-  -->
-	<button
-		onclick={() => {
-			nextScreen();
-		}}
-		id="scroll-right-button"
-		class="scroll-button"
-		transition:scale
-	>
-		<Arrow direction="right" />
-	</button>
+	<LangSelector />
+	<NavButtons onLeftClicked={prevScreen} onRightClicked={nextScreen} />
 
 	{#if showPage}
-		<AnimatedFrame forward>
+		<AnimatedFrame {forward}>
 			{@render children()}
 		</AnimatedFrame>
 	{/if}
 </svelte-css-wrapper>
 
 <style>
-	.scroll-button {
-		transition: all 0.5s ease-in-out;
-		display: flex;
-		animation: 3s ease infinite spring;
-		position: fixed;
-		cursor: pointer;
-
-		z-index: 10;
-	}
-
-	#scroll-left-button {
-		height: 6vh;
-		width: 6vh;
-		left: 3em;
-		top: 47vh;
-	}
-
-	#scroll-right-button {
-		height: 6vh;
-		width: 6vh;
-		right: 3em;
-		top: 47vh;
-	}
-
-  #scroll-right-button:hover {
-    scale: 1.5;
-  }
-
 </style>

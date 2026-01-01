@@ -88,10 +88,18 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
-  locale: null;
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'fr') | ('en' | 'fr')[];
+  globals: {
+    homePageData: HomePageDatum;
+    projectsPageData: ProjectsPageDatum;
+    contactPageData: ContactPageDatum;
+  };
+  globalsSelect: {
+    homePageData: HomePageDataSelect<false> | HomePageDataSelect<true>;
+    projectsPageData: ProjectsPageDataSelect<false> | ProjectsPageDataSelect<true>;
+    contactPageData: ContactPageDataSelect<false> | ContactPageDataSelect<true>;
+  };
+  locale: 'en' | 'fr';
   user: User & {
     collection: 'users';
   };
@@ -189,6 +197,9 @@ export interface Project {
     | {
         label?: string | null;
         url?: string | null;
+        icon?:
+          | ('arrow' | 'close' | 'code' | 'contact' | 'doc' | 'projects' | 'repo' | 'resume' | 'toggle' | 'try')
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -327,6 +338,7 @@ export interface ProjectsSelect<T extends boolean = true> {
     | {
         label?: T;
         url?: T;
+        icon?: T;
         id?: T;
       };
   updatedAt?: T;
@@ -371,6 +383,166 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homePageData".
+ */
+export interface HomePageDatum {
+  id: number;
+  title: string;
+  location: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projectsPageData".
+ */
+export interface ProjectsPageDatum {
+  id: number;
+  title: string;
+  subtitle: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactPageData".
+ */
+export interface ContactPageDatum {
+  id: number;
+  topLeft: {
+    title: string;
+    text: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+  };
+  topRight: {
+    title: string;
+    text: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+  };
+  bottomLeft: {
+    title: string;
+    text: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+  };
+  bottomRight: {
+    title: string;
+    links?:
+      | {
+          label?: string | null;
+          url?: string | null;
+          icon?:
+            | ('arrow' | 'close' | 'code' | 'contact' | 'doc' | 'projects' | 'repo' | 'resume' | 'toggle' | 'try')
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homePageData_select".
+ */
+export interface HomePageDataSelect<T extends boolean = true> {
+  title?: T;
+  location?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projectsPageData_select".
+ */
+export interface ProjectsPageDataSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactPageData_select".
+ */
+export interface ContactPageDataSelect<T extends boolean = true> {
+  topLeft?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+      };
+  topRight?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+      };
+  bottomLeft?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+      };
+  bottomRight?:
+    | T
+    | {
+        title?: T;
+        links?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              icon?: T;
+              id?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,58 +1,34 @@
 <script lang="ts">
-	import Doc from '$lib/icons/doc.svelte';
-	import Repo from '$lib/icons/repo.svelte';
-	import Try from '$lib/icons/try.svelte';
-	import { PortableText } from '@portabletext/svelte';
+	import Icon from '$lib/icons/icon.svelte';
+	import type { Project } from '$lib/payload-types';
+	import Links from './links.svelte';
+	import RichText from './richText.svelte';
 
-	const { project, color } = $props();
+	let { project, color } = $props<{ project: Project; color: string }>();
+
+	const date = $derived(new Date(project.date));
 </script>
 
-<div class="project-desc">
-	<div class="project-desc-frame bordered blurred-bg" style:--accent={color}>
-		<h1>{project.name}</h1>
-		<h6 class="project-date">{project.date}</h6>
-		<span class="project-desc-text">
-			<PortableText value={project.description.root.children} />
-		</span>
-		<div class="icons-container">
-			<a class="project-link" href="https://github.com">
-				<div class="project-link-icon">
-					<Repo />
-				</div>
-				Source
-			</a>
-			<a class="project-link" href="https://github.com">
-				<div class="project-link-icon">
-					<Doc />
-				</div>
-				Documentation
-			</a>
-			<a class="project-link" href="https://github.com">
-				<div class="project-link-icon">
-					<Try />
-				</div>
-				Demo
-			</a>
-		</div>
+<div class="project-desc-frame bordered blurred-bg" style:--accent={color}>
+	<h1>{project.name}</h1>
+	<h6 class="project-date">{date.getMonth()}/{date.getFullYear()}</h6>
+	<div class="project-desc-text">
+		<RichText value={project.description} />
+	</div>
+	<div class="icons-container">
+		<Links links={project.links} />
 	</div>
 </div>
 
 <style>
-	.project-desc {
-		width: 98.5vw;
-		height: 100%;
-		vertical-align: middle;
-		display: flex;
-	}
-
-	.project-desc h1 {
+	.project-desc-frame h1 {
 		margin: 0;
 	}
 
 	.project-desc-frame {
 		transition: all 1s;
 		display: flex;
-		width: 28em;
+		width: 28vw;
 		margin: auto;
 		flex-direction: column;
 		justify-content: center;
@@ -60,6 +36,7 @@
 		padding-top: 2em;
 		padding-bottom: 2em;
 		background: transparent;
+		max-height: 30em;
 	}
 
 	.project-date {
@@ -68,7 +45,9 @@
 	}
 
 	.project-desc-text {
+		max-height: 20em;
 		margin-top: 2em;
+		overflow-y: scroll;
 	}
 
 	.icons-container {
@@ -95,5 +74,6 @@
 		margin-bottom: 0.5em;
 		width: 1.5em;
 		height: 1.5em;
+		fill: var(--fg);
 	}
 </style>

@@ -1,11 +1,13 @@
+import Icon from '../icons'
 import type { CollectionConfig } from 'payload'
 
 export const Project: CollectionConfig = {
   slug: 'projects',
   fields: [
-    { name: 'name', type: 'text', label: 'Project name', required: true },
+    { name: 'name', localized: true, type: 'text', label: 'Project name', required: true },
     {
       name: 'description',
+      localized: true,
       label: 'Project description',
       type: 'richText',
       required: true,
@@ -24,13 +26,20 @@ export const Project: CollectionConfig = {
       fields: [
         {
           name: 'label',
-          label: 'Will be shown on the interface',
+          localized: true,
+          label: 'Label',
           type: 'text',
         },
         {
           name: 'url',
-          label: 'An URL to send the user to',
+          label: 'URL',
           type: 'text',
+        },
+        {
+          name: 'icon',
+          label: 'icon',
+          type: 'select',
+          options: Object.entries(Icon).map(v => {return {label: v[0], value: v[1]}})
         },
       ],
     },

@@ -8,6 +8,9 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Project } from './collections/Project'
+import { ContactPageData } from './globales/ContactPageData'
+import { HomePageData } from './globales/HomePageData'
+import { ProjectsPageData } from './globales/ProjectsPageData'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -19,11 +22,16 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  localization: {
+    defaultLocale: "en",
+    locales: ["en", "fr"]
+  },
   collections: [Users, Media, Project],
+  globals: [HomePageData, ProjectsPageData, ContactPageData],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
-    outputFile: path.resolve(dirname, '../../payload-types.ts'),
+    outputFile: path.resolve(dirname, '../../src/lib/payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {

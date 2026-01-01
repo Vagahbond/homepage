@@ -9,6 +9,10 @@ export default defineConfig({
 		exclude: exclude
 	},
 	server: {
+    fs: {
+            allow: ['backend/src/icons.ts'],
+
+    },
 		watch: {
 			ignored: exclude
 		}

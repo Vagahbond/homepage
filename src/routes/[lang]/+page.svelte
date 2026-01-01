@@ -1,19 +1,19 @@
 <script lang="ts">
-
+	const { data } = $props();
 </script>
 
 <div class="container">
 	<div class="home-screen">
 		<div id="avatar-picture" class="bordered blurred-bg">
-			<img src="/snail.png" />
+			<img alt="A magnificent snail" src="/snail.png" />
 		</div>
 		<div class="bordered blurred-bg name">
 			<h1 id="name">Yoni Firroloni</h1>
 			<h4 id="aka">A.K.A.</h4>
 			<h1 id="username">Vagahbond</h1>
-			<h2 id="title">Software Engineer</h2>
+			<h2 id="title">{data.labels.title}</h2>
 			<h3 id="location">
-				Location: <span id="location-name">New Zealand</span>
+				Location: <span id="location-name">{data.labels.location}</span>
 			</h3>
 		</div>
 	</div>
@@ -48,6 +48,8 @@
 	#avatar-picture {
 		width: 20em;
 		height: 20em;
+		min-width: 20em;
+		min-height: 20em;
 		display: block;
 		margin-top: auto;
 		margin-bottom: auto;
@@ -116,5 +118,29 @@
 	.name:hover #aka,
 	.name:hover #username {
 		height: 1.75em;
+	}
+
+	@media (max-width: 800px) {
+		.home-screen {
+			flex-direction: column;
+			max-height: 100vh;
+			overflow-y: scroll;
+		}
+
+		#avatar-picture {
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.name {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.name {
+			padding: 0.5em 1.5em;
+		}
 	}
 </style>
