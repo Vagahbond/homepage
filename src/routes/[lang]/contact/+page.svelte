@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Links from '$lib/components/links.svelte';
 	import RichText from '$lib/components/richText.svelte';
 	import Icon from '$lib/icons/icon.svelte';
@@ -93,6 +93,9 @@
 
 	.contact-text {
 		overflow-y: scroll;
+		padding: 1em;
+
+		margin: auto 0;
 	}
 
 	.links {

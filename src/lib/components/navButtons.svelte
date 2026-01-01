@@ -62,7 +62,7 @@
 	#scroll-left-button {
 		height: 6vh;
 		width: 6vh;
-		left: -2em;
+		left: -4vh;
 		top: 47vh;
 	}
 
@@ -86,7 +86,7 @@
 	#scroll-right-button {
 		height: 6vh;
 		width: 6vh;
-		right: -2em;
+		right: -4vh;
 		top: 47vh;
 	}
 

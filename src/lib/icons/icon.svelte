@@ -11,27 +11,27 @@
 	import Try from './try.svelte';
 	import Icon from 'backend/src/icons';
 
-	const { icon } = $props<{ icon: Icon }>();
+	const { icon, ...props } = $props();
 </script>
 
 {#if icon === Icon.ARROW}
-	<Arrow />
+	<Arrow {...props} />
 {:else if icon === Icon.CLOSE}
-	<Close />
+	<Close {...props} />
 {:else if icon === Icon.CODE}
-	<Code />
+	<Code {...props} />
 {:else if icon === Icon.CONTACT}
-	<Contact />
+	<Contact {...props} />
 {:else if icon === Icon.DOC}
-	<Doc />
+	<Doc {...props} />
 {:else if icon === Icon.PROJECTS}
-	<Projects />
+	<Projects {...props} />
 {:else if icon === Icon.REPO}
-	<Repo />
+	<Repo {...props} />
 {:else if icon === Icon.RESUME}
-	<Resume />
+	<Resume {...props} />
 {:else if icon === Icon.TOGGLE}
-	<Toggle />
+	<Toggle {...props} />
 {:else if icon === Icon.TRY}
-	<Try />
+	<Try {...props} />
 {/if}

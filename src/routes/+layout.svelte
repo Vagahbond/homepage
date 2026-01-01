@@ -1,6 +1,5 @@
 <script lang="ts">
 	import '../style.css';
-	import favicon from '$lib/assets/favicon.svg';
 	import { onMount } from 'svelte';
 	import { getAccentColor } from '$lib/utils/colors';
 	import AnimatedBackground from '$lib/components/animatedBackground.svelte';
@@ -76,10 +75,6 @@
 		showPage = true;
 	});
 </script>
-
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
 
 <svelte:window on:keydown={on_key_down} />
 

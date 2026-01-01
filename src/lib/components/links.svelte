@@ -18,7 +18,7 @@
 
 		<a class="project-link" href="https://github.com">
 			<div class="project-link-icon">
-				<Icon {icon} />
+				<Icon width="auto" height="100%" {icon} />
 			</div>
 			{link.label}
 		</a>
@@ -30,14 +30,18 @@
 		display: flex;
 		flex-direction: row;
 		width: 100%;
+		height: 100%;
 		overflow-x: scroll;
 	}
 
 	.project-link {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		margin-right: 1em;
+		justify-content: space-around;
+		text-align: center;
+
+		min-width: max-content;
+		width: 6vh;
 		margin-left: 1em;
 	}
 
@@ -47,11 +51,11 @@
 
 	.project-link-icon {
 		transition: all 1s;
-		margin: auto;
 		margin-bottom: 0.5em;
-		width: 1.5em;
-		height: 1.5em;
+		min-height: 6vh;
+		margin: 0 auto;
 		fill: var(--fg);
+		overflow: hidden;
 	}
 
 	.project-link:hover .project-link-icon {
