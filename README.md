@@ -1,38 +1,54 @@
-# sv
+# Home page 
+My personal branding home page.
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## Dev
 
-## Creating a project
+### Dev env 
 
-If you're seeing this, you've probably already done this step. Congrats!
+```bash 
+# load environment and dependencies
+nix develop
 
-```sh
-# create a new project in the current directory
-npx sv create
+# install nodejs packages
+npm i 
 
-# create a new project in my-app
-npx sv create my-app
-```
+# Initialize a PG instance (from root of project)
+pginit
 
-## Developing
+# Start DB 
+pgstart
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+# Create user and DB
+pgconfigure
 
-```sh
+# Run backend ...
+cd backend
+npm run dev 
+
+# ...or frontend 
 npm run dev
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+Change content at `localhost:3000` and inspect changes at `localhost:5173`
 
-To create a production version of your app:
+### Prepare for release 
+As the content is loaded at build time and what's put online is a simple static site, you need to have the db's content when building. 
+If building elsewhere than dev machine, DB needs to be exported before with `pgdump`. 
 
-```sh
-npm run build
+
+### Production 
+Add project as nix flake input.
+import the module and enable the package. It will all be built from source by nix.
+
+```nix
+{
+    services.homepage = {
+        enable = true;
+    };
+}
 ```
 
-You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+

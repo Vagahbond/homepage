@@ -4,7 +4,6 @@ import { config as envConfig } from "dotenv";
 
 
 envConfig();
-console.log(process.env.PAYLOAD_SECRET)
 
 class PayloadHandle {
   #payloadInstance: BasePayload | undefined;
