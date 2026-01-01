@@ -51,9 +51,9 @@
 
 	.project-link-icon {
 		transition: all 1s;
-		margin-bottom: 0.5em;
 		min-height: 6vh;
 		margin: 0 auto;
+		margin-bottom: 0.5em;
 		fill: var(--fg);
 		overflow: hidden;
 	}

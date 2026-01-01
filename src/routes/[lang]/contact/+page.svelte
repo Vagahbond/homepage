@@ -131,7 +131,7 @@
 	}
 
 	#frame5 {
-		margin: 3em;
+		margin: 1em;
 		grid-row: span 2 / span 2;
 		grid-column-start: 4;
 		grid-row-start: 5;
@@ -154,6 +154,12 @@
 
 		#frame5 {
 			display: none;
+		}
+	}
+
+	@media only screen and (min-width: 1920px) {
+		.frame {
+			padding: 4em;
 		}
 	}
 </style>
