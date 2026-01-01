@@ -57,23 +57,4 @@
 		width: 100%;
 	}
 
-	.project-link {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		margin-right: 1em;
-		margin-left: 1em;
-	}
-
-	.project-link:hover {
-		font-weight: bolder;
-	}
-
-	.project-link-icon {
-		margin: auto;
-		margin-bottom: 0.5em;
-		width: 1.5em;
-		height: 1.5em;
-		fill: var(--fg);
-	}
 </style>

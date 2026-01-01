@@ -1,11 +1,18 @@
 import { type BasePayload, getPayload } from 'payload';
 import payloadConfig from "backend/src/payload.config.ts"
+import { config as envConfig } from "dotenv";
+
+
+envConfig();
+console.log(process.env.PAYLOAD_SECRET)
 
 class PayloadHandle {
   #payloadInstance: BasePayload | undefined;
 
   async #init() {
-    this.#payloadInstance = await getPayload({ config: payloadConfig })
+
+    const config = await payloadConfig;
+    this.#payloadInstance = await getPayload({ config })
     console.log("Payload loaded!")
   }
 

@@ -1,5 +1,7 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { config as envConfig } from "dotenv"
+envConfig();
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -9,11 +11,10 @@ const config = {
   preprocess: vitePreprocess(),
   kit: {
     prerender: {
-      //entries: ['/fr', '/fr/contact', '/fr/projects', '/en', '/en/contact', '/en/projects'],
-      handleHttpError: ({ path, referrer, message }) => {
-        if (path === "/") {
-          return
-        }
+      handleHttpError: ({ path, _, message }) => {
+        /* if (path === "/") {
+           return
+         }*/
 
         // otherwise fail the build
         throw new Error(message);

@@ -25,13 +25,15 @@
 	{#each data.projects.docs as project, index (index)}
 		{@const color = getProjectColor(index)}
 		{@const date = new Date(project.date)}
-		{@const imageUrl = `http://localhost:3000${project?.image?.url}`}
+		{@const imageUrl = `/image/${btoa(project?.image?.url)}`}
+
+		<link rel="preload" as="image" href={imageUrl} />
 
 		<div class={`project-item ${index % 2 && 'reverse'}`}>
 			<div class="project-picture">
 				<img
 					alt={project?.image?.alt ?? ''}
-					src={`http://localhost:3000${project?.image?.url}`}
+					src={imageUrl}
 					class="bordered blurred-bg"
 					style:--accent={color}
 				/>

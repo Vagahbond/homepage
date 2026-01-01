@@ -9,10 +9,15 @@
 <div class="lang-selector">
 	<!-- eslint-disable-next-line @typescript-eslint/ban-ts-comment -->
 	<!-- @ts-ignore -->
-	<a class={page.params.lang === 'fr' ? 'selected' : ''} href={resolve(route, { lang: 'fr' })}>
+	<a
+		class={`blurred-bg ${page.params.lang === 'fr' && 'selected'}`}
+		href={resolve(route, { lang: 'fr' })}
+	>
 		<span> 🇫🇷 </span>
 	</a>
-	<a class={page.params.lang === 'en' ? 'selected' : ''} href={resolve(route, { lang: 'en' })}>🇺🇸</a
+	<a
+		class={`blurred-bg ${page.params.lang === 'en' && 'selected'}`}
+		href={resolve(route, { lang: 'en' })}>🇺🇸</a
 	>
 </div>
 
