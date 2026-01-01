@@ -6,6 +6,7 @@
 	import type { PaginatedDocs } from 'payload';
 
 	const { data } = $props<{ data: PaginatedDocs<Project> }>();
+	let mobileImageModalPic = $state<string | null>(null);
 
 	const initialColorIndex = $derived(Math.floor(Math.random() * data.projects.totalDocs));
 
@@ -24,6 +25,7 @@
 	{#each data.projects.docs as project, index (index)}
 		{@const color = getProjectColor(index)}
 		{@const date = new Date(project.date)}
+		{@const imageUrl = `http://localhost:3000${project?.image?.url}`}
 
 		<div class={`project-item ${index % 2 && 'reverse'}`}>
 			<div class="project-picture">
@@ -41,6 +43,15 @@
 				<div class="project-desc-frame bordered blurred-bg" style:--accent={color}>
 					<h1>{project.name}</h1>
 					<h6 class="project-date">{date.getMonth()}/{date.getFullYear()}</h6>
+					<button class="mobile-project-picture" onclick={() => (mobileImageModalPic = imageUrl)}>
+						<img
+							alt={project?.image?.alt ?? ''}
+							src={imageUrl}
+							class="bordered blurred-bg"
+							style:--accent={color}
+						/>
+					</button>
+
 					<div class="project-desc-text">
 						<RichText value={project.description} />
 					</div>
@@ -52,6 +63,16 @@
 		</div>
 	{/each}
 	<div class="timeline-bottom bordered blurred-bg"></div>
+
+	<div class={`mobile-image-modal blurred-bg ${mobileImageModalPic && 'show'}`}>
+		<button onclick={() => (mobileImageModalPic = null)}>
+			<img
+				class="bordered"
+				src={mobileImageModalPic}
+				alt="A screenshot of the last selected project"
+			/>
+		</button>
+	</div>
 </div>
 
 <style>
@@ -82,7 +103,6 @@
 		padding-bottom: 0.5em;
 		width: fit-content;
 	}
-
 	.subtitle {
 		transition: all 1s;
 		height: 0;
@@ -188,6 +208,10 @@
 		justify-content: center;
 	}
 
+	.mobile-project-picture {
+		display: none;
+	}
+
 	.project-item:hover .project-picture img {
 		transition: all 1s;
 		max-width: 40vw;
@@ -237,6 +261,10 @@
 		width: 100%;
 	}
 
+	.mobile-image-modal {
+		display: none;
+	}
+
 	@media (max-width: 800px) {
 		.title {
 			width: auto;
@@ -260,10 +288,23 @@
 			justify-content: space-between;
 			width: 100%;
 			margin: 0;
+			max-height: unset;
+			height: fit-content;
 		}
 
 		.project-picture {
 			display: none;
+		}
+
+		.mobile-project-picture {
+			display: block;
+			margin: 1em auto;
+			cursor: pointer;
+		}
+
+		.mobile-project-picture img {
+			max-height: 70vw;
+			max-width: 70vw;
 		}
 
 		.project-circle {
@@ -279,15 +320,26 @@
 			width: 2vw;
 		}
 
+		.project-desc-text {
+			max-height: unset;
+			height: fit-content;
+			overflow-y: unset;
+			margin-top: 0;
+		}
+
 		.project-desc {
 			margin-right: 1em;
 			margin-left: 0;
+
+			max-height: unset;
 		}
 
 		.project-desc-frame {
 			padding: 1em 1em;
-			margin: 0 1em;
+			margin: 2em 1em;
 			width: 100%;
+
+			max-height: unset;
 		}
 
 		.timeline-top {
@@ -304,6 +356,37 @@
 
 		.project-item.reverse {
 			flex-direction: row;
+		}
+
+		.mobile-image-modal {
+			transition: all 1s;
+			display: none;
+			position: fixed;
+			inset: 0;
+			padding: 1em;
+			z-index: 200;
+		}
+
+		.mobile-image-modal button {
+			max-height: 100%;
+			max-width: 100%;
+			height: max-content;
+			width: max-content;
+			padding: 0;
+		}
+
+		.mobile-image-modal button img {
+			max-height: 100%;
+			max-width: 100%;
+
+			margin: 0;
+			border-radius: 6px;
+		}
+
+		.mobile-image-modal.show {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
 		}
 	}
 </style>

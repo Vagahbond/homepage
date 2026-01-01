@@ -96,10 +96,10 @@
 	}
 
 	.links {
-		display: flex;
-		flex-direction: row;
 		margin-top: auto;
 		margin-bottom: auto;
+
+		padding: 1em 0;
 	}
 
 	#frame1 {
@@ -109,15 +109,15 @@
 
 	#frame2 {
 		grid-column: span 3 / span 3;
-		grid-row: span 5 / span 5;
+		grid-row: span 6 / span 6;
 		grid-column-start: 5;
 	}
 
 	#frame3 {
 		grid-column: span 4 / span 4;
-		grid-row: span 3 / span 3;
+		grid-row: span 2 / span 2;
 		grid-column-start: 4;
-		grid-row-start: 6;
+		grid-row-start: 7;
 	}
 
 	#frame4 {
@@ -129,13 +129,28 @@
 
 	#frame5 {
 		margin: 3em;
+		grid-row: span 2 / span 2;
 		grid-column-start: 4;
 		grid-row-start: 5;
 		z-index: 0;
 		fill: var(--fg);
-		cursor: pointer;
 	}
 
 	@media (max-width: 800px) {
+		.contact-screen {
+			width: 100vw;
+			overflow: scroll;
+
+			display: flex;
+			flex-direction: column;
+		}
+
+		.frame {
+			height: min-content;
+		}
+
+		#frame5 {
+			display: none;
+		}
 	}
 </style>
