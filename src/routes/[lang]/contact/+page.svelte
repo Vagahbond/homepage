@@ -94,14 +94,13 @@
 
 	.contact-text {
 		overflow-y: scroll;
-		padding: 1em;
+		padding: 0em;
 
 		margin: auto 0;
 	}
 
 	.links {
-		margin-top: auto;
-		margin-bottom: auto;
+		margin: auto;
 	}
 
 	.subtitle {
@@ -152,6 +151,10 @@
 			flex-direction: column;
 		}
 
+		.contact-text {
+			padding: 1em;
+		}
+
 		.frame {
 			height: min-content;
 		}
@@ -162,7 +165,7 @@
 	}
 
 	@media only screen and (min-width: 1920px) {
-		.frame {
+		.contact-screen {
 			padding: 4em;
 		}
 	}

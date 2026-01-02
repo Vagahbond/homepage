@@ -44,7 +44,7 @@
 			<div class="project-desc">
 				<div class="project-desc-frame bordered blurred-bg" style:--accent={color}>
 					<h1>{project.name}</h1>
-					<h6 class="project-date">{date.getMonth()}/{date.getFullYear()}</h6>
+					<h6 class="project-date">{date.getMonth() + 1}/{date.getFullYear()}</h6>
 					<button class="mobile-project-picture" onclick={() => (mobileImageModalPic = imageUrl)}>
 						<img
 							alt={project?.image?.alt ?? ''}
@@ -96,8 +96,8 @@
 
 	.title {
 		transition: all 1s;
-		margin-left: 2em;
-		margin-right: 2em;
+		margin-left: 1em;
+		margin-right: 1em;
 		margin-bottom: 2em;
 		padding-left: 1em;
 		padding-right: 1em;
@@ -238,7 +238,7 @@
 		margin: auto;
 		flex-direction: column;
 		justify-content: center;
-		padding: 4em;
+		padding: 2em;
 		padding-top: 2em;
 		padding-bottom: 2em;
 		background: transparent;
