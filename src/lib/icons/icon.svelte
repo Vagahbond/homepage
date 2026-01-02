@@ -4,6 +4,9 @@
 	import Code from './code.svelte';
 	import Contact from './contact.svelte';
 	import Doc from './doc.svelte';
+	import Github from './github.svelte';
+	import Linkedin from './linkedin.svelte';
+	import Mail from './mail.svelte';
 	import Projects from './projects.svelte';
 	import Repo from './repo.svelte';
 	import Resume from './resume.svelte';
@@ -34,4 +37,10 @@
 	<Toggle {...props} />
 {:else if icon === Icon.TRY}
 	<Try {...props} />
+{:else if icon === Icon.GITHUB}
+	<Github {...props} />
+{:else if icon === Icon.LINKEDIN}
+	<Linkedin {...props} />
+{:else if icon === Icon.MAIL}
+	<Mail {...props} />
 {/if}

@@ -1,4 +1,7 @@
 enum Icon {
+  MAIL = "mail",
+  LINKEDIN = "linkedin",
+  GITHUB = "github",
   ARROW = "arrow",
   CLOSE = "close",
   CODE = "code",

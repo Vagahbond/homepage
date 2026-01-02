@@ -16,7 +16,7 @@
 			? (Object.values(IconEnum).find((v) => v === link.icon) ?? IconEnum.CLOSE)
 			: IconEnum.CLOSE}
 
-		<a class="project-link" href="https://github.com">
+		<a class="project-link" href={link.url}>
 			<div class="project-link-icon">
 				<Icon width="auto" height="100%" {icon} />
 			</div>

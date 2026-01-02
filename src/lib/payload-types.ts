@@ -198,7 +198,21 @@ export interface Project {
         label?: string | null;
         url?: string | null;
         icon?:
-          | ('arrow' | 'close' | 'code' | 'contact' | 'doc' | 'projects' | 'repo' | 'resume' | 'toggle' | 'try')
+          | (
+              | 'mail'
+              | 'linkedin'
+              | 'github'
+              | 'arrow'
+              | 'close'
+              | 'code'
+              | 'contact'
+              | 'doc'
+              | 'projects'
+              | 'repo'
+              | 'resume'
+              | 'toggle'
+              | 'try'
+            )
           | null;
         id?: string | null;
       }[]
@@ -468,12 +482,27 @@ export interface ContactPageDatum {
   };
   bottomRight: {
     title: string;
+    email: string;
     links?:
       | {
           label?: string | null;
           url?: string | null;
           icon?:
-            | ('arrow' | 'close' | 'code' | 'contact' | 'doc' | 'projects' | 'repo' | 'resume' | 'toggle' | 'try')
+            | (
+                | 'mail'
+                | 'linkedin'
+                | 'github'
+                | 'arrow'
+                | 'close'
+                | 'code'
+                | 'contact'
+                | 'doc'
+                | 'projects'
+                | 'repo'
+                | 'resume'
+                | 'toggle'
+                | 'try'
+              )
             | null;
           id?: string | null;
         }[]
@@ -531,6 +560,7 @@ export interface ContactPageDataSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
+        email?: T;
         links?:
           | T
           | {

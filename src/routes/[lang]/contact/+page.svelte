@@ -49,6 +49,7 @@
 		out:slide={{ delay: 0, duration: 100 }}
 	>
 		<h2>{data.labels.bottomRight.title}</h2>
+		<h4 class="subtitle">{data.labels.bottomRight.email}</h4>
 		<div class="links">
 			<Links links={data.labels.bottomRight.links} />
 		</div>
@@ -101,8 +102,11 @@
 	.links {
 		margin-top: auto;
 		margin-bottom: auto;
+	}
 
-		padding: 1em 0;
+	.subtitle {
+		margin-top: 0;
+		filter: brightness(70%);
 	}
 
 	#frame1 {

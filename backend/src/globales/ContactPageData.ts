@@ -83,6 +83,13 @@ export const ContactPageData: GlobalConfig = {
           localized: true,
         },
         {
+          label: 'Email',
+          name: 'email',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+        {
           label: 'Links',
           name: 'links',
           type: 'array',
@@ -97,6 +104,7 @@ export const ContactPageData: GlobalConfig = {
               name: 'url',
               label: 'URL',
               type: 'text',
+              localized: true
             },
             {
               name: 'icon',
