@@ -8,14 +8,23 @@
   outputs =
     { nixpkgs, ... }:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      configure = ''
-        psql -h localhost -p 5432 -U $USER -d postgres -c "CREATE ROLE homepage WITH LOGIN CREATEDB REPLICATION;"
-        psql -h localhost -p 5432 -U $USER -d postgres -c "CREATE USER homepage WITH PASSWORD 'password';"
-        psql -h localhost -p 5432 -U $USER -d postgres -c "GRANT homepage TO homepage;"
-        psql -h localhost -p 5432 -U $USER -d postgres -c "CREATE DATABASE homepage WITH OWNER homepage;";
-      '';
+      forAllSystems =
+        function:
+        nixpkgs.lib.genAttrs
+          [
+            "x86_64-linux"
+            "aarch64-darwin" # Imagine nixing a mac
+          ]
+          (
+            system:
+            function (
+              import nixpkgs {
+                inherit system;
+                config.allowUnfree = true;
+                config.android_sdk.accept_license = true;
+              }
+            )
+          );
     in
     {
       nixosModules = {
@@ -29,29 +38,49 @@
           (import ./nix/module.nix { inherit lib pkgs config; })
           // (import ./nix/options.nix { inherit lib; });
       };
-      devShells.${system} = {
-        default = pkgs.mkShell {
-          buildInputs = [
-            pkgs.nodejs
-            pkgs.postgresql
-          ];
-          shellHook = ''
-            alias pginit='pg_ctl -D data init;';
-            alias pgstart='pg_ctl -D data -l pglogfile start -o "-k ./"; ';
-            alias pgconfigure=${pkgs.writeScript "pgconfigure" configure};
-            alias pgdump='pg_dump -d homepage -U homepage -h localhost -p 5432 -f database.sql'
 
-            echo "pginit init database"
-            echo "pgstart start database"
-            echo "pgconfigure create db and user"
-            echo "pgdump to dump db in database.sql"
+      devShells = forAllSystems (pkgs: {
+        default =
+          let
+            pgconfigure = pkgs.writeShellScriptBin "pgconfigure" ''
+              psql -h localhost -p 5432 -U $USER -d postgres -c "CREATE USER homepage WITH PASSWORD 'password';"
+              psql -h localhost -p 5432 -U $USER -d postgres -c "CREATE DATABASE homepage WITH OWNER homepage;";
+            '';
 
-            export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib";
+            pgstart = pkgs.writeShellScriptBin "pgstart" ''
+              pg_ctl -D data -l pglogfile start -o "-k ./";
+            '';
 
+            pginit = pkgs.writeShellScriptBin "pginit" ''
+              pg_ctl -D data init;
+            '';
 
-            echo Now developping my homepage!
-          '';
-        };
-      };
+            pgstop = pkgs.writeShellScriptBin "pgstop" ''
+              pg_ctl -D data -l pglogfile stop -o "-k ./";
+            '';
+          in
+          pkgs.mkShell {
+            buildInputs = [
+              pkgs.nodejs
+              pkgs.postgresql
+              pgconfigure
+              pgstart
+              pginit
+              pgstop
+            ];
+
+            LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+
+            shellHook = ''
+
+              echo "pginit init database"
+              echo "pgstart start database"
+              echo "pgconfigure create db and user"
+              echo "pgdump to dump db in database.sql"
+
+              echo Now developping my homepage!
+            '';
+          };
+      });
     };
 }
