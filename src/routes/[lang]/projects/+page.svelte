@@ -234,8 +234,7 @@
 	.project-desc-frame {
 		transition: all 1s;
 		display: flex;
-		width: 28vw;
-		margin: auto;
+		margin: auto 1em;
 		flex-direction: column;
 		justify-content: center;
 		padding: 2em;

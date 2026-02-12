@@ -21,7 +21,9 @@ export const load: PageServerLoad = async ({ params }) => {
   const payload = await payloadHandle.getInstance()
   const projects: PaginatedDocs<Project> = await payload.find({
     collection: 'projects',
-    locale: params.lang as Config["locale"]
+    locale: params.lang as Config["locale"],
+    sort: '-date',
+    limit: 100
   });
   const labels = await payload.findGlobal({
     slug: "projectsPageData",
