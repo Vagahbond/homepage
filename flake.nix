@@ -27,37 +27,21 @@
           );
     in
     {
-      nixosModules = {
-        default =
-          {
-            lib,
-            pkgs,
-            config,
-            ...
-          }:
-          (import ./nix/module.nix { inherit lib pkgs config; })
-          // (import ./nix/options.nix { inherit lib; });
-      };
+
+      packages = forAllSystems (pkgs: {
+        default = pkgs.callPackage ./nix/package.nix { };
+      });
 
       devShells = forAllSystems (pkgs: {
         default =
           let
-            pgconfigure = pkgs.writeShellScriptBin "pgconfigure" ''
-              psql -h localhost -p 5432 -U $USER -d postgres -c "CREATE USER homepage WITH PASSWORD 'password';"
-              psql -h localhost -p 5432 -U $USER -d postgres -c "CREATE DATABASE homepage WITH OWNER homepage;";
-            '';
-
-            pgstart = pkgs.writeShellScriptBin "pgstart" ''
-              pg_ctl -D data -l pglogfile start -o "-k ./";
-            '';
-
-            pginit = pkgs.writeShellScriptBin "pginit" ''
-              pg_ctl -D data init;
-            '';
-
-            pgstop = pkgs.writeShellScriptBin "pgstop" ''
-              pg_ctl -D data -l pglogfile stop -o "-k ./";
-            '';
+            inherit (import ./nix/database.nix { inherit pkgs; })
+              pgconfigure
+              pgstart
+              pginit
+              pgstop
+              pgseed
+              ;
           in
           pkgs.mkShell {
             buildInputs = [
@@ -67,6 +51,7 @@
               pgstart
               pginit
               pgstop
+              pgseed
             ];
 
             LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
