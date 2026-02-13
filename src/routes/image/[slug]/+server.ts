@@ -6,7 +6,7 @@ export const prerender = true
 
 export const entries = async () => {
   const payload = await payloadHandle.getInstance()
-  const images = await payload.find({ collection: "media" })
+  const images = await payload.find({ collection: "media", limit: 1000 });
 
   return images.docs.map(i => { return { slug: btoa(i.url ?? "") } })
 };
