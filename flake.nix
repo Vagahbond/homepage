@@ -35,16 +35,10 @@
       devShells = forAllSystems (pkgs: {
         default =
           let
-            inherit (import ./nix/database.nix { inherit pkgs; })
-              pgconfigure
-              pgstart
-              pginit
-              pgstop
-              pgseed
-              ;
+            db = import ./nix/database.nix { inherit pkgs; };
           in
           pkgs.mkShell {
-            buildInputs = [
+            buildInputs = with db; [
               pkgs.nodejs
               pkgs.postgresql
               pgconfigure

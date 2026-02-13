@@ -36,7 +36,7 @@ buildNpmPackage {
     kill %1
 
     mkdir -p $out
-    cp -r ./.svelte-kit/output/prerendered/pages/* $out
+    cp -r ./build/* $out
   '';
 
   packageJSON = ../package.json;
