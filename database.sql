@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict avlRtpqi89aZSOuJCd3RqDZWFdIRPSQYRGOvviaLHa8pxhgjegqfzGyGBvlZddN
+\restrict TtO4G0jKrgWVVPaB8R4aAtYVcowRTmlfaJyWuBluHW55XPSOpg8tYlQ6T1KPddo
 
 -- Dumped from database version 17.7
 -- Dumped by pg_dump version 17.7
@@ -996,14 +996,14 @@ COPY public.contact_page_data_bottom_right_links (_order, _parent_id, id, icon) 
 --
 
 COPY public.contact_page_data_bottom_right_links_locales (label, id, _locale, _parent_id, url) FROM stdin;
-email	116	en	69575e522f047c3e56db46a0	mailto:contact@yoni-firroloni.com
-E-mail	117	fr	69575e522f047c3e56db46a0	mailto:contact@vagahbond.com
-Resume	118	en	6955d90585bcb935b4b1d05b	https://nuage.vagahbond.com/s/KnYmaAF75B4dHWd
-CV	119	fr	6955d90585bcb935b4b1d05b	https://nuage.vagahbond.com/s/KnYmaAF75B4dHWd
-Github	120	en	6955d91385bcb935b4b1d05d	https://github.com/Vagahbond
-Github	121	fr	6955d91385bcb935b4b1d05d	https://github.com/Vagahbond
-Linkedin	122	en	69575d1c2f047c3e56db469e	https://nz.linkedin.com/in/yoni-firroloni-%F0%9F%92%BB-a5002b153
-Linkedin	123	fr	69575d1c2f047c3e56db469e	https://nz.linkedin.com/in/yoni-firroloni-%F0%9F%92%BB-a5002b153
+email	220	en	69575e522f047c3e56db46a0	mailto:contact@yoni-firroloni.com
+E-mail	221	fr	69575e522f047c3e56db46a0	mailto:contact@vagahbond.com
+Resume	222	en	6955d90585bcb935b4b1d05b	https://vagahbond.com/resume.pdf
+CV	223	fr	6955d90585bcb935b4b1d05b	https://nuage.vagahbond.com/s/KnYmaAF75B4dHWd
+Github	224	en	6955d91385bcb935b4b1d05d	https://github.com/Vagahbond
+Github	225	fr	6955d91385bcb935b4b1d05d	https://github.com/Vagahbond
+Linkedin	226	en	69575d1c2f047c3e56db469e	https://linkedin.com/in/yoni-firroloni-%F0%9F%92%BB-a5002b153
+Linkedin	227	fr	69575d1c2f047c3e56db469e	https://nz.linkedin.com/in/yoni-firroloni-%F0%9F%92%BB-a5002b153
 \.
 
 
@@ -1012,8 +1012,8 @@ Linkedin	123	fr	69575d1c2f047c3e56db469e	https://nz.linkedin.com/in/yoni-firrolo
 --
 
 COPY public.contact_page_data_locales (top_left_title, top_left_text, id, _locale, _parent_id, top_right_title, top_right_text, bottom_left_title, bottom_left_text, bottom_right_title, bottom_right_email) FROM stdin;
-Simple solutions to complex problems	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "In an era where it is increasingly common to seek ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "simplicity", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": " in processes, we tend to forget the importance of ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "simple", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": " solutions delivery.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "My philosophy is that any problem, however ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "complex", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": ", has a relatively ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "simple", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": " and ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "clear", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": " solution.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "While having your priorities respected, get delivered simple, streamlined solutions with a strong anticipation for technical debt and maintenance needs.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Contact me today for an efficient, and organic approach to understanding your projects and making them a reality.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	47	en	1	Educated and self taught	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "As important as theory can be in many fields of computer science, real-life experience cannot be replaced.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "As powerful as experience can be for understanding problems, finding innovative solutions is hard without backing it with strong theory.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "With a master's degree and more than 5 years of a diverse professional experience, I have the versatility to tackle most software development needs and get up to speed quickly in tech stacks that I have never worked with before.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Constant practice through diverse projects entertains an interest in techs and provides a positive mindset and a curiosity that are needed to make the most out of this expertise.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	More about me	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I am a 26 year old software engineer with an active, lazy mindset.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "When I have to do something, I like to find ways to be able to get the same result with less effort the next time.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "This mentality led me to becoming a programmer with a strong interest in \\"things as code\\". As an example, nix (IaS) is probably the language I have spent the most time on within my latest personal projects.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I am also interested in privacy online and freedom in tech.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	Find me on the internet	contact@yoni-firroloni.com
-Des solutions simples à des problèmes complexes	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Dans une ère ou la recherche de simplicité dans les processus, on tend à oublier l'importance de la simplicité des solutions.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ma philosophie est que tout problème, aussi complexe qu'il soit, a une solution simple.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Tout en respectant vos priorités, je produit des livrables simples et efficaces, avec une forte attention portée à la dette technique et la réduction du besoin de maintenance.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Faites appel à mes services pour une approche plus humaine et efficace à la compréhension de vos projets et à leur réalisation. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	48	fr	1	Dipplomé et auto-didacte	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Aussi importante que puisse être la théorie en informatique, elle ne peut pas remplacer l'experience du terrain.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "De son côté, si l'experience aide à comprendre les besoins des clients, elle ne suffit pas à apporter des solutions innovantes qui necessitent des compétences théoriques.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Avec un master en architecture logicielle et 5 ans d'expérience à divers postes, j'ai la polyvalence necessaire pour travailler sur et m'adapter à toute sorte de projets, y compris avec des technologies et outils que je ne connais pas initialement.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Avec une veille constante à travers des projets personnels, j'entretiens un fort interêt pour la tech et une attitude positive pour mettre cette expertise en pratique dans les meilleurs conditions possible.  ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	À propos de moi	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Je suis un développeur de 26 ans, actif et paresseux : Quand je dois faire quelque chose, j'aime m'assurer que la tâche sera plus simple la fois suivante.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Cette mentalité m'a poussé à devenir un développeur, avec aujourd'hui un fort interêt pour les choses ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "as code", "type": "text", "style": "", "detail": 0, "format": 16, "version": 1}, {"mode": "normal", "text": ". Par exemple, ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "nix", "type": "text", "style": "", "detail": 0, "format": 16, "version": 1}, {"mode": "normal", "text": " (IaS) est probablement un des langages que je manipule le plus.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Je m'interesse aussi beaucoup à la protection de la vie privée et la liberté en ligne.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	Me trouver en ligne	contact@vagahbond.com
+Simple solutions to complex problems	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "In an era where it is increasingly common to seek ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "simplicity", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": " the process, we tend to forget the importance of ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "simple", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": " solutions.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "For any problem, however ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "complex", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": ", I like to look for the most ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "simple", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": " and ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "clear", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": " solution.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "While having your priorities respected, you can get delivered simple, streamlined solutions with a strong anticipation for technical debt and maintenance needs.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Work with me for an efficient, and organic approach to understanding your problems and solving them efficiently.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	73	en	1	Educated and self taught	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "As important as theory can be in many fields of computer science, real-life experience cannot be replaced.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "As necessary as experience can be for understanding problems, finding innovative solutions is hard without backing it with strong theory.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "With a master's degree and more than 5 years of a diverse professional experience, I have the versatility to tackle most software development needs and get up to speed quickly in tech stacks that I have never worked with before.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Constant practice through diverse projects entertains my interest in tech and provides me with a positive mindset and a curiosity that help to make the most out of this expertise.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	More about me	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I am a 27 year old software engineer with an active mindset.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Fond of solving problems, I have been into tech for as long as I can remember.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "In tech, I have a strong interest in self-hosting, online privacy and freedom. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Outside of tech, I am a sucker for trek, mountain-biking, climbing, and music through guitar and DAWs.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	Find me on the internet	contact@yoni-firroloni.com
+Des solutions simples à des problèmes complexes	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Dans une ère ou la recherche de simplicité dans les processus, on tend à oublier l'importance de la simplicité des solutions.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ma philosophie est que tout problème, aussi complexe qu'il soit, a une solution simple.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Tout en respectant vos priorités, je produit des livrables simples et efficaces, avec une forte attention portée à la dette technique et la réduction du besoin de maintenance.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Faites appel à mes services pour une approche plus humaine et efficace à la compréhension de vos projets et à leur réalisation. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	74	fr	1	Dipplomé et auto-didacte	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Aussi importante que puisse être la théorie en informatique, elle ne peut pas remplacer l'experience du terrain.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "De son côté, si l'experience aide à comprendre les besoins des clients, elle ne suffit pas à apporter des solutions innovantes qui necessitent des compétences théoriques.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Avec un master en architecture logicielle et 5 ans d'expérience à divers postes, j'ai la polyvalence necessaire pour travailler sur et m'adapter à toute sorte de projets, y compris avec des technologies et outils que je ne connais pas initialement.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Avec une veille constante à travers des projets personnels, j'entretiens un fort interêt pour la tech et une attitude positive pour mettre cette expertise en pratique dans les meilleurs conditions possible.  ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	À propos de moi	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Je suis un développeur de 26 ans, actif et paresseux : Quand je dois faire quelque chose, j'aime m'assurer que la tâche sera plus simple la fois suivante.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Cette mentalité m'a poussé à devenir un développeur, avec aujourd'hui un fort interêt pour les choses ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "as code", "type": "text", "style": "", "detail": 0, "format": 16, "version": 1}, {"mode": "normal", "text": ". Par exemple, ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "nix", "type": "text", "style": "", "detail": 0, "format": 16, "version": 1}, {"mode": "normal", "text": " (IaS) est probablement un des langages que je manipule le plus.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Je m'interesse aussi beaucoup à la protection de la vie privée et la liberté en ligne.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	Me trouver en ligne	contact@vagahbond.com
 \.
 
 
@@ -1052,7 +1052,6 @@ COPY public.media (id, updated_at, created_at, url, thumbnail_u_r_l, filename, m
 9	2026-01-14 10:05:23.63+13	2026-01-14 10:05:23.63+13	\N	\N	image.png	image/png	174253	1767	991	50	50
 10	2026-01-14 10:31:53.056+13	2026-01-14 10:29:16.334+13	/api/media/file/image-1.png	\N	image-1.png	image/png	106897	1392	744	50	50
 12	2026-02-12 20:29:59.076+13	2026-02-12 20:28:02.129+13	/api/media/file/2025-02-02T0006431407956621100.webp	\N	2025-02-02T0006431407956621100.webp	image/webp	70312	2194	1462	50	50
-11	2026-02-12 20:30:52.792+13	2026-02-12 20:13:25.647+13	/api/media/file/guncraft-screenshot-1028168036.jpg	\N	guncraft-screenshot-1028168036.jpg	image/jpeg	55303	1020	574	50	50
 13	2026-02-12 20:33:44.989+13	2026-02-12 20:33:44.989+13	\N	\N	Screenshot 2026-02-12 at 20-32-20 Introduction Uni-verse.png	image/png	709313	2146	2408	50	50
 14	2026-02-12 20:53:07.497+13	2026-02-12 20:53:07.497+13	\N	\N	Screenshot 2026-02-12 at 20-51-45 Advent of Code 2023.png	image/png	433941	2524	1782	50	50
 15	2026-02-12 21:10:10.995+13	2026-02-12 21:10:10.994+13	\N	\N	Screenshot 2026-02-12 at 21-09-48 spreadsheet-to-invoiceshelf_README.md at master · Vagahbond_spreadsheet-to-invoiceshelf.png	image/png	153620	2076	996	50	50
@@ -1062,6 +1061,8 @@ COPY public.media (id, updated_at, created_at, url, thumbnail_u_r_l, filename, m
 19	2026-02-12 21:46:49.589+13	2026-02-12 21:46:49.588+13	\N	\N	Screenshot 2026-02-12 at 21-46-26 cours-example_Chapter-1_MentorD.yml at master · Vagahbond_cours-example.png	image/png	86890	1814	472	50	50
 20	2026-02-12 21:57:31.981+13	2026-02-12 21:57:31.981+13	\N	\N	1_dGEwUHQvBY3bAddEyczVEw.webp	image/webp	43354	1400	788	50	50
 21	2026-02-12 22:02:18.551+13	2026-02-12 22:02:18.551+13	\N	\N	Screenshot 2026-02-12 at 22-02-04 megumin-lang_main.mg at master · Vagahbond_megumin-lang.png	image/png	62163	2456	520	50	50
+11	2026-02-13 18:37:12.375+13	2026-02-12 20:13:25.647+13	/api/media/file/guncraft-screenshot-1028168036.jpg	\N	guncraft-screenshot-1028168036.jpg	image/jpeg	55303	1020	574	50	50
+24	2026-03-11 13:33:42.838+13	2026-03-11 13:33:42.837+13	\N	\N	resume.pdf	application/pdf	141949	\N	\N	\N	\N
 \.
 
 
@@ -1077,8 +1078,6 @@ Nix diagram	5	en	10
 Diagramme de Nix	6	fr	10
 My rice made using rice-cooker	9	en	12
 Ma rice faite avec nix-cooker	10	fr	12
-A screenshot of Guncraft, the inspiration for Guncruft	11	en	11
-Une capture d'écran de Guncraft, dont est inspiré Guncruft	12	fr	11
 Uni-verse's documentation	13	en	13
 Advent of Code	14	en	14
 A template for using spreadsheet-to-invoiceshelf	15	en	15
@@ -1088,6 +1087,9 @@ A screenshot of what Hyprspace did	18	fr	18
 A MentoreD configuraiton file	19	fr	19
 A blockchain schema	20	en	20
 Megumin code snippet	21	fr	21
+A screenshot of Guncraft, the inspiration for Guncruft	22	en	11
+Une capture d'écran de Guncraft, dont est inspiré Guncruft	23	fr	11
+resume	27	en	24
 \.
 
 
@@ -1120,7 +1122,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-02-12 19:40:26.628+13	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-03-11 13:43:03.515+13	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -1130,13 +1132,13 @@ COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM st
 
 COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM stdin;
 2	collection-projects	{"limit": 10, "editViewType": "default"}	2025-12-17 21:26:21.012+13	2025-12-17 21:25:02.699+13
-3	collection-media	{"editViewType": "default"}	2025-12-18 22:23:07.491+13	2025-12-18 22:23:00.699+13
 5	collection-contactPageData	{"limit": 10, "editViewType": "default"}	2025-12-28 00:05:07.333+13	2025-12-27 23:36:57.387+13
 6	global-contactPageData	{"editViewType": "default"}	2025-12-28 00:09:21.078+13	2025-12-28 00:09:21.079+13
 1	collection-users	{"limit": 10}	2025-12-28 00:24:13.138+13	2025-12-17 21:15:05.108+13
 8	global-homePageData	{"editViewType": "default"}	2025-12-28 19:47:06.152+13	2025-12-28 19:47:06.154+13
 9	global-projectsPageData	{"editViewType": "default"}	2025-12-28 19:54:40.332+13	2025-12-28 19:54:40.333+13
-7	locale	"fr"	2026-02-12 22:11:16.876+13	2025-12-28 00:25:16.154+13
+7	locale	"en"	2026-02-13 18:37:12.416+13	2025-12-28 00:25:16.154+13
+3	collection-media	{"sort": "-updatedAt", "limit": 10, "editViewType": "default"}	2026-02-13 18:48:12.668+13	2025-12-18 22:23:00.699+13
 \.
 
 
@@ -1146,11 +1148,11 @@ COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM st
 
 COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FROM stdin;
 4	\N	2	user	1
-6	\N	3	user	1
-78	\N	7	user	1
+80	\N	7	user	1
 11	\N	5	user	1
 12	\N	6	user	1
 13	\N	1	user	1
+82	\N	3	user	1
 30	\N	8	user	1
 32	\N	9	user	1
 \.
@@ -1161,7 +1163,6 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 --
 
 COPY public.projects (id, updated_at, created_at, image_id, date) FROM stdin;
-7	2026-02-12 19:58:42.992+13	2026-01-02 20:12:03.553+13	7	2026-01-03 01:00:00+13
 9	2026-02-12 20:16:31.192+13	2026-02-12 20:13:28.712+13	11	2025-04-13 00:00:00+12
 10	2026-02-12 20:29:24.475+13	2026-02-12 20:22:40.761+13	12	2024-05-09 00:00:00+12
 11	2026-02-12 20:41:04.02+13	2026-02-12 20:38:12.84+13	13	2024-07-21 00:00:00+12
@@ -1174,6 +1175,7 @@ COPY public.projects (id, updated_at, created_at, image_id, date) FROM stdin;
 18	2026-02-12 21:57:55.6+13	2026-02-12 21:55:45.989+13	20	2022-02-23 01:00:00+13
 19	2026-02-12 22:06:08.417+13	2026-02-12 22:04:55.562+13	21	2020-02-07 01:00:00+13
 8	2026-02-12 22:11:20.54+13	2026-01-07 21:33:08.324+13	10	2026-01-14 01:00:00+13
+7	2026-03-11 12:37:56.811+13	2026-01-02 20:12:03.553+13	7	2026-01-03 01:00:00+13
 \.
 
 
@@ -1229,10 +1231,6 @@ Repo	113	en	698d911b1f9c6b0b47e99cf7
 Repo	114	fr	698d911b1f9c6b0b47e99cf7
 Repo	118	en	698d93031f9c6b0b47e99cf9
 Repo	119	fr	698d93031f9c6b0b47e99cf9
-Sources	66	en	695770178e408a69ec2e8a0a
-Code source	67	fr	695770178e408a69ec2e8a0a
-Production	68	en	6957707d8e408a69ec2e8a0c
-Production	69	fr	6957707d8e408a69ec2e8a0c
 Repo	131	en	698d949a1f9c6b0b47e99cfb
 Repo	132	fr	698d949a1f9c6b0b47e99cfb
 Repo	136	en	698d96c81f9c6b0b47e99cfd
@@ -1241,6 +1239,10 @@ Github	138	en	6966b30b726b707b07249145
 Github	139	fr	6966b30b726b707b07249145
 Doc	140	en	6966b42f726b707b07249147
 Doc	141	fr	6966b42f726b707b07249147
+Source code	142	en	695770178e408a69ec2e8a0a
+Code source	143	fr	695770178e408a69ec2e8a0a
+Production	144	en	6957707d8e408a69ec2e8a0c
+Production	145	fr	6957707d8e408a69ec2e8a0c
 \.
 
 
@@ -1251,12 +1253,10 @@ Doc	141	fr	6966b42f726b707b07249147
 COPY public.projects_locales (name, description, id, _locale, _parent_id) FROM stdin;
 Simple blockchain	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "For fun and for science I took the challenge to implement ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "698d954c2da38925783ffda6", "type": "link", "fields": {"url": "https://levelup.gitconnected.com/learn-blockchain-by-building-it-f2f8ccc54892", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "this tutorial", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " in C++.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It consists in implementing a simplified blockchain system.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	95	en	18
 Simple blockchain	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pour le plaisir et pour la science, j'ai relevé le défi de mettre en œuvre ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "698d95bf2da38925783ffdad", "type": "link", "fields": {"url": "https://levelup.gitconnected.com/learn-blockchain-by-building-it-f2f8ccc54892", "newTab": false, "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "ce tutoriel", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " en C++.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il consiste à mettre en œuvre un système de blockchain simplifié.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	96	fr	18
-Homepage	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "This project is the website you are currently looking at. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Made with ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957712949eaafa084a46f1d", "type": "link", "fields": {"url": "https://svelte.dev/docs/kit/introduction", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "SvelteKit", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " for the frontend, and ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957715149eaafa084a46f1e", "type": "link", "fields": {"url": "https://payloadcms.com/", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "PayloadCMS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " for the backend. Sveltekit allows building fully bundled static websites with prefetched assets and data.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It is packaged using the nix package manager, that runs the CMS and the frontend's build in an isolated environment and outputs a static website that is then served by a nginx instance.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	37	en	7
 Rustlings	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Rustlings is an interesting project to start learning Rust with practical challenges.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "As thousands of people, I completed it in order to start working with Rust. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	69	en	14
 Rustlings	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Rustlings est un projet intéressant pour commencer à apprendre Rust à travers des défis pratiques.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Comme des milliers d'autres personnes, je l'ai terminé afin de pouvoir commencer à travailler avec Rust. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	70	fr	14
 MentoreD	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "MentoreD is a concept of courses as code. It allows creating courses as Github Repo, with markdown files for content and yml configuration files for authorization.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It include creating course content and exercises.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	82	en	17
 MentoreD	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "MentoreD est un concept de cours sous forme de code. Il permet de créer des cours sous forme de dépôt Github, avec des fichiers Markdown pour le contenu et des fichiers de configuration YML pour l'autorisation.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il comprend la création du contenu du cours et des exercices.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	83	fr	17
-Site vitrine	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ce projet est le site que vous avez sous les yeux. Fait avec ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957712949eaafa084a46f1d", "type": "link", "fields": {"url": "https://svelte.dev/docs/kit/introduction", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "SvelteKit", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " pour le frontend, et ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957715149eaafa084a46f1e", "type": "link", "fields": {"url": "https://payloadcms.com/", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "PayloadCMS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " pour le backend.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Sveltekit permet de générer des sites statiques léger et rapides grâce à des systèmes de pré-requêtes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il est mis en production grâce à nix. Celui-ci fait tourner PayloadCMS en arrière plan et prépare le frontend dans un environnement isolé, puis produit un site statique servi par NginX. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	38	fr	7
 NFpieT	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "During the blockchain and NFT bubble, there was a blockchain assignment at my uni. I created this decentralized app on the Etherum network. NFpieT is a NFT that is runnable. Each token is an image that represents Piet code (images that represent code). For technical reasons, those NFTs are stored as JSON and I had to implement a parser for it from scratch in the Sol language, as it was all new at the time.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	72	en	15
 NFpieT	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pendant la bulle blockchain et NFT, il y avait un devoir sur la blockchain à mon université. J'ai créé cette application décentralisée sur le réseau Ethereum. NFpieT est un NFT exécutable. Chaque jeton est une image qui représente le code Piet (des images qui représentent du code). Pour des raisons techniques, ces NFT sont stockés au format JSON et j'ai dû implémenter un analyseur syntaxique pour cela à partir de zéro dans le langage Sol, car tout cela était nouveau à l'époque.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	73	fr	15
 Megumin-lang	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "MeguminLang is a programming language that I created as a language theory assessment at the uni, using Python and yacc.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It is inspired by a character from KonoSuba, an anime.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	100	en	19
@@ -1274,6 +1274,8 @@ Configuration nix	{"root": {"type": "root", "format": "", "indent": 0, "version"
 HyprSpace	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "The Hyprland (A Wayland Tiling Compositor) community organized a competition for the most creative Rice (Custom Linux desktop interface). I created this plugin for this competition, using C++, that transforms windows in comets.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	77	en	16
 HyprSpace	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "La communauté Hyprland (un compositeur de mosaïque Wayland) a organisé un concours pour récompenser le Rice (interface de bureau Linux personnalisée) le plus créatif. J'ai créé ce plugin pour ce concours, en utilisant C++, qui transforme les fenêtres en comètes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	78	fr	16
 spreadsheet-to-invoiceshelf	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "InvoiceShelf is a self-hostable web app for creating and storing invoices as a small business. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "During one onf my previous contracts, I was constrained to logging my time on an Excel file. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I created this CLI tool with rust so I could transform my Excel file into InvoiceShelf format so I could import it.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	66	en	13
+Homepage	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "This project is the website you are currently looking at. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Made with ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957712949eaafa084a46f1d", "type": "link", "fields": {"url": "https://svelte.dev/docs/kit/introduction", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "SvelteKit", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " for the frontend, and ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957715149eaafa084a46f1e", "type": "link", "fields": {"url": "https://payloadcms.com/", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "PayloadCMS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " for the backend. Sveltekit allows building fully bundled static websites with prefetched assets and data.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It is packaged using the nix package manager, that runs the CMS and the frontend's build in an isolated environment and outputs a static website that is then served by a nginx instance.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	104	en	7
+Site vitrine	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ce projet est le site que vous avez sous les yeux. Fait avec ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957712949eaafa084a46f1d", "type": "link", "fields": {"url": "https://svelte.dev/docs/kit/introduction", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "SvelteKit", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " pour le frontend, et ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957715149eaafa084a46f1e", "type": "link", "fields": {"url": "https://payloadcms.com/", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "PayloadCMS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " pour le backend.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Sveltekit permet de générer des sites statiques léger et rapides grâce à des systèmes de pré-requêtes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il est mis en production grâce à nix. Celui-ci fait tourner PayloadCMS en arrière plan et prépare le frontend dans un environnement isolé, puis produit un site statique servi par NginX. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	105	fr	7
 Spreadsheet-to-invoiceshelf	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "InvoiceShelf est une application web auto-hébergée permettant aux petites entreprises de créer et de stocker leurs factures.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Au cours d'un de mes précédents contrats, j'étais obligé d'enregistrer mes heures de travail dans un fichier Excel.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "J'ai créé cet outil CLI avec Rust afin de pouvoir convertir mon fichier Excel au format InvoiceShelf et l'importer.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	67	fr	13
 \.
 
@@ -1292,8 +1294,8 @@ COPY public.projects_page_data (id, updated_at, created_at) FROM stdin;
 --
 
 COPY public.projects_page_data_locales (title, subtitle, id, _locale, _parent_id) FROM stdin;
-Practice makes perfect	Constantly building the expertise your enterprise needs.	24	en	1
-C'est en forgeant qu'on devient forgeron.	Un travail constant, pour livrer des solutions qualitatives.	25	fr	1
+Practice makes perfect	Constantly building skills	26	en	1
+C'est en forgeant qu'on devient forgeron.	Un travail constant, pour livrer des solutions qualitatives.	27	fr	1
 \.
 
 
@@ -1302,7 +1304,7 @@ C'est en forgeant qu'on devient forgeron.	Un travail constant, pour livrer des s
 --
 
 COPY public.users (id, updated_at, created_at, email, reset_password_token, reset_password_expiration, salt, hash, login_attempts, lock_until) FROM stdin;
-1	2026-01-14 09:30:03.775+13	2025-12-17 21:15:02.465+13	vagahbond@pm.me	\N	\N	075999745062ba90e8efe7be679ca1ec3bacb49e92d4dd33c3ca31ea653c7b55	879d584ba8c7e013c0c82ed50da3e77c6b22921c1f62759ab5d371e657a2cb483e478c06aaebd101f59dc5e0d2c0009a13010f7ac6ebc227279845439e478de58b941624899ded3ecd420163b7942b748cd925c56917f73a94e9d355997a85da74f24ec9b2ea0b5d338d4d53496e4f20dd25dac7aabb3bd7da0c0af034344137fca899a2bb4fc907144fb5c72b55749627209a6b1ba43dbd9b425533eb151f2741ecbed4f6a1d0f1074790afd1391af01c2b641e3bffa3919791cc7d5069daa7a2d24cf6c80679e4c8af0586e5c3da551d866a9bd5a0d06bd5c8dc6d73f24481cf24a3dbf32aaa14e88b6a75739a6d3771d19f307b4c38a10a30f3552236521e19a7b9af119db69bd448cc4f3859db8adedb66e65c058c5ec45650f4cea261e27a0d9f0a3d0dcafcf4ba41a6cd8c3c885ef56ff09c149042a9fed53c27177b155a04ed89c1346663b04f7c94b4f051d3e59eb0ac4a4bd91882c3f4f675a58b5e1214227cd0c2a1caf4c06e678fa5206dcdea4b1fa4f99ae30de5ea3267e94989ad12fec1c61db5369017b6c5e23a825f7e1928bc585b94331e8516efcfb55fb50c10ff7fbf9fcc1adf97a4610bdb5f583f53a6b631e02eb58531cba74e47dc011105891f5ddf1535ed94f9540c9263578cb42de0acedec7c23bca0428067264cd52e498f7ed9ef96846ad43b559e7c7e7b4579a66628852672522e51cb8f4d90	0	\N
+1	2026-03-11 12:23:40.998+13	2025-12-17 21:15:02.465+13	vagahbond@pm.me	\N	\N	075999745062ba90e8efe7be679ca1ec3bacb49e92d4dd33c3ca31ea653c7b55	879d584ba8c7e013c0c82ed50da3e77c6b22921c1f62759ab5d371e657a2cb483e478c06aaebd101f59dc5e0d2c0009a13010f7ac6ebc227279845439e478de58b941624899ded3ecd420163b7942b748cd925c56917f73a94e9d355997a85da74f24ec9b2ea0b5d338d4d53496e4f20dd25dac7aabb3bd7da0c0af034344137fca899a2bb4fc907144fb5c72b55749627209a6b1ba43dbd9b425533eb151f2741ecbed4f6a1d0f1074790afd1391af01c2b641e3bffa3919791cc7d5069daa7a2d24cf6c80679e4c8af0586e5c3da551d866a9bd5a0d06bd5c8dc6d73f24481cf24a3dbf32aaa14e88b6a75739a6d3771d19f307b4c38a10a30f3552236521e19a7b9af119db69bd448cc4f3859db8adedb66e65c058c5ec45650f4cea261e27a0d9f0a3d0dcafcf4ba41a6cd8c3c885ef56ff09c149042a9fed53c27177b155a04ed89c1346663b04f7c94b4f051d3e59eb0ac4a4bd91882c3f4f675a58b5e1214227cd0c2a1caf4c06e678fa5206dcdea4b1fa4f99ae30de5ea3267e94989ad12fec1c61db5369017b6c5e23a825f7e1928bc585b94331e8516efcfb55fb50c10ff7fbf9fcc1adf97a4610bdb5f583f53a6b631e02eb58531cba74e47dc011105891f5ddf1535ed94f9540c9263578cb42de0acedec7c23bca0428067264cd52e498f7ed9ef96846ad43b559e7c7e7b4579a66628852672522e51cb8f4d90	0	\N
 \.
 
 
@@ -1311,7 +1313,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	e140961d-46f9-4a12-9784-230ae768e7cf	2026-02-12 19:28:01.731+13	2026-02-12 23:26:08.492+13
+1	1	13e4b0b1-2b1f-439b-9b76-59fd62277e32	2026-03-11 12:23:40.995+13	2026-03-11 14:23:40.995+13
 \.
 
 
@@ -1319,7 +1321,7 @@ COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM
 -- Name: contact_page_data_bottom_right_links_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.contact_page_data_bottom_right_links_locales_id_seq', 123, true);
+SELECT pg_catalog.setval('public.contact_page_data_bottom_right_links_locales_id_seq', 227, true);
 
 
 --
@@ -1333,7 +1335,7 @@ SELECT pg_catalog.setval('public.contact_page_data_id_seq', 1, true);
 -- Name: contact_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.contact_page_data_locales_id_seq', 48, true);
+SELECT pg_catalog.setval('public.contact_page_data_locales_id_seq', 74, true);
 
 
 --
@@ -1354,14 +1356,14 @@ SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 3, true);
 -- Name: media_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.media_id_seq', 21, true);
+SELECT pg_catalog.setval('public.media_id_seq', 24, true);
 
 
 --
 -- Name: media_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.media_locales_id_seq', 21, true);
+SELECT pg_catalog.setval('public.media_locales_id_seq', 27, true);
 
 
 --
@@ -1375,14 +1377,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 118, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 134, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 178, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 196, true);
 
 
 --
@@ -1403,7 +1405,7 @@ SELECT pg_catalog.setval('public.payload_preferences_id_seq', 9, true);
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 78, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 82, true);
 
 
 --
@@ -1417,14 +1419,14 @@ SELECT pg_catalog.setval('public.projects_id_seq', 19, true);
 -- Name: projects_links_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_links_locales_id_seq', 141, true);
+SELECT pg_catalog.setval('public.projects_links_locales_id_seq', 145, true);
 
 
 --
 -- Name: projects_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_locales_id_seq', 103, true);
+SELECT pg_catalog.setval('public.projects_locales_id_seq', 105, true);
 
 
 --
@@ -1438,7 +1440,7 @@ SELECT pg_catalog.setval('public.projects_page_data_id_seq', 1, true);
 -- Name: projects_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_page_data_locales_id_seq', 25, true);
+SELECT pg_catalog.setval('public.projects_page_data_locales_id_seq', 27, true);
 
 
 --
@@ -2051,5 +2053,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict avlRtpqi89aZSOuJCd3RqDZWFdIRPSQYRGOvviaLHa8pxhgjegqfzGyGBvlZddN
+\unrestrict TtO4G0jKrgWVVPaB8R4aAtYVcowRTmlfaJyWuBluHW55XPSOpg8tYlQ6T1KPddo
 
