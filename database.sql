@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict TtO4G0jKrgWVVPaB8R4aAtYVcowRTmlfaJyWuBluHW55XPSOpg8tYlQ6T1KPddo
+\restrict jdttHJlhz3PZhfkmF3Wh3t7DkheNR95Isno9laCEW6YL7OogtTHTlrFCU5NDEYD
 
 -- Dumped from database version 17.7
 -- Dumped by pg_dump version 17.7
@@ -1062,7 +1062,6 @@ COPY public.media (id, updated_at, created_at, url, thumbnail_u_r_l, filename, m
 20	2026-02-12 21:57:31.981+13	2026-02-12 21:57:31.981+13	\N	\N	1_dGEwUHQvBY3bAddEyczVEw.webp	image/webp	43354	1400	788	50	50
 21	2026-02-12 22:02:18.551+13	2026-02-12 22:02:18.551+13	\N	\N	Screenshot 2026-02-12 at 22-02-04 megumin-lang_main.mg at master · Vagahbond_megumin-lang.png	image/png	62163	2456	520	50	50
 11	2026-02-13 18:37:12.375+13	2026-02-12 20:13:25.647+13	/api/media/file/guncraft-screenshot-1028168036.jpg	\N	guncraft-screenshot-1028168036.jpg	image/jpeg	55303	1020	574	50	50
-24	2026-03-11 13:33:42.838+13	2026-03-11 13:33:42.837+13	\N	\N	resume.pdf	application/pdf	141949	\N	\N	\N	\N
 \.
 
 
@@ -1089,7 +1088,6 @@ A blockchain schema	20	en	20
 Megumin code snippet	21	fr	21
 A screenshot of Guncraft, the inspiration for Guncruft	22	en	11
 Une capture d'écran de Guncraft, dont est inspiré Guncruft	23	fr	11
-resume	27	en	24
 \.
 
 
@@ -1122,7 +1120,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-03-11 13:43:03.515+13	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-03-11 13:54:55.703+13	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -2053,5 +2051,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict TtO4G0jKrgWVVPaB8R4aAtYVcowRTmlfaJyWuBluHW55XPSOpg8tYlQ6T1KPddo
+\unrestrict jdttHJlhz3PZhfkmF3Wh3t7DkheNR95Isno9laCEW6YL7OogtTHTlrFCU5NDEYD
 
