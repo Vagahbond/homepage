@@ -20,4 +20,8 @@
   pgstop = pkgs.writeShellScriptBin "pgstop" ''
     pg_ctl -D data -l pglogfile stop -o "-k ./";
   '';
+
+  pgdump = pkgs.writeShellScriptBin "pgdump" ''
+    pg_dump -h localhost -p 5432 -f database.sql homepage
+  '';
 }
