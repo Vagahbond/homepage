@@ -17,7 +17,7 @@
 </script>
 
 <div class="projects-screen">
-	<div class="title bordered blurred-bg">
+	<div class="title bordered blurred-bg crt">
 		<h1>{data.labels.title}</h1>
 		<h4 class="subtitle">{data.labels.subtitle}</h4>
 	</div>
@@ -31,18 +31,15 @@
 
 		<div class={`project-item ${index % 2 && 'reverse'}`}>
 			<div class="project-picture">
-				<img
-					alt={project?.image?.alt ?? ''}
-					src={imageUrl}
-					class="bordered blurred-bg"
-					style:--accent={color}
-				/>
+				<div class="crt blurred-bg">
+					<img alt={project?.image?.alt ?? ''} src={imageUrl} style:--accent={color} />
+				</div>
 			</div>
-			<div class="project-center blurred-bg bordered" style:--accent={color}>
+			<div class="project-center blurred-bg bordered crt" style:--accent={color}>
 				<div class="project-circle" style:--accent={color}></div>
 			</div>
 			<div class="project-desc">
-				<div class="project-desc-frame bordered blurred-bg" style:--accent={color}>
+				<div class="project-desc-frame bordered blurred-bg crt" style:--accent={color}>
 					<h1>{project.name}</h1>
 					<h6 class="project-date">{date.getMonth() + 1}/{date.getFullYear()}</h6>
 					<button class="mobile-project-picture" onclick={() => (mobileImageModalPic = imageUrl)}>
@@ -214,17 +211,23 @@
 		display: none;
 	}
 
-	.project-item:hover .project-picture img {
+	.project-item:hover .project-picture * {
 		transition: all 1s;
 		max-width: 40vw;
 		max-height: 80vh;
 	}
 
-	.project-picture img {
+	.project-picture * {
 		max-width: 38vw;
 		max-height: 75vh;
 		object-fit: cover;
 		margin: auto;
+		border-radius: 6px;
+		overflow: hidden;
+	}
+
+	.project-picture div img::before {
+		height: 0;
 	}
 
 	.project-desc-frame h1 {

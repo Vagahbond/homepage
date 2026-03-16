@@ -2,7 +2,7 @@
 	import 'css-doodle';
 </script>
 
-<div id="bg-anim">
+<div id="bg-anim" class="crt">
 	<css-doodle>
 		@grid: 20 / 100vmax; background: var(--bg); scale:calc( 1.4 + cos(@rand(0, .9) * @t(/1000))/2);
 		clip-path:

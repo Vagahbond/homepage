@@ -11,7 +11,7 @@
 <div class="contact-screen">
 	<div
 		id="frame1"
-		class="frame blurred-bg bordered"
+		class="frame blurred-bg bordered crt"
 		in:slide={{ delay: 500 }}
 		out:slide={{ delay: 300, duration: 100 }}
 	>
@@ -22,7 +22,7 @@
 	</div>
 	<div
 		id="frame2"
-		class="frame blurred-bg bordered"
+		class="frame blurred-bg bordered crt"
 		in:slide={{ delay: 750 }}
 		out:slide={{ delay: 200, duration: 100 }}
 	>
@@ -33,7 +33,7 @@
 	</div>
 	<div
 		id="frame4"
-		class="frame blurred-bg bordered"
+		class="frame blurred-bg bordered crt"
 		in:slide={{ delay: 1000 }}
 		out:slide={{ delay: 100, duration: 100 }}
 	>
@@ -44,7 +44,7 @@
 	</div>
 	<div
 		id="frame3"
-		class="frame blurred-bg bordered"
+		class="frame blurred-bg bordered crt"
 		in:slide={{ delay: 1250 }}
 		out:slide={{ delay: 0, duration: 100 }}
 	>
@@ -56,7 +56,7 @@
 	</div>
 	<div
 		id="frame5"
-		class="frame"
+		class="frame crt"
 		out:blur={{ delay: 0, duration: 100 }}
 		in:fly={{ delay: 750, duration: 1000, y: 2000 }}
 	>

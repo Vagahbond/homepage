@@ -6,7 +6,7 @@
 	const route = $derived(page.route.id as RoutesWithLang);
 </script>
 
-<div class="lang-selector">
+<div class="lang-selector crt">
 	<!-- eslint-disable-next-line @typescript-eslint/ban-ts-comment -->
 	<!-- @ts-ignore -->
 	<a

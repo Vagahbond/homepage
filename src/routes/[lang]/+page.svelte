@@ -4,10 +4,10 @@
 
 <div class="container">
 	<div class="home-screen">
-		<div id="avatar-picture" class="bordered blurred-bg">
+		<div id="avatar-picture" class="bordered blurred-bg crt">
 			<img alt="A magnificent snail" src="/snail.png" />
 		</div>
-		<div class="bordered blurred-bg name">
+		<div class="bordered blurred-bg name crt">
 			<h1 id="name">Yoni Firroloni</h1>
 			<h4 id="aka">A.K.A.</h4>
 			<h1 id="username">Vagahbond</h1>

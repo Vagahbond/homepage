@@ -11,7 +11,7 @@
 			onLeftClicked();
 		}}
 		id="scroll-left-button"
-		class="scroll-button"
+		class="scroll-button crt"
 		transition:scale
 	>
 		<Arrow direction="left" />
@@ -24,7 +24,7 @@
 			onRightClicked();
 		}}
 		id="scroll-right-button"
-		class="scroll-button"
+		class="scroll-button crt"
 		transition:scale
 	>
 		<Arrow direction="right" />
@@ -37,7 +37,6 @@
 		display: flex;
 		animation: 3s ease infinite spring;
 		position: fixed;
-		cursor: pointer;
 
 		z-index: 10;
 	}
