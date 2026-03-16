@@ -78,7 +78,7 @@
 
 <svelte:window on:keydown={on_key_down} />
 
-<svelte-css-wrapper style="--accent: {accentColor}">
+<svelte-css-wrapper class="crt" style="--accent: {accentColor}">
 	<AnimatedBackground />
 	<LangSelector />
 	<NavButtons onLeftClicked={prevScreen} onRightClicked={nextScreen} />
