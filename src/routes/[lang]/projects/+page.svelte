@@ -300,7 +300,6 @@
 		.mobile-project-picture {
 			display: block;
 			margin: 1em auto;
-			cursor: pointer;
 		}
 
 		.mobile-project-picture img {
