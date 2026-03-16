@@ -77,18 +77,19 @@
 </script>
 
 <svelte:window on:keydown={on_key_down} />
+<div>
+	<svelte-css-wrapper style:--accent={accentColor}>
+		<AnimatedBackground />
+		<LangSelector />
+		<NavButtons onLeftClicked={prevScreen} onRightClicked={nextScreen} />
 
-<svelte-css-wrapper class="crt" style="--accent: {accentColor}">
-	<AnimatedBackground />
-	<LangSelector />
-	<NavButtons onLeftClicked={prevScreen} onRightClicked={nextScreen} />
-
-	{#if showPage}
-		<AnimatedFrame {forward}>
-			{@render children()}
-		</AnimatedFrame>
-	{/if}
-</svelte-css-wrapper>
+		{#if showPage}
+			<AnimatedFrame {forward}>
+				{@render children()}
+			</AnimatedFrame>
+		{/if}
+	</svelte-css-wrapper>
+</div>
 
 <style>
 </style>
