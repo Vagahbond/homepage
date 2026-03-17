@@ -21,7 +21,7 @@
 		<h1>{data.labels.title}</h1>
 		<h4 class="subtitle">{data.labels.subtitle}</h4>
 	</div>
-	<div class="timeline-top bordered blurred-bg"></div>
+	<div class="timeline-top"></div>
 	{#each data.projects.docs as project, index (index)}
 		{@const color = getProjectColor(index)}
 		{@const date = new Date(project.date)}
@@ -31,18 +31,26 @@
 
 		<div class={`project-item ${index % 2 && 'reverse'}`}>
 			<div class="project-picture">
-				<div class="crt blurred-bg">
-					<img alt={project?.image?.alt ?? ''} src={imageUrl} style:--accent={color} />
+				<div class="crt">
+					<img
+						alt={project?.image?.alt ?? ''}
+						class="screen-shape screen-shadow"
+						src={imageUrl}
+						style:--accent={color}
+					/>
 				</div>
 			</div>
-			<div class="project-center blurred-bg bordered crt" style:--accent={color}>
-				<div class="project-circle" style:--accent={color}></div>
+			<div class="project-center" style:--accent={color}>
+				<div class="project-circle crt" style:--accent={color}></div>
 			</div>
 			<div class="project-desc">
 				<div class="project-desc-frame bordered blurred-bg crt" style:--accent={color}>
 					<h1>{project.name}</h1>
 					<h6 class="project-date">{date.getMonth() + 1}/{date.getFullYear()}</h6>
-					<button class="mobile-project-picture" onclick={() => (mobileImageModalPic = imageUrl)}>
+					<button
+						class="mobile-project-picture screen-shape screen-shadow"
+						onclick={() => (mobileImageModalPic = imageUrl)}
+					>
 						<img
 							alt={project?.image?.alt ?? ''}
 							src={imageUrl}
@@ -75,10 +83,6 @@
 </div>
 
 <style>
-	* {
-		color: var(--fg);
-	}
-
 	.project-desc {
 		width: 98.5vw;
 		vertical-align: middle;

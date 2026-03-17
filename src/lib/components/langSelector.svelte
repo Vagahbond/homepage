@@ -10,13 +10,13 @@
 	<!-- eslint-disable-next-line @typescript-eslint/ban-ts-comment -->
 	<!-- @ts-ignore -->
 	<a
-		class={`blurred-bg ${page.params.lang === 'fr' && 'selected'}`}
+		class={`screen-shape ${page.params.lang === 'fr' && 'selected'}`}
 		href={resolve(route, { lang: 'fr' })}
 	>
 		<span> 🇫🇷 </span>
 	</a>
 	<a
-		class={`blurred-bg ${page.params.lang === 'en' && 'selected'}`}
+		class={`screen-shape ${page.params.lang === 'en' && 'selected'}`}
 		href={resolve(route, { lang: 'en' })}>🇺🇸</a
 	>
 </div>
@@ -29,6 +29,8 @@
 		color: var(--fg);
 		z-index: 200;
 
+		border-radius: 16px;
+		overflow: hidden;
 		padding: 2px;
 	}
 

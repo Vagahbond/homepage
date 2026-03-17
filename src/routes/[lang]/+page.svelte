@@ -4,8 +4,10 @@
 
 <div class="container">
 	<div class="home-screen">
-		<div id="avatar-picture" class="bordered blurred-bg crt">
-			<img alt="A magnificent snail" src="/snail.png" />
+		<div id="avatar-picture" class=" crt">
+			<div class="screen-shape screen-shadow screen">
+				<img alt="A magnificent snail" src="/snail.png" />
+			</div>
 		</div>
 		<div class="bordered blurred-bg name crt">
 			<h1 id="name">Yoni Firroloni</h1>
@@ -42,11 +44,11 @@
 	}
 
 	#avatar-picture * {
-		margin: auto;
+		margin: 0.8em 0.5em;
+		padding: 1em;
 	}
 
 	#avatar-picture {
-		width: 20em;
 		height: 20em;
 		min-width: 20em;
 		min-height: 20em;
@@ -54,12 +56,16 @@
 		margin-top: auto;
 		margin-bottom: auto;
 
-		border-radius: 50%;
+		overflow: hidden;
 
 		display: flex;
+
+		background-color: var(--fg);
+		border-radius: 20px;
+		padding: 0em;
 	}
 
-	#avatar-picture:hover {
+	#avatar-picture div img:hover {
 		animation: 2s ease infinite spring;
 	}
 
@@ -85,10 +91,7 @@
 	#name {
 		height: 1.75em;
 		margin: 0;
-	}
-
-	#title {
-		color: var(--accent);
+		color: var(--fg);
 	}
 
 	#aka,

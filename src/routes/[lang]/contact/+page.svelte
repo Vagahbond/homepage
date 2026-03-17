@@ -11,7 +11,7 @@
 <div class="contact-screen">
 	<div
 		id="frame1"
-		class="frame blurred-bg bordered crt"
+		class="frame crt"
 		in:slide={{ delay: 500 }}
 		out:slide={{ delay: 300, duration: 100 }}
 	>
@@ -22,7 +22,7 @@
 	</div>
 	<div
 		id="frame2"
-		class="frame blurred-bg bordered crt"
+		class="frame crt"
 		in:slide={{ delay: 750 }}
 		out:slide={{ delay: 200, duration: 100 }}
 	>
@@ -33,7 +33,7 @@
 	</div>
 	<div
 		id="frame4"
-		class="frame blurred-bg bordered crt"
+		class="frame crt"
 		in:slide={{ delay: 1000 }}
 		out:slide={{ delay: 100, duration: 100 }}
 	>
@@ -44,7 +44,7 @@
 	</div>
 	<div
 		id="frame3"
-		class="frame blurred-bg bordered crt"
+		class="frame crt"
 		in:slide={{ delay: 1250 }}
 		out:slide={{ delay: 0, duration: 100 }}
 	>
@@ -60,15 +60,11 @@
 		out:blur={{ delay: 0, duration: 100 }}
 		in:fly={{ delay: 750, duration: 1000, y: 2000 }}
 	>
-		<Icon icon={IconEnum.CODE} />
+		<Icon class="screen screen-shape screen-shadow" icon={IconEnum.CODE} />
 	</div>
 </div>
 
 <style>
-	* {
-		color: var(--fg);
-	}
-
 	.contact-screen {
 		width: 100vw;
 		height: 100vh;
@@ -96,7 +92,7 @@
 		overflow-y: scroll;
 		padding: 0em;
 
-		margin: auto 0;
+		margin: 0 0;
 	}
 
 	.links {
@@ -134,12 +130,18 @@
 	}
 
 	#frame5 {
-		margin: 1em;
+		margin: 1.5em 0em;
+		padding: 0.3em;
 		grid-row: span 2 / span 2;
 		grid-column-start: 4;
 		grid-row-start: 5;
 		z-index: 0;
 		fill: var(--fg);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: var(--fg);
+		border-radius: 16px;
 	}
 
 	@media (max-width: 800px) {
@@ -161,6 +163,12 @@
 
 		#frame5 {
 			display: none;
+		}
+	}
+
+	@media only screen and (min-width: 1600px) {
+		.frame {
+			padding: 4em;
 		}
 	}
 

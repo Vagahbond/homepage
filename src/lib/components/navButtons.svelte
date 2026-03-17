@@ -37,6 +37,8 @@
 		display: flex;
 		animation: 3s ease infinite spring;
 		position: fixed;
+		overflow: hidden;
+		border-radius: 50%;
 
 		z-index: 10;
 	}

@@ -201,4 +201,6 @@
 
 .crt {
   animation: textShadow 1.6s infinite;
+  background-color: var(--bg);
+  backdrop-filter: blur(3px);
 }
