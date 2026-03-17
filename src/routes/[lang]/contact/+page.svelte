@@ -60,7 +60,7 @@
 		out:blur={{ delay: 0, duration: 100 }}
 		in:fly={{ delay: 750, duration: 1000, y: 2000 }}
 	>
-		<Icon class="screen screen-shape screen-shadow" icon={IconEnum.CODE} />
+		<Icon icon={IconEnum.CODE} />
 	</div>
 </div>
 
@@ -140,8 +140,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-color: var(--fg);
-		border-radius: 16px;
+		color: var(--accent);
 	}
 
 	@media (max-width: 800px) {
