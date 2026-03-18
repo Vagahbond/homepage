@@ -20,6 +20,11 @@ export const Project: CollectionConfig = {
 
     { name: 'date', label: 'Last date that the project has been worked on', type: 'date' },
     {
+      name: 'index', label: 'How important is the project, 1 being the most important and 10 being the least important', type: 'number', required: true,
+      min: 1,
+      max: 10,
+    },
+    {
       name: 'links',
       label: 'Links to access the project',
       type: 'array',
@@ -39,7 +44,7 @@ export const Project: CollectionConfig = {
           name: 'icon',
           label: 'icon',
           type: 'select',
-          options: Object.entries(Icon).map(v => {return {label: v[0], value: v[1]}})
+          options: Object.entries(Icon).map(v => { return { label: v[0], value: v[1] } })
         },
       ],
     },

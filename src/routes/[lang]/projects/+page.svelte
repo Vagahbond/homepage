@@ -46,7 +46,7 @@
 			<div class="project-desc">
 				<div class="project-desc-frame bordered blurred-bg crt" style:--accent={color}>
 					<h1>{project.name}</h1>
-					<h6 class="project-date">{date.getMonth() + 1}/{date.getFullYear()}</h6>
+					<!-- <h6 class="project-date">{date.getMonth() + 1}/{date.getFullYear()}</h6> -->
 					<button
 						class="mobile-project-picture screen-shape screen-shadow"
 						onclick={() => (mobileImageModalPic = imageUrl)}

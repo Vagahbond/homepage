@@ -52,6 +52,7 @@
 	.project-link-icon {
 		transition: all 1s;
 		min-height: 3vh;
+		max-height: 3vh;
 		margin: 0 auto;
 		margin-bottom: 0.5em;
 		fill: var(--fg);

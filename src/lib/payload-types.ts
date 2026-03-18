@@ -193,6 +193,7 @@ export interface Project {
   };
   image?: (number | null) | Media;
   date?: string | null;
+  index: number;
   links?:
     | {
         label?: string | null;
@@ -347,6 +348,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   description?: T;
   image?: T;
   date?: T;
+  index?: T;
   links?:
     | T
     | {
