@@ -182,7 +182,7 @@
   opacity: 0;
   z-index: 2;
   pointer-events: none;
-  animation: flicker 0.15s infinite;
+  animation: flicker 1.6s infinite;
 }
 
 .crt::before {
@@ -200,8 +200,7 @@
 }
 
 .crt {
-  animation: textShadow 1.6s infinite;
-  background-color: var(--bg);
-  backdrop-filter: blur(3px);
+  animation: textShadow 3.2s infinite;
   overflow: hidden;
+  backdrop-filter: blur(3px);
 }
