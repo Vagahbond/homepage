@@ -11,6 +11,7 @@ import { Project } from './collections/Project'
 import { ContactPageData } from './globales/ContactPageData'
 import { HomePageData } from './globales/HomePageData'
 import { ProjectsPageData } from './globales/ProjectsPageData'
+import { Experience } from './collections/Experiences'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -26,7 +27,7 @@ export default buildConfig({
     defaultLocale: "en",
     locales: ["en", "fr"]
   },
-  collections: [Users, Media, Project],
+  collections: [Users, Media, Project, Experience],
   globals: [HomePageData, ProjectsPageData, ContactPageData],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

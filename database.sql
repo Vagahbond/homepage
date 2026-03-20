@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict V0SQQ6P6ynbNFdEuevtdibhhiHLEU7sBjYPOpZujwzSwMq47ReUJnvKRJWjJVun
+\restrict ePr4DMUxh8efG8SWJJbGVdgTxOe3whSpHafh5rhpXjXcOiog2eQS2S7LTafTYg0
 
 -- Dumped from database version 17.7
 -- Dumped by pg_dump version 17.7
@@ -209,6 +209,96 @@ ALTER SEQUENCE public.contact_page_data_locales_id_seq OWNER TO homepage;
 
 ALTER SEQUENCE public.contact_page_data_locales_id_seq OWNED BY public.contact_page_data_locales.id;
 
+
+--
+-- Name: experiences; Type: TABLE; Schema: public; Owner: homepage
+--
+
+CREATE TABLE public.experiences (
+    id integer NOT NULL,
+    image_id integer,
+    start timestamp(3) with time zone,
+    "end" timestamp(3) with time zone,
+    updated_at timestamp(3) with time zone DEFAULT now() NOT NULL,
+    created_at timestamp(3) with time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.experiences OWNER TO homepage;
+
+--
+-- Name: experiences_id_seq; Type: SEQUENCE; Schema: public; Owner: homepage
+--
+
+CREATE SEQUENCE public.experiences_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.experiences_id_seq OWNER TO homepage;
+
+--
+-- Name: experiences_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: homepage
+--
+
+ALTER SEQUENCE public.experiences_id_seq OWNED BY public.experiences.id;
+
+
+--
+-- Name: experiences_locales; Type: TABLE; Schema: public; Owner: homepage
+--
+
+CREATE TABLE public.experiences_locales (
+    name character varying NOT NULL,
+    description jsonb NOT NULL,
+    id integer NOT NULL,
+    _locale public._locales NOT NULL,
+    _parent_id integer NOT NULL
+);
+
+
+ALTER TABLE public.experiences_locales OWNER TO homepage;
+
+--
+-- Name: experiences_locales_id_seq; Type: SEQUENCE; Schema: public; Owner: homepage
+--
+
+CREATE SEQUENCE public.experiences_locales_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.experiences_locales_id_seq OWNER TO homepage;
+
+--
+-- Name: experiences_locales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: homepage
+--
+
+ALTER SEQUENCE public.experiences_locales_id_seq OWNED BY public.experiences_locales.id;
+
+
+--
+-- Name: experiences_techs; Type: TABLE; Schema: public; Owner: homepage
+--
+
+CREATE TABLE public.experiences_techs (
+    _order integer NOT NULL,
+    _parent_id integer NOT NULL,
+    id character varying NOT NULL,
+    icon character varying,
+    label character varying
+);
+
+
+ALTER TABLE public.experiences_techs OWNER TO homepage;
 
 --
 -- Name: home_page_data; Type: TABLE; Schema: public; Owner: homepage
@@ -444,7 +534,8 @@ CREATE TABLE public.payload_locked_documents_rels (
     path character varying NOT NULL,
     users_id integer,
     media_id integer,
-    projects_id integer
+    projects_id integer,
+    experiences_id integer
 );
 
 
@@ -860,6 +951,20 @@ ALTER TABLE ONLY public.contact_page_data_locales ALTER COLUMN id SET DEFAULT ne
 
 
 --
+-- Name: experiences id; Type: DEFAULT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.experiences ALTER COLUMN id SET DEFAULT nextval('public.experiences_id_seq'::regclass);
+
+
+--
+-- Name: experiences_locales id; Type: DEFAULT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.experiences_locales ALTER COLUMN id SET DEFAULT nextval('public.experiences_locales_id_seq'::regclass);
+
+
+--
 -- Name: home_page_data id; Type: DEFAULT; Schema: public; Owner: homepage
 --
 
@@ -1019,6 +1124,30 @@ Des solutions simples à des problèmes complexes	{"root": {"type": "root", "for
 
 
 --
+-- Data for Name: experiences; Type: TABLE DATA; Schema: public; Owner: homepage
+--
+
+COPY public.experiences (id, image_id, start, "end", updated_at, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: experiences_locales; Type: TABLE DATA; Schema: public; Owner: homepage
+--
+
+COPY public.experiences_locales (name, description, id, _locale, _parent_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: experiences_techs; Type: TABLE DATA; Schema: public; Owner: homepage
+--
+
+COPY public.experiences_techs (_order, _parent_id, id, icon, label) FROM stdin;
+\.
+
+
+--
 -- Data for Name: home_page_data; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
@@ -1115,7 +1244,7 @@ COPY public.payload_locked_documents (id, global_slug, updated_at, created_at) F
 -- Data for Name: payload_locked_documents_rels; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_id, media_id, projects_id) FROM stdin;
+COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_id, media_id, projects_id, experiences_id) FROM stdin;
 \.
 
 
@@ -1124,7 +1253,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-03-19 12:53:08.676+13	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-03-21 12:33:32.241+13	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -1141,6 +1270,7 @@ COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM st
 9	global-projectsPageData	{"editViewType": "default"}	2025-12-28 19:54:40.332+13	2025-12-28 19:54:40.333+13
 3	collection-media	{"sort": "-updatedAt", "limit": 10, "editViewType": "default"}	2026-02-13 18:48:12.668+13	2025-12-18 22:23:00.699+13
 7	locale	"en"	2026-03-19 12:11:49.735+13	2025-12-28 00:25:16.154+13
+10	collection-experiences	{"limit": 10}	2026-03-21 12:33:32.255+13	2026-03-21 12:33:12.11+13
 \.
 
 
@@ -1155,6 +1285,7 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 13	\N	1	user	1
 82	\N	3	user	1
 86	\N	7	user	1
+88	\N	10	user	1
 30	\N	8	user	1
 32	\N	9	user	1
 \.
@@ -1324,7 +1455,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	d83c3a76-e3b5-4334-b6f9-08fdfdb378ce	2026-03-19 10:56:58.026+13	2026-03-19 12:56:58.026+13
+1	1	9a51f285-e430-497a-9895-6d44cb88d6df	2026-03-21 12:31:25.797+13	2026-03-21 14:31:25.797+13
 \.
 
 
@@ -1347,6 +1478,20 @@ SELECT pg_catalog.setval('public.contact_page_data_id_seq', 1, true);
 --
 
 SELECT pg_catalog.setval('public.contact_page_data_locales_id_seq', 88, true);
+
+
+--
+-- Name: experiences_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
+--
+
+SELECT pg_catalog.setval('public.experiences_id_seq', 1, false);
+
+
+--
+-- Name: experiences_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
+--
+
+SELECT pg_catalog.setval('public.experiences_locales_id_seq', 1, false);
 
 
 --
@@ -1409,14 +1554,14 @@ SELECT pg_catalog.setval('public.payload_migrations_id_seq', 1, true);
 -- Name: payload_preferences_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_id_seq', 9, true);
+SELECT pg_catalog.setval('public.payload_preferences_id_seq', 10, true);
 
 
 --
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 86, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 88, true);
 
 
 --
@@ -1491,6 +1636,30 @@ ALTER TABLE ONLY public.contact_page_data_locales
 
 ALTER TABLE ONLY public.contact_page_data
     ADD CONSTRAINT contact_page_data_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: experiences_locales experiences_locales_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.experiences_locales
+    ADD CONSTRAINT experiences_locales_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: experiences experiences_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.experiences
+    ADD CONSTRAINT experiences_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: experiences_techs experiences_techs_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.experiences_techs
+    ADD CONSTRAINT experiences_techs_pkey PRIMARY KEY (id);
 
 
 --
@@ -1666,6 +1835,48 @@ CREATE UNIQUE INDEX contact_page_data_locales_locale_parent_id_unique ON public.
 
 
 --
+-- Name: experiences_created_at_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX experiences_created_at_idx ON public.experiences USING btree (created_at);
+
+
+--
+-- Name: experiences_image_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX experiences_image_idx ON public.experiences USING btree (image_id);
+
+
+--
+-- Name: experiences_locales_locale_parent_id_unique; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE UNIQUE INDEX experiences_locales_locale_parent_id_unique ON public.experiences_locales USING btree (_locale, _parent_id);
+
+
+--
+-- Name: experiences_techs_order_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX experiences_techs_order_idx ON public.experiences_techs USING btree (_order);
+
+
+--
+-- Name: experiences_techs_parent_id_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX experiences_techs_parent_id_idx ON public.experiences_techs USING btree (_parent_id);
+
+
+--
+-- Name: experiences_updated_at_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX experiences_updated_at_idx ON public.experiences USING btree (updated_at);
+
+
+--
 -- Name: home_page_data_locales_locale_parent_id_unique; Type: INDEX; Schema: public; Owner: homepage
 --
 
@@ -1719,6 +1930,13 @@ CREATE INDEX payload_locked_documents_created_at_idx ON public.payload_locked_do
 --
 
 CREATE INDEX payload_locked_documents_global_slug_idx ON public.payload_locked_documents USING btree (global_slug);
+
+
+--
+-- Name: payload_locked_documents_rels_experiences_id_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX payload_locked_documents_rels_experiences_id_idx ON public.payload_locked_documents_rels USING btree (experiences_id);
 
 
 --
@@ -1949,6 +2167,30 @@ ALTER TABLE ONLY public.contact_page_data_locales
 
 
 --
+-- Name: experiences experiences_image_id_media_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.experiences
+    ADD CONSTRAINT experiences_image_id_media_id_fk FOREIGN KEY (image_id) REFERENCES public.media(id) ON DELETE SET NULL;
+
+
+--
+-- Name: experiences_locales experiences_locales_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.experiences_locales
+    ADD CONSTRAINT experiences_locales_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.experiences(id) ON DELETE CASCADE;
+
+
+--
+-- Name: experiences_techs experiences_techs_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.experiences_techs
+    ADD CONSTRAINT experiences_techs_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.experiences(id) ON DELETE CASCADE;
+
+
+--
 -- Name: home_page_data_locales home_page_data_locales_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
 --
 
@@ -1962,6 +2204,14 @@ ALTER TABLE ONLY public.home_page_data_locales
 
 ALTER TABLE ONLY public.media_locales
     ADD CONSTRAINT media_locales_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.media(id) ON DELETE CASCADE;
+
+
+--
+-- Name: payload_locked_documents_rels payload_locked_documents_rels_experiences_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.payload_locked_documents_rels
+    ADD CONSTRAINT payload_locked_documents_rels_experiences_fk FOREIGN KEY (experiences_id) REFERENCES public.experiences(id) ON DELETE CASCADE;
 
 
 --
@@ -2064,5 +2314,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict V0SQQ6P6ynbNFdEuevtdibhhiHLEU7sBjYPOpZujwzSwMq47ReUJnvKRJWjJVun
+\unrestrict ePr4DMUxh8efG8SWJJbGVdgTxOe3whSpHafh5rhpXjXcOiog2eQS2S7LTafTYg0
 
