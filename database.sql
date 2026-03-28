@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict ePr4DMUxh8efG8SWJJbGVdgTxOe3whSpHafh5rhpXjXcOiog2eQS2S7LTafTYg0
+\restrict nS2Xy9gDqpH7AGoYOMRKEuI1bYbpWjHl0aJr0EuYSANq3pQwyTkavVZYBactsM1
 
 -- Dumped from database version 17.7
 -- Dumped by pg_dump version 17.7
@@ -1128,6 +1128,7 @@ Des solutions simples à des problèmes complexes	{"root": {"type": "root", "for
 --
 
 COPY public.experiences (id, image_id, start, "end", updated_at, created_at) FROM stdin;
+1	20	2026-03-18 01:00:00+13	2026-03-31 01:00:00+13	2026-03-29 00:56:02.307+13	2026-03-29 00:56:02.307+13
 \.
 
 
@@ -1136,6 +1137,7 @@ COPY public.experiences (id, image_id, start, "end", updated_at, created_at) FRO
 --
 
 COPY public.experiences_locales (name, description, id, _locale, _parent_id) FROM stdin;
+Test	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Some things about this company, yo ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	1	fr	1
 \.
 
 
@@ -1144,6 +1146,7 @@ COPY public.experiences_locales (name, description, id, _locale, _parent_id) FRO
 --
 
 COPY public.experiences_techs (_order, _parent_id, id, icon, label) FROM stdin;
+1	1	69c7c097caff052cd85dd7d0	\N	\N
 \.
 
 
@@ -1193,6 +1196,7 @@ COPY public.media (id, updated_at, created_at, url, thumbnail_u_r_l, filename, m
 21	2026-02-12 22:02:18.551+13	2026-02-12 22:02:18.551+13	\N	\N	Screenshot 2026-02-12 at 22-02-04 megumin-lang_main.mg at master · Vagahbond_megumin-lang.png	image/png	62163	2456	520	50	50
 11	2026-02-13 18:37:12.375+13	2026-02-12 20:13:25.647+13	/api/media/file/guncraft-screenshot-1028168036.jpg	\N	guncraft-screenshot-1028168036.jpg	image/jpeg	55303	1020	574	50	50
 25	2026-03-19 12:12:34.838+13	2026-03-19 12:11:39.334+13	/api/media/file/Screenshot%202026-03-19%20at%2012.09.25%E2%80%AFPM.png	\N	Screenshot 2026-03-19 at 12.09.25 PM.png	image/png	105323	720	236	50	50
+26	2026-03-29 00:26:30.214+13	2026-03-29 00:26:30.214+13	\N	\N	Audio Experiments.png	image/png	425897	2536	1782	50	50
 \.
 
 
@@ -1221,6 +1225,7 @@ A screenshot of Guncraft, the inspiration for Guncruft	22	en	11
 Une capture d'écran de Guncraft, dont est inspiré Guncruft	23	fr	11
 Charpente modules gen command	29	en	25
 Charpente modules gen command	30	fr	25
+Audio experiments	31	en	26
 \.
 
 
@@ -1253,7 +1258,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-03-21 12:33:32.241+13	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-03-29 00:42:26.43+13	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -1269,8 +1274,8 @@ COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM st
 8	global-homePageData	{"editViewType": "default"}	2025-12-28 19:47:06.152+13	2025-12-28 19:47:06.154+13
 9	global-projectsPageData	{"editViewType": "default"}	2025-12-28 19:54:40.332+13	2025-12-28 19:54:40.333+13
 3	collection-media	{"sort": "-updatedAt", "limit": 10, "editViewType": "default"}	2026-02-13 18:48:12.668+13	2025-12-18 22:23:00.699+13
-7	locale	"en"	2026-03-19 12:11:49.735+13	2025-12-28 00:25:16.154+13
-10	collection-experiences	{"limit": 10}	2026-03-21 12:33:32.255+13	2026-03-21 12:33:12.11+13
+7	locale	"fr"	2026-03-29 00:41:11.74+13	2025-12-28 00:25:16.154+13
+10	collection-experiences	{"limit": 10, "editViewType": "default"}	2026-03-29 00:48:05.709+13	2026-03-21 12:33:12.11+13
 \.
 
 
@@ -1284,8 +1289,8 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 12	\N	6	user	1
 13	\N	1	user	1
 82	\N	3	user	1
-86	\N	7	user	1
-88	\N	10	user	1
+89	\N	7	user	1
+90	\N	10	user	1
 30	\N	8	user	1
 32	\N	9	user	1
 \.
@@ -1304,6 +1309,7 @@ COPY public.projects (id, updated_at, created_at, image_id, date, index) FROM st
 7	2026-03-19 11:18:31.965+13	2026-01-02 20:12:03.553+13	7	2026-01-03 01:00:00+13	2
 21	2026-03-19 12:22:09.613+13	2026-03-19 11:39:56.053+13	25	2026-03-19 01:00:00+13	3
 11	2026-03-19 12:24:42.598+13	2026-02-12 20:38:12.84+13	13	2024-07-21 00:00:00+12	3
+22	2026-03-29 00:43:31.806+13	2026-03-29 00:30:36.386+13	26	2026-03-30 01:00:00+13	2
 19	2026-03-19 11:15:55.72+13	2026-02-12 22:04:55.562+13	21	2020-02-07 01:00:00+13	6
 18	2026-03-19 11:16:07.215+13	2026-02-12 21:55:45.989+13	20	2022-02-23 01:00:00+13	5
 17	2026-03-19 11:16:23.528+13	2026-02-12 21:49:25.312+13	19	2023-02-10 01:00:00+13	10
@@ -1318,6 +1324,8 @@ COPY public.projects (id, updated_at, created_at, image_id, date, index) FROM st
 --
 
 COPY public.projects_links (_order, _parent_id, id, url, icon) FROM stdin;
+1	22	69c7baf4caff052cd85dd7cc	https://github.com/vagahbond/audio-experiments	github
+2	22	69c7bb9acaff052cd85dd7ce	https://audio-experiments.vagahbond.com	try
 1	19	698d96c81f9c6b0b47e99cfd	https://github.com/Vagahbond/megumin-lang	repo
 1	18	698d949a1f9c6b0b47e99cfb	https://github.com/Vagahbond/simple-blockchain	repo
 1	17	698d93031f9c6b0b47e99cf9	https://github.com/Vagahbond/CoursesFrontend	repo
@@ -1383,6 +1391,10 @@ Organization	154	en	698d90931f9c6b0b47e99cf5
 Repo	155	fr	698d90931f9c6b0b47e99cf5
 Repo	156	en	698d8d5c1f9c6b0b47e99cf3
 Repo	157	fr	698d8d5c1f9c6b0b47e99cf3
+Repo	222	en	69c7baf4caff052cd85dd7cc
+Repo	223	fr	69c7baf4caff052cd85dd7cc
+Demo	224	en	69c7bb9acaff052cd85dd7ce
+Demo	225	fr	69c7bb9acaff052cd85dd7ce
 \.
 
 
@@ -1392,6 +1404,7 @@ Repo	157	fr	698d8d5c1f9c6b0b47e99cf3
 
 COPY public.projects_locales (name, description, id, _locale, _parent_id) FROM stdin;
 Uni-verse	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Uni-verse is a uni project that was made in a team. It is a music platform replicating Soundcloud's features, with the addition of an audio-fingerprinting feature (Similar to Shazam). It has a back-end REST API, a front-end web app, and a mobile semi-native app, associated with a fingerprinting service relying on RabbitMQ.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I periodically pick this project up, adding documentation and trying to make it functional and viable again.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	145	en	11
+Audio experiments	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il y a quelque temps, j'ai acheté un livre intitulé « The audio programming book ». Je l'ai acheté parce que, lors de ma dernière année à l'université, j'avais entrepris de créer un service d'empreinte audio évolutif, reproduisant la fonctionnalité de base de Shazam. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Je n'ai jamais lu ce livre en entier, mais je n'ai jamais abandonné non plus. Récemment, j'ai téléchargé la version numérique de ce livre et j'ai recommencé à faire les exercices, avec une petite variante.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "J'écris désormais les exercices en Rust plutôt qu'en C, et je les compile en WASM, afin de les transformer en composants interactifs sur un site web qui permet à tout le monde de les manipuler tout en apprenant comment ils fonctionnent grâce aux explications de mon escargot mascotte.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	154	fr	22
 NFpieT	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pendant la bulle blockchain et NFT, il y avait un devoir sur la blockchain à mon université. J'ai créé cette application décentralisée sur le réseau Ethereum. NFpieT est un NFT exécutable. Chaque jeton est une image qui représente le code Piet (des images qui représentent du code). Pour des raisons techniques, ces NFT sont stockés au format JSON et j'ai dû implémenter un analyseur syntaxique pour cela à partir de zéro dans le langage Sol, car tout cela était nouveau à l'époque.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	115	fr	15
 Homepage	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "This project is the website you are currently looking at. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Made with ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957712949eaafa084a46f1d", "type": "link", "fields": {"url": "https://svelte.dev/docs/kit/introduction", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "SvelteKit", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " for the frontend, and ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957715149eaafa084a46f1e", "type": "link", "fields": {"url": "https://payloadcms.com/", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "PayloadCMS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " for the backend. Sveltekit allows building fully bundled static websites with prefetched assets and data.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It is packaged using the nix package manager, that runs the CMS and the frontend's build in an isolated environment and outputs a static website that is then served by a nginx instance.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	132	en	7
 Site vitrine	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ce projet est le site que vous avez sous les yeux. Fait avec ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957712949eaafa084a46f1d", "type": "link", "fields": {"url": "https://svelte.dev/docs/kit/introduction", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "SvelteKit", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " pour le frontend, et ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957715149eaafa084a46f1e", "type": "link", "fields": {"url": "https://payloadcms.com/", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "PayloadCMS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " pour le backend.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Sveltekit permet de générer des sites statiques léger et rapides grâce à des systèmes de pré-requêtes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il est mis en production grâce à nix. Celui-ci fait tourner PayloadCMS en arrière plan et prépare le frontend dans un environnement isolé, puis produit un site statique servi par NginX. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	133	fr	7
@@ -1413,6 +1426,7 @@ Charpente	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "ch
 Megumin-lang	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "MeguminLang is a programming language that I created as a language theory assessment at the uni, using Python and yacc.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It is inspired by a character from KonoSuba, an anime.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	106	en	19
 Megumin-lang	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "MeguminLang est un langage de programmation que j'ai créé dans le cadre d'un examen théorique sur les langages à l'université, à l'aide de Python et de yacc.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il s'inspire d'un personnage de l'anime KonoSuba.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	107	fr	19
 NFpieT	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "During the blockchain and NFT bubble, there was a blockchain assignment at my uni. I created this decentralized app on the Etherum network. NFpieT is a NFT that is runnable. Each token is an image that represents Piet code (images that represent code). For technical reasons, those NFTs are stored as JSON and I had to implement a parser for it from scratch in the Sol language, as it was all new at the time.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	114	en	15
+Audio experiments	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "A while ago, I bought a book called \\"The audio programming book\\". I bought it because for my last year of uni, I attended to create a scalable audio fingerprinting service, replicating Shazam's base feature. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I never went through this book, but I never gave up either. Recently, I downloaded the digital version of this book, and started re-doing the exercises, with a twist. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I am now writing the exercises in Rust instead of C, and compiling them to WASM, to turn them into interactive components on a website that allows everyone to fidget with it while learning how it works from my mascot snail's explanations.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	153	en	22
 Simple blockchain	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "For fun and for science I took the challenge to implement ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "698d954c2da38925783ffda6", "type": "link", "fields": {"url": "https://levelup.gitconnected.com/learn-blockchain-by-building-it-f2f8ccc54892", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "this tutorial", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " in C++.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It consists in implementing a simplified blockchain system.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	108	en	18
 Rice-cooker	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Nix-cooker permet de gérer les rice (interfaces de bureau Linux personnalisées) de manière ordonnée dans une configuration Nix multi-hôtes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il fournit un module permettant de définir des schémas de couleurs, des thèmes GTK, des fonds d'écran, des polices, des modèles de fichiers de configuration et bien d'autres éléments.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il est actuellement utilisable, mais devrait être complété afin de pouvoir remplacer home-manager en tant qu'alternative minimaliste.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	127	fr	10
 Guncruft	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "As a fan of Guncraft, an old discontinued video-game, I decided to re-create something similar. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "This project is still work in progress. It is relying on ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "698d7d4a2da38925783ffda3", "type": "link", "fields": {"url": "https://bevy.org/", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "Bevy", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": ", written in Rust. This stack allows for a very optimized game that should run on most hardware, while reproducing the nervous and snappy experience of the original Guncraft game. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	128	en	9
@@ -1455,7 +1469,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	9a51f285-e430-497a-9895-6d44cb88d6df	2026-03-21 12:31:25.797+13	2026-03-21 14:31:25.797+13
+1	1	e1d4d676-4434-46cc-af9e-cce454473dcc	2026-03-29 00:06:56.107+13	2026-03-29 02:06:56.107+13
 \.
 
 
@@ -1484,14 +1498,14 @@ SELECT pg_catalog.setval('public.contact_page_data_locales_id_seq', 88, true);
 -- Name: experiences_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.experiences_id_seq', 1, false);
+SELECT pg_catalog.setval('public.experiences_id_seq', 1, true);
 
 
 --
 -- Name: experiences_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.experiences_locales_id_seq', 1, false);
+SELECT pg_catalog.setval('public.experiences_locales_id_seq', 1, true);
 
 
 --
@@ -1512,14 +1526,14 @@ SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 3, true);
 -- Name: media_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.media_id_seq', 25, true);
+SELECT pg_catalog.setval('public.media_id_seq', 26, true);
 
 
 --
 -- Name: media_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.media_locales_id_seq', 30, true);
+SELECT pg_catalog.setval('public.media_locales_id_seq', 31, true);
 
 
 --
@@ -1533,14 +1547,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 162, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 165, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 245, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 251, true);
 
 
 --
@@ -1561,28 +1575,28 @@ SELECT pg_catalog.setval('public.payload_preferences_id_seq', 10, true);
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 88, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 90, true);
 
 
 --
 -- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_id_seq', 21, true);
+SELECT pg_catalog.setval('public.projects_id_seq', 22, true);
 
 
 --
 -- Name: projects_links_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_links_locales_id_seq', 209, true);
+SELECT pg_catalog.setval('public.projects_links_locales_id_seq', 225, true);
 
 
 --
 -- Name: projects_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_locales_id_seq', 146, true);
+SELECT pg_catalog.setval('public.projects_locales_id_seq', 154, true);
 
 
 --
@@ -2314,5 +2328,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict ePr4DMUxh8efG8SWJJbGVdgTxOe3whSpHafh5rhpXjXcOiog2eQS2S7LTafTYg0
+\unrestrict nS2Xy9gDqpH7AGoYOMRKEuI1bYbpWjHl0aJr0EuYSANq3pQwyTkavVZYBactsM1
 
