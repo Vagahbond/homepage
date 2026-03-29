@@ -19,7 +19,12 @@
 		accentColor = getAccentColor();
 	});
 
-	const screens: Array<RouteId> = ['/[lang]', '/[lang]/projects', '/[lang]/contact'];
+	const screens: Array<RouteId> = [
+		'/[lang]',
+		'/[lang]/experience',
+		'/[lang]/projects',
+		'/[lang]/contact'
+	];
 
 	let curScreen = $state<RouteId>(page.route.id ?? '/[lang]');
 

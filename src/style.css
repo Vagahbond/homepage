@@ -8,14 +8,14 @@
 }
 
 @font-face {
-  font-family: Terminus;
-  src: url(/fonts/TerminusTTF-4.49.3.ttf);
+  font-family: DepartureMono Nerd Font;
+  src: url(/fonts/DepartureMonoNerdFont-Regular.otf);
 }
 
 @font-face {
-  font-family: Terminus;
-  src: url(/fonts/TerminusTTF-Bold-4.49.3.ttf);
-  font-weight: bold;
+  font-family: DepartureMono Nerd Font Mono;
+  src: url(/fonts/DepartureMonoNerdFontMono-Regular.otf);
+  font-style: monospace;
 }
 
 
@@ -23,7 +23,7 @@ html {
   padding: 0;
   margin: 0;
 
-  font-family: Terminus;
+  font-family: DepartureMono Nerd Font;
   font-size-adjust: 0.6;
 
   color: var(--fg);

@@ -24,7 +24,6 @@
 	<div class="timeline-top"></div>
 	{#each data.projects.docs as project, index (index)}
 		{@const color = getProjectColor(index)}
-		{@const date = new Date(project.date)}
 		{@const imageUrl = `/image/${btoa(project?.image?.url)}`}
 
 		<link rel="preload" as="image" href={imageUrl} />

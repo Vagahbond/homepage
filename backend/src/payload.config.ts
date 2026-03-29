@@ -12,6 +12,7 @@ import { ContactPageData } from './globales/ContactPageData'
 import { HomePageData } from './globales/HomePageData'
 import { ProjectsPageData } from './globales/ProjectsPageData'
 import { Experience } from './collections/Experiences'
+import { ExperiencesPageData } from './globales/ExperiencePageData'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -28,7 +29,7 @@ export default buildConfig({
     locales: ["en", "fr"]
   },
   collections: [Users, Media, Project, Experience],
-  globals: [HomePageData, ProjectsPageData, ContactPageData],
+  globals: [HomePageData, ProjectsPageData, ContactPageData, ExperiencesPageData],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

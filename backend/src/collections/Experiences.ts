@@ -5,11 +5,19 @@ export const Experience: CollectionConfig = {
   slug: 'experiences',
   fields: [
     { name: 'name', localized: true, type: 'text', label: 'Company name', required: true },
+    { name: 'title', localized: true, type: 'text', label: 'Job title', required: true },
     {
       name: 'description',
       localized: true,
       label: 'Experience description',
       type: 'richText',
+      required: true,
+    },
+    {
+      name: 'location',
+      localized: true,
+      label: 'Location',
+      type: 'text',
       required: true,
     },
     {

@@ -95,11 +95,13 @@ export interface Config {
     homePageData: HomePageDatum;
     projectsPageData: ProjectsPageDatum;
     contactPageData: ContactPageDatum;
+    experiencesPageData: ExperiencesPageDatum;
   };
   globalsSelect: {
     homePageData: HomePageDataSelect<false> | HomePageDataSelect<true>;
     projectsPageData: ProjectsPageDataSelect<false> | ProjectsPageDataSelect<true>;
     contactPageData: ContactPageDataSelect<false> | ContactPageDataSelect<true>;
+    experiencesPageData: ExperiencesPageDataSelect<false> | ExperiencesPageDataSelect<true>;
   };
   locale: 'en' | 'fr';
   user: User & {
@@ -230,6 +232,7 @@ export interface Project {
 export interface Experience {
   id: number;
   name: string;
+  title: string;
   description: {
     root: {
       type: string;
@@ -245,6 +248,7 @@ export interface Experience {
     };
     [k: string]: unknown;
   };
+  location: string;
   image?: (number | null) | Media;
   start?: string | null;
   end?: string | null;
@@ -407,7 +411,9 @@ export interface ProjectsSelect<T extends boolean = true> {
  */
 export interface ExperiencesSelect<T extends boolean = true> {
   name?: T;
+  title?: T;
   description?: T;
+  location?: T;
   image?: T;
   start?: T;
   end?: T;
@@ -576,6 +582,17 @@ export interface ContactPageDatum {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experiencesPageData".
+ */
+export interface ExperiencesPageDatum {
+  id: number;
+  title: string;
+  subtitle: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "homePageData_select".
  */
 export interface HomePageDataSelect<T extends boolean = true> {
@@ -633,6 +650,17 @@ export interface ContactPageDataSelect<T extends boolean = true> {
               id?: T;
             };
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experiencesPageData_select".
+ */
+export interface ExperiencesPageDataSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

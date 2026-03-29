@@ -1,4 +1,4 @@
-import type { Project, ProjectsPageDatum } from "$lib/payload-types";
+import type { Experience, ExperiencesPageDatum } from "$lib/payload-types";
 import payloadHandle, { SupportedLanguages } from "$lib/utils/payload"
 import { type PaginatedDocs } from "payload";
 import type { EntryGenerator, PageServerLoad } from "./$types";
@@ -20,17 +20,17 @@ export const load: PageServerLoad = async ({ params }) => {
 
   const payload = await payloadHandle.getInstance()
 
-  const projects: PaginatedDocs<Project> = await payload.find({
-    collection: 'projects',
+  const experiences: PaginatedDocs<Experience> = await payload.find({
+    collection: 'experiences',
     locale: params.lang as Config["locale"],
     sort: ['index', '-date'],
     limit: 100
   });
 
-  const labels: ProjectsPageDatum = await payload.findGlobal({
-    slug: "projectsPageData",
+  const labels: ExperiencesPageDatum = await payload.findGlobal({
+    slug: "experiencesPageData",
     locale: params.lang as Config["locale"]
   })
 
-  return { projects, labels };
+  return { experiences, labels };
 }
