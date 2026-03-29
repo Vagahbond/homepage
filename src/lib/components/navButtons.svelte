@@ -11,7 +11,7 @@
 			onLeftClicked();
 		}}
 		id="scroll-left-button"
-		class="scroll-button crt"
+		class="scroll-button "
 		transition:scale
 	>
 		<Arrow direction="left" />
@@ -24,7 +24,7 @@
 			onRightClicked();
 		}}
 		id="scroll-right-button"
-		class="scroll-button crt"
+		class="scroll-button "
 		transition:scale
 	>
 		<Arrow direction="right" />
@@ -49,7 +49,7 @@
 		left: 0;
 		bottom: 0;
 		width: 6vh;
-		z-index: 20;
+		z-index: 15;
 	}
 
 	.left-area:hover {
@@ -73,7 +73,7 @@
 		right: 0;
 		bottom: 0;
 		width: 6vh;
-		z-index: 20;
+		z-index: 15;
 	}
 
 	.right-area:hover {

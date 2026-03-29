@@ -17,7 +17,7 @@
 </script>
 
 <div class="projects-screen">
-	<div class="title bordered blurred-bg crt">
+	<div class="title bordered blurred-bg">
 		<h1>{data.labels.title}</h1>
 		<h4 class="subtitle">{data.labels.subtitle}</h4>
 	</div>
@@ -31,7 +31,7 @@
 
 		<div class={`project-item ${index % 2 && 'reverse'}`}>
 			<div class="project-picture">
-				<div class="crt">
+				<div class="">
 					<img
 						alt={project?.image?.alt ?? ''}
 						class="screen-shape screen-shadow"
@@ -41,10 +41,10 @@
 				</div>
 			</div>
 			<div class="project-center" style:--accent={color}>
-				<div class="project-circle crt" style:--accent={color}></div>
+				<div class="project-circle " style:--accent={color}></div>
 			</div>
 			<div class="project-desc">
-				<div class="project-desc-frame bordered blurred-bg crt" style:--accent={color}>
+				<div class="project-desc-frame bordered blurred-bg" style:--accent={color}>
 					<h1>{project.name}</h1>
 					<!-- <h6 class="project-date">{date.getMonth() + 1}/{date.getFullYear()}</h6> -->
 					<button
@@ -88,11 +88,7 @@
 		vertical-align: middle;
 		display: flex;
 		max-height: 100vh;
-	}
-
-	.projects-screen {
-		padding-top: 2em;
-		padding-bottom: 2em;
+		z-index: 10;
 	}
 
 	.title {
@@ -105,6 +101,7 @@
 		padding-top: 0.5em;
 		padding-bottom: 0.5em;
 		width: fit-content;
+		z-index: 10;
 	}
 	.subtitle {
 		transition: all 1s;
@@ -136,7 +133,6 @@
 
 		width: 100vw;
 		min-width: 100vw;
-		overflow: scroll;
 	}
 
 	.timeline-top {
@@ -190,6 +186,7 @@
 		border-right: 0.25vw solid var(--fg); */
 		display: flex;
 		overflow: visible;
+		z-index: 10;
 	}
 
 	.project-item:hover .project-circle {
@@ -209,6 +206,9 @@
 		width: 98.5vw;
 		display: flex;
 		justify-content: center;
+		align-items: center;
+		height: 100%;
+		z-index: 10;
 	}
 
 	.mobile-project-picture {

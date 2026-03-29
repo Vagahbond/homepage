@@ -123,6 +123,7 @@ button {
 
 
 .screen-shape {
+  overflow: hidden;
   --r: 50%;
   /* between 0% [square] and 50% [squircle] (you can use pixel as well) */
 

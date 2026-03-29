@@ -77,7 +77,7 @@
 </script>
 
 <svelte:window on:keydown={on_key_down} />
-<div>
+<div class="crt">
 	<svelte-css-wrapper style:--accent={accentColor}>
 		<AnimatedBackground />
 		<LangSelector />
@@ -85,11 +85,23 @@
 
 		{#if showPage}
 			<AnimatedFrame {forward}>
-				{@render children()}
+				<div class="scrollable">
+					{@render children()}
+				</div>
 			</AnimatedFrame>
 		{/if}
 	</svelte-css-wrapper>
 </div>
 
 <style>
+	.crt {
+		height: 100vh;
+		width: 100vw;
+		overflow: hidden;
+	}
+
+	.scrollable {
+		max-height: 100vh;
+		overflow-y: scroll;
+	}
 </style>
