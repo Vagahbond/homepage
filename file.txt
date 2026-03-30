@@ -1,0 +1,141 @@
+
+> homepage@0.0.1 build
+> vite build
+
+[dotenv@17.2.3] injecting env (2) from .env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+vite v7.3.0 building ssr environment for production...
+transforming...
+✓ 242 modules transformed.
+rendering chunks...
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+[15:34:17] [33mWARN[39m: [36mNo email adapter provided. Email will be written to console. More info at https://payloadcms.com/docs/email/overview.[39m
+Payload loaded!
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+vite v7.3.0 building client environment for production...
+transforming...
+✓ 235 modules transformed.
+rendering chunks...
+computing gzip size...
+.svelte-kit/output/client/_app/version.json                          0.03 kB │ gzip:  0.05 kB
+.svelte-kit/output/client/.vite/manifest.json                        7.12 kB │ gzip:  1.07 kB
+.svelte-kit/output/client/_app/immutable/assets/links.CinRa8Za.css   0.55 kB │ gzip:  0.29 kB
+.svelte-kit/output/client/_app/immutable/assets/4.Dh4ZCTaU.css       1.53 kB │ gzip:  0.52 kB
+.svelte-kit/output/client/_app/immutable/assets/5.CEA5JVKo.css       1.89 kB │ gzip:  0.58 kB
+.svelte-kit/output/client/_app/immutable/assets/6.2SvmbGrq.css       4.37 kB │ gzip:  1.04 kB
+.svelte-kit/output/client/_app/immutable/assets/3.ZoQ5qLCs.css       5.00 kB │ gzip:  1.19 kB
+.svelte-kit/output/client/_app/immutable/assets/0.BNtsIsdK.css      11.00 kB │ gzip:  2.87 kB
+.svelte-kit/output/client/_app/immutable/chunks/69_IOA4Y.js          0.03 kB │ gzip:  0.05 kB
+.svelte-kit/output/client/_app/immutable/chunks/DIeogL5L.js          0.06 kB │ gzip:  0.07 kB
+.svelte-kit/output/client/_app/immutable/chunks/DsnmJJEf.js          0.07 kB │ gzip:  0.08 kB
+.svelte-kit/output/client/_app/immutable/entry/start.Cq74oBDw.js     0.08 kB │ gzip:  0.09 kB
+.svelte-kit/output/client/_app/immutable/chunks/mePwAXdo.js          0.21 kB │ gzip:  0.15 kB
+.svelte-kit/output/client/_app/immutable/chunks/FebOyeK_.js          0.26 kB │ gzip:  0.22 kB
+.svelte-kit/output/client/_app/immutable/chunks/lYq7g97r.js          0.27 kB │ gzip:  0.22 kB
+.svelte-kit/output/client/_app/immutable/nodes/2.CEqIXkjP.js         0.42 kB │ gzip:  0.31 kB
+.svelte-kit/output/client/_app/immutable/chunks/D0iwhpLH.js          0.50 kB │ gzip:  0.31 kB
+.svelte-kit/output/client/_app/immutable/chunks/CYvvXGVw.js          0.72 kB │ gzip:  0.48 kB
+.svelte-kit/output/client/_app/immutable/nodes/1.Chac-a1d.js         0.91 kB │ gzip:  0.53 kB
+.svelte-kit/output/client/_app/immutable/nodes/3.Bv8o0uGA.js         1.98 kB │ gzip:  0.68 kB
+.svelte-kit/output/client/_app/immutable/chunks/Cq5jkkNP.js          2.09 kB │ gzip:  1.06 kB
+.svelte-kit/output/client/_app/immutable/nodes/4.q04cChuM.js         2.25 kB │ gzip:  0.75 kB
+.svelte-kit/output/client/_app/immutable/nodes/5.CUjurC9e.js         2.30 kB │ gzip:  1.06 kB
+.svelte-kit/output/client/_app/immutable/nodes/6.7jtZfyrf.js         2.95 kB │ gzip:  1.24 kB
+.svelte-kit/output/client/_app/immutable/chunks/DX-Oexe0.js          4.58 kB │ gzip:  2.11 kB
+.svelte-kit/output/client/_app/immutable/chunks/vUKuTmPB.js          4.58 kB │ gzip:  2.19 kB
+.svelte-kit/output/client/_app/immutable/chunks/Dpynfz4F.js          4.81 kB │ gzip:  1.92 kB
+.svelte-kit/output/client/_app/immutable/entry/app.YtgOWHq8.js       6.68 kB │ gzip:  2.98 kB
+.svelte-kit/output/client/_app/immutable/chunks/NNMWwLCf.js          7.82 kB │ gzip:  3.45 kB
+.svelte-kit/output/client/_app/immutable/chunks/CF1Kt3Tf.js         11.19 kB │ gzip:  4.17 kB
+.svelte-kit/output/client/_app/immutable/chunks/DdgXvxu7.js         12.68 kB │ gzip:  5.00 kB
+.svelte-kit/output/client/_app/immutable/chunks/C9pc2xCi.js         22.32 kB │ gzip:  8.75 kB
+.svelte-kit/output/client/_app/immutable/chunks/DLbobEHU.js         32.78 kB │ gzip: 12.87 kB
+.svelte-kit/output/client/_app/immutable/nodes/0.D-i82Hgl.js        94.62 kB │ gzip: 35.12 kB
+✓ built in 655ms
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+  302 / -> /en
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+/api/media/file/p22_logo.svg
+/api/media/file/branches-nursery-kewarra-beach-4879-logo-519888122.gif
+/api/media/file/datalok-logo.svg
+/api/media/file/marquis.png
+/api/media/file/KEYROS_Logo-2.png
+/api/media/file/logo.square.esgi-2628571594.png
+/api/media/file/logo-esgi-2018.jpg-1062241430.webp
+/api/media/file/KEYROS_Logo-01.png
+/api/media/file/newrest.png
+/api/media/file/icon-abecedaire-color-4150045874.png
+/api/media/file/logo-abecedaire1.webp
+/api/media/file/idea.png
+/api/media/file/Audio%20Experiments.png
+/api/media/file/Screenshot%202026-03-19%20at%2012.09.25%E2%80%AFPM.png
+/api/media/file/Screenshot%202026-02-12%20at%2022-02-04%20megumin-lang_main.mg%20at%20master%20%C2%B7%20Vagahbond_megumin-lang.png
+/api/media/file/1_dGEwUHQvBY3bAddEyczVEw.webp
+/api/media/file/Screenshot%202026-02-12%20at%2021-46-26%20cours-example_Chapter-1_MentorD.yml%20at%20master%20%C2%B7%20Vagahbond_cours-example.png
+/api/media/file/Screenshot%202026-02-12%20at%2021-39-52%20Vagahbond_hyprspace%20Woooooooooaaaa%20hyprland%20in%20spaaaaace.png
+/api/media/file/98485695.png
+/api/media/file/Screenshot%202026-02-12%20at%2021-20-23%20Rustlings.png
+/api/media/file/Screenshot%202026-02-12%20at%2021-09-48%20spreadsheet-to-invoiceshelf_README.md%20at%20master%20%C2%B7%20Vagahbond_spreadsheet-to-invoiceshelf.png
+/api/media/file/Screenshot%202026-02-12%20at%2020-51-45%20Advent%20of%20Code%202023.png
+/api/media/file/Screenshot%202026-02-12%20at%2020-32-20%20Introduction%20Uni-verse.png
+/api/media/file/2025-02-02T0006431407956621100.webp
+/api/media/file/guncraft-screenshot-1028168036.jpg
+/api/media/file/image-1.png
+/api/media/file/image.png
+/api/media/file/Diagram.png
+/api/media/file/20260102_201044.png
+/api/media/file/PXL_20241012_045445199.jpg
+/api/media/file/Screenshot%202025-12-12%20at%2020-52-43%20Search%20-%20Odo.png
+/api/media/file/Screen%20Shot%202025-11-18%20at%2017.27.22.png
+/api/media/file/icon-only.ico
+/api/media/file/b4a3d7025c3c0beac12a0cb60a71d09266be62e4.jpg
+/api/media/file/6e9131314ed1b8a733eca19e0dcde755c021aa24.jpg
+[15:34:19] [33mWARN[39m: [36mNo email adapter provided. Email will be written to console. More info at https://payloadcms.com/docs/email/overview.[39m
+Payload loaded!
+.svelte-kit/output/server/.vite/manifest.json                                   7.30 kB
+.svelte-kit/output/server/_app/immutable/assets/links.CinRa8Za.css              0.55 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.Dh4ZCTaU.css              1.53 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.CEA5JVKo.css              1.89 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.2SvmbGrq.css              4.37 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.ZoQ5qLCs.css              5.00 kB
+.svelte-kit/output/server/_app/immutable/assets/_layout.8wVxavEv.css           10.93 kB
+.svelte-kit/output/server/entries/pages/_layout.server.ts.js                    0.05 kB
+.svelte-kit/output/server/entries/pages/_page.svelte.js                         0.08 kB
+.svelte-kit/output/server/chunks/environment.js                                 0.22 kB
+.svelte-kit/output/server/entries/pages/_page.ts.js                             0.24 kB
+.svelte-kit/output/server/entries/fallbacks/error.svelte.js                     0.35 kB
+.svelte-kit/output/server/internal.js                                           0.38 kB
+.svelte-kit/output/server/chunks/richText.js                                    0.46 kB
+.svelte-kit/output/server/chunks/icons.js                                       0.47 kB
+.svelte-kit/output/server/chunks/server.js                                      0.50 kB
+.svelte-kit/output/server/entries/pages/_lang_/_page.server.ts.js               0.54 kB
+.svelte-kit/output/server/entries/pages/_lang_/contact/_page.server.ts.js       0.54 kB
+.svelte-kit/output/server/chunks/arrow.js                                       0.62 kB
+.svelte-kit/output/server/entries/pages/_lang_/projects/_page.server.ts.js      0.70 kB
+.svelte-kit/output/server/entries/pages/_lang_/experience/_page.server.ts.js    0.70 kB
+.svelte-kit/output/server/entries/endpoints/image/_slug_/_server.ts.js          1.02 kB
+.svelte-kit/output/server/chunks/utils.js                                       1.15 kB
+.svelte-kit/output/server/chunks/index2.js                                      1.21 kB
+.svelte-kit/output/server/chunks/equality.js                                    1.23 kB
+.svelte-kit/output/server/chunks/context.js                                     1.70 kB
+.svelte-kit/output/server/entries/pages/_lang_/contact/_page.svelte.js          1.81 kB
+.svelte-kit/output/server/entries/pages/_lang_/_page.svelte.js                  1.84 kB
+.svelte-kit/output/server/chunks/routing.js                                     2.29 kB
+.svelte-kit/output/server/entries/pages/_lang_/experience/_page.svelte.js       2.73 kB
+.svelte-kit/output/server/entries/pages/_layout.svelte.js                       2.97 kB
+.svelte-kit/output/server/entries/pages/_lang_/projects/_page.svelte.js         3.30 kB
+.svelte-kit/output/server/chunks/exports.js                                     6.99 kB
+.svelte-kit/output/server/chunks/payload.js                                     8.33 kB
+.svelte-kit/output/server/chunks/links.js                                      14.97 kB
+.svelte-kit/output/server/chunks/shared.js                                     17.70 kB
+.svelte-kit/output/server/remote-entry.js                                      18.86 kB
+.svelte-kit/output/server/chunks/index.js                                      29.62 kB
+.svelte-kit/output/server/chunks/internal.js                                   75.94 kB
+.svelte-kit/output/server/index.js                                            125.51 kB
+✓ built in 3.70s
+
+Run npm run preview to preview your production build locally.
+
+> Using @sveltejs/adapter-static
+  Wrote site to "build"
+  ✔ done

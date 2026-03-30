@@ -23,7 +23,7 @@ export const load: PageServerLoad = async ({ params }) => {
   const experiences: PaginatedDocs<Experience> = await payload.find({
     collection: 'experiences',
     locale: params.lang as Config["locale"],
-    sort: ['index', '-date'],
+    sort: ['-date'],
     limit: 100
   });
 

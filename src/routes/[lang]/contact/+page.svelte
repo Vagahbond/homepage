@@ -2,16 +2,22 @@
 	import Links from '$lib/components/links.svelte';
 	import RichText from '$lib/components/richText.svelte';
 	import Icon from '$lib/icons/icon.svelte';
+	import { glitch } from '$lib/utils/glitch.js';
 	import IconEnum from 'backend/src/icons';
+	import { onMount } from 'svelte';
 	import { blur, fly, slide } from 'svelte/transition';
 
 	const { data } = $props();
+
+	onMount(() => {
+		glitch(document);
+	});
 </script>
 
 <div class="contact-screen">
 	<div
 		id="frame1"
-		class="frame "
+		class="frame"
 		in:slide={{ delay: 500 }}
 		out:slide={{ delay: 300, duration: 100 }}
 	>
@@ -22,7 +28,7 @@
 	</div>
 	<div
 		id="frame2"
-		class="frame "
+		class="frame"
 		in:slide={{ delay: 750 }}
 		out:slide={{ delay: 200, duration: 100 }}
 	>
@@ -33,7 +39,7 @@
 	</div>
 	<div
 		id="frame4"
-		class="frame "
+		class="frame"
 		in:slide={{ delay: 1000 }}
 		out:slide={{ delay: 100, duration: 100 }}
 	>
@@ -42,12 +48,7 @@
 			<RichText value={data.labels.bottomLeft.text} />
 		</div>
 	</div>
-	<div
-		id="frame3"
-		class="frame "
-		in:slide={{ delay: 1250 }}
-		out:slide={{ delay: 0, duration: 100 }}
-	>
+	<div id="frame3" class="frame" in:slide={{ delay: 1250 }} out:slide={{ delay: 0, duration: 100 }}>
 		<h2>{data.labels.bottomRight.title}</h2>
 		<h4 class="subtitle">{data.labels.bottomRight.email}</h4>
 		<div class="links">
@@ -56,7 +57,7 @@
 	</div>
 	<div
 		id="frame5"
-		class="frame "
+		class="frame"
 		out:blur={{ delay: 0, duration: 100 }}
 		in:fly={{ delay: 750, duration: 1000, y: 2000 }}
 	>
@@ -82,12 +83,15 @@
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
-		border-radius: 4em;
+		border-radius: 0.5em;
 	}
 
 	.frame h2 {
 		margin: 0;
 		font-weight: bold;
+		border-radius: 0.5em;
+		backdrop-filter: blur(10px);
+		background-color: (var(--bg) 80);
 	}
 
 	.contact-text {
@@ -95,6 +99,9 @@
 		padding: 0em;
 
 		margin: 0 0;
+		backdrop-filter: blur(10px);
+		background-color: (var(--bg) 80);
+		border-radius: 0.5em;
 	}
 
 	.links {

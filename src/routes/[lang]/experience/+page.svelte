@@ -1,11 +1,18 @@
 <script lang="ts">
 	import RichText from '$lib/components/richText.svelte';
-	import type { Experience, ExperiencesPageDatum, Project } from '$lib/payload-types';
+	import type { Experience, ExperiencesPageDatum } from '$lib/payload-types';
+	import { glitch } from '$lib/utils/glitch';
+	import { generateMediaUrl } from '$lib/utils/media';
 	import type { PaginatedDocs } from 'payload';
+	import { onMount } from 'svelte';
 
 	const { data } = $props<{
 		data: { experiences: PaginatedDocs<Experience>; labels: ExperiencesPageDatum };
 	}>();
+
+	onMount(() => {
+		glitch(document);
+	});
 
 	function formatDate(date: string) {
 		const month = new Date(date).getMonth() + 1;
@@ -22,7 +29,7 @@
 
 	<div class="experiences-container">
 		{#each data.experiences.docs as experience, index (index)}
-			{@const imageUrl = `/image/${btoa(experience?.image?.url)}`}
+			{@const imageUrl = generateMediaUrl(experience?.image?.url)}
 
 			<link rel="preload" as="image" href={imageUrl} />
 

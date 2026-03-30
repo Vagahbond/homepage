@@ -3,9 +3,17 @@
 	import RichText from '$lib/components/richText.svelte';
 	import type { Project } from '$lib/payload-types';
 	import { AccentColor } from '$lib/utils/colors';
+	import { glitch } from '$lib/utils/glitch';
+	import { generateMediaUrl } from '$lib/utils/media';
 	import type { PaginatedDocs } from 'payload';
+	import { onMount } from 'svelte';
 
 	const { data } = $props<{ data: PaginatedDocs<Project> }>();
+
+	onMount(() => {
+		glitch(document);
+	});
+
 	let mobileImageModalPic = $state<string | null>(null);
 
 	const initialColorIndex = $derived(Math.floor(Math.random() * data.projects.totalDocs));
@@ -24,7 +32,7 @@
 	<div class="timeline-top"></div>
 	{#each data.projects.docs as project, index (index)}
 		{@const color = getProjectColor(index)}
-		{@const imageUrl = `/image/${btoa(project?.image?.url)}`}
+		{@const imageUrl = generateMediaUrl(project?.image?.url)}
 
 		<link rel="preload" as="image" href={imageUrl} />
 
@@ -40,7 +48,7 @@
 				</div>
 			</div>
 			<div class="project-center" style:--accent={color}>
-				<div class="project-circle " style:--accent={color}></div>
+				<div class="project-circle" style:--accent={color}></div>
 			</div>
 			<div class="project-desc">
 				<div class="project-desc-frame bordered blurred-bg" style:--accent={color}>

@@ -1,18 +1,25 @@
 <script lang="ts">
+	import { glitch } from '$lib/utils/glitch.js';
+	import { onMount } from 'svelte';
+
 	const { data } = $props();
+
+	onMount(() => {
+		glitch(document);
+	});
 </script>
 
 <div class="container">
 	<div class="home-screen">
 		<div class="avatar-picture-container">
-			<div class="antenna-container ">
+			<div class="antenna-container">
 				<div class="antenna section-base"></div>
 				<div class="antenna section-1"></div>
 				<div class="antenna section-2"></div>
 				<div class="antenna section-3"></div>
 				<div class="antenna section-bitonio"></div>
 			</div>
-			<div class=" avatar-picture ">
+			<div class=" avatar-picture">
 				<div class="screen-shape screen-shadow screen">
 					<img alt="A magnificent snail" src="/snail.png" />
 				</div>
@@ -30,12 +37,14 @@
 				</div>
 			</div>
 		</div>
-		<div class="bordered blurred-bg name ">
-			<h1 id="name">Vagahbond</h1>
+		<div class="bordered blurred-bg name">
+			<h1 id="name" class="glitch-text">Vagahbond</h1>
 			<!-- <h4 id="aka">A.K.A.</h4> -->
 			<!-- <h1 id="username">Vagahbond</h1> -->
-			<h2 id="title">{data.labels.title}</h2>
-			<h3 id="location">
+			<h2 id="title" class="glitch-text">
+				{data.labels.title}
+			</h2>
+			<h3 id="location" class="glitch-text">
 				Location: <span id="location-name">{data.labels.location}</span>
 			</h3>
 		</div>

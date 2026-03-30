@@ -10,6 +10,7 @@
 @font-face {
   font-family: DepartureMono Nerd Font;
   src: url(/fonts/DepartureMonoNerdFont-Regular.otf);
+  font-style: normal;
 }
 
 @font-face {
