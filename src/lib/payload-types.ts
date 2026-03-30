@@ -222,6 +222,13 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
+  techs?:
+    | {
+        label?: string | null;
+        icon?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -250,6 +257,8 @@ export interface Experience {
   };
   location: string;
   image?: (number | null) | Media;
+  expandImage?: boolean | null;
+  lightImageBg?: boolean | null;
   start?: string | null;
   end?: string | null;
   techs?:
@@ -402,6 +411,13 @@ export interface ProjectsSelect<T extends boolean = true> {
         icon?: T;
         id?: T;
       };
+  techs?:
+    | T
+    | {
+        label?: T;
+        icon?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -415,6 +431,8 @@ export interface ExperiencesSelect<T extends boolean = true> {
   description?: T;
   location?: T;
   image?: T;
+  expandImage?: T;
+  lightImageBg?: T;
   start?: T;
   end?: T;
   techs?:

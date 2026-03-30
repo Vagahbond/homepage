@@ -32,7 +32,9 @@
 					<div class="experience-subtitle">
 						<h3 class="experience-location">{experience.location}</h3>
 						<h6 class="experience-date">
-							{formatDate(experience.start)} - {formatDate(experience.end)}
+							{formatDate(experience.start)} - {experience.end
+								? formatDate(experience.end)
+								: 'Present'}
 						</h6>
 					</div>
 					<div class="description">
@@ -51,10 +53,12 @@
 					</div>
 				</div>
 
-				<div class="experience-picture">
+				<div
+					class={`experience-picture ${experience.expandImage && 'expand'} ${experience.lightImageBg && 'light-image-bg'}`}
+				>
 					<img
 						alt={experience?.image?.alt ?? ''}
-						class="screen-shape screen-shadow"
+						class="screen-shape screen screen-shadow"
 						src={imageUrl}
 					/>
 				</div>
@@ -132,11 +136,22 @@
 	}
 
 	.experience-picture img {
-		backdrop-filter: blur(10px);
 		padding: 2em;
 		max-height: 220px;
 		max-width: 440px;
 		object-fit: contain;
+	}
+
+	.experience-picture.expand img {
+		padding: 0;
+	}
+
+	.experience-picture.light-image-bg img {
+		background-image: repeating-radial-gradient(
+			circle at 17% 32%,
+			rgba(0, 0, 0, 1),
+			rgba(200, 200, 200, 1) 0.00085px
+		);
 	}
 
 	.experience-description {

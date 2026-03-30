@@ -26,6 +26,19 @@ export const Experience: CollectionConfig = {
       relationTo: 'media',
     },
 
+    {
+      name: "expandImage",
+      label: "Expand image",
+      type: "checkbox",
+      defaultValue: false,
+    },
+
+    {
+      name: "lightImageBg",
+      label: "Light image background",
+      type: "checkbox",
+      defaultValue: false,
+    },
     { name: 'start', label: 'When did it start', type: 'date' },
     { name: 'end', label: 'When did it end', type: 'date' },
     {

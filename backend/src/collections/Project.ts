@@ -48,5 +48,23 @@ export const Project: CollectionConfig = {
         },
       ],
     },
+    {
+      name: 'techs',
+      label: 'Technologies involved',
+      type: 'array',
+      fields: [
+        {
+          name: 'label',
+          label: 'Label',
+          type: 'text',
+        },
+        {
+          name: 'icon',
+          label: 'icon',
+          type: 'text',
+        },
+      ],
+    },
+
   ],
 }

@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict nS2Xy9gDqpH7AGoYOMRKEuI1bYbpWjHl0aJr0EuYSANq3pQwyTkavVZYBactsM1
+\restrict pNen3pSxIIWiGmE5Ezg2A8RAHucAqpf2Pcc7UpxgPJYmGzNPPwvZXu7fPU0QiYP
 
 -- Dumped from database version 17.7
 -- Dumped by pg_dump version 17.7
@@ -220,7 +220,9 @@ CREATE TABLE public.experiences (
     start timestamp(3) with time zone,
     "end" timestamp(3) with time zone,
     updated_at timestamp(3) with time zone DEFAULT now() NOT NULL,
-    created_at timestamp(3) with time zone DEFAULT now() NOT NULL
+    created_at timestamp(3) with time zone DEFAULT now() NOT NULL,
+    expand_image boolean DEFAULT false,
+    light_image_bg boolean DEFAULT false
 );
 
 
@@ -257,7 +259,9 @@ CREATE TABLE public.experiences_locales (
     description jsonb NOT NULL,
     id integer NOT NULL,
     _locale public._locales NOT NULL,
-    _parent_id integer NOT NULL
+    _parent_id integer NOT NULL,
+    title character varying NOT NULL,
+    location character varying NOT NULL
 );
 
 
@@ -283,6 +287,78 @@ ALTER SEQUENCE public.experiences_locales_id_seq OWNER TO homepage;
 --
 
 ALTER SEQUENCE public.experiences_locales_id_seq OWNED BY public.experiences_locales.id;
+
+
+--
+-- Name: experiences_page_data; Type: TABLE; Schema: public; Owner: homepage
+--
+
+CREATE TABLE public.experiences_page_data (
+    id integer NOT NULL,
+    updated_at timestamp(3) with time zone,
+    created_at timestamp(3) with time zone
+);
+
+
+ALTER TABLE public.experiences_page_data OWNER TO homepage;
+
+--
+-- Name: experiences_page_data_id_seq; Type: SEQUENCE; Schema: public; Owner: homepage
+--
+
+CREATE SEQUENCE public.experiences_page_data_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.experiences_page_data_id_seq OWNER TO homepage;
+
+--
+-- Name: experiences_page_data_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: homepage
+--
+
+ALTER SEQUENCE public.experiences_page_data_id_seq OWNED BY public.experiences_page_data.id;
+
+
+--
+-- Name: experiences_page_data_locales; Type: TABLE; Schema: public; Owner: homepage
+--
+
+CREATE TABLE public.experiences_page_data_locales (
+    title character varying NOT NULL,
+    subtitle character varying NOT NULL,
+    id integer NOT NULL,
+    _locale public._locales NOT NULL,
+    _parent_id integer NOT NULL
+);
+
+
+ALTER TABLE public.experiences_page_data_locales OWNER TO homepage;
+
+--
+-- Name: experiences_page_data_locales_id_seq; Type: SEQUENCE; Schema: public; Owner: homepage
+--
+
+CREATE SEQUENCE public.experiences_page_data_locales_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.experiences_page_data_locales_id_seq OWNER TO homepage;
+
+--
+-- Name: experiences_page_data_locales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: homepage
+--
+
+ALTER SEQUENCE public.experiences_page_data_locales_id_seq OWNED BY public.experiences_page_data_locales.id;
 
 
 --
@@ -873,6 +949,21 @@ ALTER SEQUENCE public.projects_page_data_locales_id_seq OWNED BY public.projects
 
 
 --
+-- Name: projects_techs; Type: TABLE; Schema: public; Owner: homepage
+--
+
+CREATE TABLE public.projects_techs (
+    _order integer NOT NULL,
+    _parent_id integer NOT NULL,
+    id character varying NOT NULL,
+    label character varying,
+    icon character varying
+);
+
+
+ALTER TABLE public.projects_techs OWNER TO homepage;
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: homepage
 --
 
@@ -962,6 +1053,20 @@ ALTER TABLE ONLY public.experiences ALTER COLUMN id SET DEFAULT nextval('public.
 --
 
 ALTER TABLE ONLY public.experiences_locales ALTER COLUMN id SET DEFAULT nextval('public.experiences_locales_id_seq'::regclass);
+
+
+--
+-- Name: experiences_page_data id; Type: DEFAULT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.experiences_page_data ALTER COLUMN id SET DEFAULT nextval('public.experiences_page_data_id_seq'::regclass);
+
+
+--
+-- Name: experiences_page_data_locales id; Type: DEFAULT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.experiences_page_data_locales ALTER COLUMN id SET DEFAULT nextval('public.experiences_page_data_locales_id_seq'::regclass);
 
 
 --
@@ -1127,8 +1232,16 @@ Des solutions simples à des problèmes complexes	{"root": {"type": "root", "for
 -- Data for Name: experiences; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.experiences (id, image_id, start, "end", updated_at, created_at) FROM stdin;
-1	20	2026-03-18 01:00:00+13	2026-03-31 01:00:00+13	2026-03-29 00:56:02.307+13	2026-03-29 00:56:02.307+13
+COPY public.experiences (id, image_id, start, "end", updated_at, created_at, expand_image, light_image_bg) FROM stdin;
+1	27	2018-06-02 00:00:00+12	2018-07-02 00:00:00+12	2026-03-30 11:19:58.335+13	2026-03-29 00:56:02.307+13	\N	f
+2	29	2019-01-31 01:00:00+13	2019-07-31 00:00:00+12	2026-03-30 11:45:56.104+13	2026-03-30 11:30:27.852+13	\N	f
+3	30	2019-09-26 00:00:00+12	2020-07-16 00:00:00+12	2026-03-30 11:58:11.02+13	2026-03-30 11:51:44.979+13	\N	f
+5	33	2022-09-08 00:00:00+12	2024-04-19 00:00:00+12	2026-03-30 12:20:27.51+13	2026-03-30 12:12:56.198+13	\N	f
+4	34	2020-08-12 00:00:00+12	2023-09-13 00:00:00+12	2026-03-30 12:22:34.482+13	2026-03-30 12:01:01.638+13	\N	f
+7	36	2024-08-07 00:00:00+12	2025-01-15 01:00:00+13	2026-03-30 12:34:32.36+13	2026-03-30 12:31:19.251+13	\N	f
+8	37	2025-02-05 01:00:00+13	2025-10-09 01:00:00+13	2026-03-30 12:50:48.325+13	2026-03-30 12:40:54.697+13	t	f
+6	35	2024-06-12 00:00:00+12	2024-07-04 00:00:00+12	2026-03-30 12:51:03.08+13	2026-03-30 12:25:46.67+13	t	f
+9	38	2025-11-19 01:00:00+13	\N	2026-03-30 13:13:01.968+13	2026-03-30 12:54:53.285+13	f	t
 \.
 
 
@@ -1136,8 +1249,35 @@ COPY public.experiences (id, image_id, start, "end", updated_at, created_at) FRO
 -- Data for Name: experiences_locales; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.experiences_locales (name, description, id, _locale, _parent_id) FROM stdin;
-Test	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Some things about this company, yo ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	1	fr	1
+COPY public.experiences_locales (name, description, id, _locale, _parent_id, title, location) FROM stdin;
+ABECEDAIRE	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Building interactive kiosk software and a marketplace based on WordPress for a motorbike equipment brand.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "In full autonomy, creating a planning software with CSS, JQuery, HTML and PHP for a client", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	21	en	2	Intern software developer	Rouen, France
+IDEA Informatique	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Writing an ERP with Embarcadero Delphi", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Fixing bugs and writing new features", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Using TurtleSVN/Apache Subversion as a VCS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	11	en	1	Intern software developer	Évreux, France
+Newrest Wagons-lits	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Studying and documenting an Oracle ERP for a modern rewrite", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Writing and connecting a C# backoffice and an Android app allowing bar wagons in trains to play announcements on train's sound Systems and connect their EFTPOS.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	25	en	3	Apprentice software engineer	Paris, France
+ESGI, ESIEE, H3 HITEMA	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Teaching 10+ groups of ~30 bachelors students with different specializations", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Creating bespoke teaching material, exercises and assessments to get the best out of students", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Topics included the C language, REST API development with Node.js and introduction to web protocols", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Supervision and support for trainings and assignments of C++", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	35	en	5	Professor	Paris, France
+Keyros	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Creating an interactive map system that helps visualize the impact of floods from the Seine in the city", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Taking in account dependence between infrastructures, estimate the span of time left before they stop working using the Seine's water level sensors reports.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Working on the fullstack Ruby on Rails app with embedded React, as well as a Go map layer processing workers", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Setting up and maintaining CI with GitLab CI", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 5, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Creating on a Python Django API tool for Enedis to automate their reports", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	36	en	4	Software developer	Paris, France
+Datalok	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Developing a datacenter rack sub-renting marketplace in a team of 3 developers", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Backend oriented position working with NestJS, in addition with Stripe and Firebase", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Working on the Angular frontend", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Maintaining and writing CI using GitHub Actions", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 5, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "More than 40 datacenter with 1000+ racks joined", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	43	en	7	Backend software developper	Full remote
+Branches Nursery	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "In a plant nursery, take part in the multiplication and care of plants ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Weeding, Trimming, Cleaning, Potting up, Loading trucks, Preparing and planting cuttings", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Tutoring a new worker joining after me", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	45	en	8	Nursery hand	Mowbray, Australia
+Marquis Macadamia	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "During a professional break, while traveling to Australia, worked as a factory hand in Marquis Macadamia's factory", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pack macadamias", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Prepare honey-roasted nut", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Operate Stackie-Walker", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	46	en	6	Factory labourer	Lindendale, Australia
+P22	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Fullfilling taks for various companies as a consultant", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Creating semi-native mobile app for non-profit's contractors to register coral outplants in the great reef,using Capacitor with React and a Next.js-based REST API.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Working with a client company, Ghost Dynamics' team, on a custom modular website for a petrochemical company, powered by Payload headless CMS, and Next.js, hosted on Vercel", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	53	en	9	Contractor Software developper	Auckland, New Zealand
+\.
+
+
+--
+-- Data for Name: experiences_page_data; Type: TABLE DATA; Schema: public; Owner: homepage
+--
+
+COPY public.experiences_page_data (id, updated_at, created_at) FROM stdin;
+1	2026-03-30 08:50:22.184+13	2026-03-30 08:50:22.184+13
+\.
+
+
+--
+-- Data for Name: experiences_page_data_locales; Type: TABLE DATA; Schema: public; Owner: homepage
+--
+
+COPY public.experiences_page_data_locales (title, subtitle, id, _locale, _parent_id) FROM stdin;
+My career	the jobs I was trusted for	15	en	1
+Ma carrière	Ces entreprises m'ont fait confiance	16	fr	1
 \.
 
 
@@ -1146,7 +1286,41 @@ Test	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "childre
 --
 
 COPY public.experiences_techs (_order, _parent_id, id, icon, label) FROM stdin;
-1	1	69c7c097caff052cd85dd7d0	\N	\N
+1	1	69c7c097caff052cd85dd7d0	delphi	Delphi
+2	1	69c9a43fc46fb37154039a02	subversion	Subversion
+1	5	69c9b32ec46fb37154039a26	cplusplus	C++
+2	5	69c9b344c46fb37154039a28	nodedotjs	Node.js
+3	5	69c9b36ac46fb37154039a2a	C	The C language
+4	5	69c9b373c46fb37154039a2c	apache	Apache http server
+1	4	69c9afbac46fb37154039a16	gitlab	Gitlab
+2	4	69c9afc2c46fb37154039a18	docker	Docker
+3	4	69c9afc7c46fb37154039a1a	rubyonrails	Ruby on Rails
+4	4	69c9afd1c46fb37154039a1c	react	React
+5	4	69c9afd7c46fb37154039a1e	django	Django
+6	4	69c9afdfc46fb37154039a20	openstreetmap	Open Street Map
+7	4	69c9aff0c46fb37154039a22	go	Go
+8	4	69c9b0a4c46fb37154039a24	arangodb	ArangoDB
+1	2	69c9a8f8c46fb37154039a04	shopify	Shopify
+2	2	69c9a904c46fb37154039a06	wordpress	WordPress
+3	2	69c9a917c46fb37154039a08	jquery	JQuery
+4	2	69c9a9b1c46fb37154039a0a	html5	HTML
+5	2	69c9a9bac46fb37154039a0c	css	CSS
+6	2	69c9a9bec46fb37154039a0e	javascript	JavaScript
+1	3	69c9ad0ec46fb37154039a12	androidstudio	Android Studio
+2	3	69c9ad2ac46fb37154039a14	dotnet	Windows Forms
+1	7	69c9b674c46fb37154039a2e	angular	Angular
+2	7	69c9b67bc46fb37154039a30	github	Github
+3	7	69c9b682c46fb37154039a32	nestjs	Nest.js
+4	7	69c9b6acc46fb37154039a34	docker	Docker
+5	7	69c9b6f6c46fb37154039a36	stripe	Stripe
+6	7	69c9b6fec46fb37154039a38	firebase	Firebase
+1	9	69c9befcf6b08e7f2bf0744b	react	React
+2	9	69c9bf92f6b08e7f2bf0744d	nextdotjs	NextJS
+3	9	69c9bfa6f6b08e7f2bf0744f	sanity	Sanity cms
+4	9	69c9bfbaf6b08e7f2bf07451	capacitor	Capacitor
+5	9	69c9bfc1f6b08e7f2bf07453	android	Android
+6	9	69c9bfc9f6b08e7f2bf07455	ios	iOS
+7	9	69c9c001f6b08e7f2bf07457	tailwindcss	Tailwind CSS
 \.
 
 
@@ -1197,6 +1371,18 @@ COPY public.media (id, updated_at, created_at, url, thumbnail_u_r_l, filename, m
 11	2026-02-13 18:37:12.375+13	2026-02-12 20:13:25.647+13	/api/media/file/guncraft-screenshot-1028168036.jpg	\N	guncraft-screenshot-1028168036.jpg	image/jpeg	55303	1020	574	50	50
 25	2026-03-19 12:12:34.838+13	2026-03-19 12:11:39.334+13	/api/media/file/Screenshot%202026-03-19%20at%2012.09.25%E2%80%AFPM.png	\N	Screenshot 2026-03-19 at 12.09.25 PM.png	image/png	105323	720	236	50	50
 26	2026-03-29 00:26:30.214+13	2026-03-29 00:26:30.214+13	\N	\N	Audio Experiments.png	image/png	425897	2536	1782	50	50
+27	2026-03-30 11:19:22.641+13	2026-03-30 11:19:22.641+13	\N	\N	idea.png	image/png	55072	425	300	50	50
+28	2026-03-30 11:32:30.206+13	2026-03-30 11:32:30.205+13	\N	\N	logo-abecedaire1.webp	image/webp	72052	1690	3275	50	50
+29	2026-03-30 11:37:31.407+13	2026-03-30 11:37:31.407+13	\N	\N	icon-abecedaire-color-4150045874.png	image/png	132238	1690	1690	50	50
+30	2026-03-30 11:50:57.865+13	2026-03-30 11:50:57.864+13	\N	\N	newrest.png	image/png	94328	2068	526	50	50
+31	2026-03-30 12:02:57.432+13	2026-03-30 12:02:57.43+13	\N	\N	KEYROS_Logo-01.png	image/png	185607	8000	2119	50	50
+32	2026-03-30 12:12:19.569+13	2026-03-30 12:12:19.569+13	\N	\N	logo-esgi-2018.jpg-1062241430.webp	image/webp	7432	325	225	50	50
+33	2026-03-30 12:15:07.614+13	2026-03-30 12:15:07.614+13	\N	\N	logo.square.esgi-2628571594.png	image/png	41714	478	269	50	50
+34	2026-03-30 12:22:32.327+13	2026-03-30 12:22:32.326+13	\N	\N	KEYROS_Logo-2.png	image/png	123919	8000	2119	50	50
+35	2026-03-30 12:25:38.77+13	2026-03-30 12:25:38.77+13	\N	\N	marquis.png	image/png	21119	700	292	50	50
+36	2026-03-30 12:31:12.951+13	2026-03-30 12:31:12.95+13	\N	\N	datalok-logo.svg	image/svg+xml	1980	325	65	\N	\N
+37	2026-03-30 12:40:29.342+13	2026-03-30 12:40:29.342+13	\N	\N	branches-nursery-kewarra-beach-4879-logo-519888122.gif	image/gif	150181	592	442	50	50
+38	2026-03-30 13:00:54.173+13	2026-03-30 13:00:54.172+13	\N	\N	p22_logo.svg	image/svg+xml	1212	17	23	\N	\N
 \.
 
 
@@ -1226,6 +1412,18 @@ Une capture d'écran de Guncraft, dont est inspiré Guncruft	23	fr	11
 Charpente modules gen command	29	en	25
 Charpente modules gen command	30	fr	25
 Audio experiments	31	en	26
+Idea Informatique	32	en	27
+Logo Abécédaire	33	en	28
+Logo Abecedaire	34	en	29
+Newrest's logo	35	en	30
+Keyros logo	36	en	31
+Logo ESGI	37	en	32
+Logo ESGI	38	en	33
+Keyros logo	39	en	34
+Marquis macadamia	40	en	35
+Datalok 	41	en	36
+Branches nursery	42	en	37
+P22 logo	43	en	38
 \.
 
 
@@ -1258,7 +1456,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-03-29 00:42:26.43+13	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-03-30 13:15:01.859+13	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -1274,8 +1472,9 @@ COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM st
 8	global-homePageData	{"editViewType": "default"}	2025-12-28 19:47:06.152+13	2025-12-28 19:47:06.154+13
 9	global-projectsPageData	{"editViewType": "default"}	2025-12-28 19:54:40.332+13	2025-12-28 19:54:40.333+13
 3	collection-media	{"sort": "-updatedAt", "limit": 10, "editViewType": "default"}	2026-02-13 18:48:12.668+13	2025-12-18 22:23:00.699+13
-7	locale	"fr"	2026-03-29 00:41:11.74+13	2025-12-28 00:25:16.154+13
 10	collection-experiences	{"limit": 10, "editViewType": "default"}	2026-03-29 00:48:05.709+13	2026-03-21 12:33:12.11+13
+11	global-experiencesPageData	{"editViewType": "default"}	2026-03-30 08:49:38.732+13	2026-03-30 08:49:38.733+13
+7	locale	"en"	2026-03-30 11:26:01.113+13	2025-12-28 00:25:16.154+13
 \.
 
 
@@ -1289,9 +1488,10 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 12	\N	6	user	1
 13	\N	1	user	1
 82	\N	3	user	1
-89	\N	7	user	1
 90	\N	10	user	1
+91	\N	11	user	1
 30	\N	8	user	1
+98	\N	7	user	1
 32	\N	9	user	1
 \.
 
@@ -1450,8 +1650,16 @@ COPY public.projects_page_data (id, updated_at, created_at) FROM stdin;
 --
 
 COPY public.projects_page_data_locales (title, subtitle, id, _locale, _parent_id) FROM stdin;
-Practice makes perfect	Constantly building skills	26	en	1
-C'est en forgeant qu'on devient forgeron.	Un travail constant, pour livrer des solutions qualitatives.	27	fr	1
+Practice makes perfect	Constatly building skills	36	en	1
+C'est en forgeant qu'on devient forgeron.	Un travail constant, pour entretenir mes compétences.	37	fr	1
+\.
+
+
+--
+-- Data for Name: projects_techs; Type: TABLE DATA; Schema: public; Owner: homepage
+--
+
+COPY public.projects_techs (_order, _parent_id, id, label, icon) FROM stdin;
 \.
 
 
@@ -1469,7 +1677,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	e1d4d676-4434-46cc-af9e-cce454473dcc	2026-03-29 00:06:56.107+13	2026-03-29 02:06:56.107+13
+1	1	9e449e25-c50a-40c9-9be8-37cc89ca429f	2026-03-30 11:14:12.375+13	2026-03-30 15:12:50.959+13
 \.
 
 
@@ -1498,14 +1706,28 @@ SELECT pg_catalog.setval('public.contact_page_data_locales_id_seq', 88, true);
 -- Name: experiences_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.experiences_id_seq', 1, true);
+SELECT pg_catalog.setval('public.experiences_id_seq', 9, true);
 
 
 --
 -- Name: experiences_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.experiences_locales_id_seq', 1, true);
+SELECT pg_catalog.setval('public.experiences_locales_id_seq', 53, true);
+
+
+--
+-- Name: experiences_page_data_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
+--
+
+SELECT pg_catalog.setval('public.experiences_page_data_id_seq', 1, true);
+
+
+--
+-- Name: experiences_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
+--
+
+SELECT pg_catalog.setval('public.experiences_page_data_locales_id_seq', 16, true);
 
 
 --
@@ -1526,14 +1748,14 @@ SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 3, true);
 -- Name: media_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.media_id_seq', 26, true);
+SELECT pg_catalog.setval('public.media_id_seq', 38, true);
 
 
 --
 -- Name: media_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.media_locales_id_seq', 31, true);
+SELECT pg_catalog.setval('public.media_locales_id_seq', 43, true);
 
 
 --
@@ -1547,14 +1769,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 165, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 221, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 251, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 349, true);
 
 
 --
@@ -1568,14 +1790,14 @@ SELECT pg_catalog.setval('public.payload_migrations_id_seq', 1, true);
 -- Name: payload_preferences_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_id_seq', 10, true);
+SELECT pg_catalog.setval('public.payload_preferences_id_seq', 11, true);
 
 
 --
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 90, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 98, true);
 
 
 --
@@ -1610,7 +1832,7 @@ SELECT pg_catalog.setval('public.projects_page_data_id_seq', 1, true);
 -- Name: projects_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_page_data_locales_id_seq', 27, true);
+SELECT pg_catalog.setval('public.projects_page_data_locales_id_seq', 37, true);
 
 
 --
@@ -1658,6 +1880,22 @@ ALTER TABLE ONLY public.contact_page_data
 
 ALTER TABLE ONLY public.experiences_locales
     ADD CONSTRAINT experiences_locales_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: experiences_page_data_locales experiences_page_data_locales_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.experiences_page_data_locales
+    ADD CONSTRAINT experiences_page_data_locales_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: experiences_page_data experiences_page_data_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.experiences_page_data
+    ADD CONSTRAINT experiences_page_data_pkey PRIMARY KEY (id);
 
 
 --
@@ -1805,6 +2043,14 @@ ALTER TABLE ONLY public.projects
 
 
 --
+-- Name: projects_techs projects_techs_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.projects_techs
+    ADD CONSTRAINT projects_techs_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
 --
 
@@ -1867,6 +2113,13 @@ CREATE INDEX experiences_image_idx ON public.experiences USING btree (image_id);
 --
 
 CREATE UNIQUE INDEX experiences_locales_locale_parent_id_unique ON public.experiences_locales USING btree (_locale, _parent_id);
+
+
+--
+-- Name: experiences_page_data_locales_locale_parent_id_unique; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE UNIQUE INDEX experiences_page_data_locales_locale_parent_id_unique ON public.experiences_page_data_locales USING btree (_locale, _parent_id);
 
 
 --
@@ -2115,6 +2368,20 @@ CREATE UNIQUE INDEX projects_page_data_locales_locale_parent_id_unique ON public
 
 
 --
+-- Name: projects_techs_order_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX projects_techs_order_idx ON public.projects_techs USING btree (_order);
+
+
+--
+-- Name: projects_techs_parent_id_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX projects_techs_parent_id_idx ON public.projects_techs USING btree (_parent_id);
+
+
+--
 -- Name: projects_updated_at_idx; Type: INDEX; Schema: public; Owner: homepage
 --
 
@@ -2194,6 +2461,14 @@ ALTER TABLE ONLY public.experiences
 
 ALTER TABLE ONLY public.experiences_locales
     ADD CONSTRAINT experiences_locales_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.experiences(id) ON DELETE CASCADE;
+
+
+--
+-- Name: experiences_page_data_locales experiences_page_data_locales_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.experiences_page_data_locales
+    ADD CONSTRAINT experiences_page_data_locales_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.experiences_page_data(id) ON DELETE CASCADE;
 
 
 --
@@ -2317,6 +2592,14 @@ ALTER TABLE ONLY public.projects_page_data_locales
 
 
 --
+-- Name: projects_techs projects_techs_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.projects_techs
+    ADD CONSTRAINT projects_techs_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.projects(id) ON DELETE CASCADE;
+
+
+--
 -- Name: users_sessions users_sessions_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
 --
 
@@ -2328,5 +2611,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict nS2Xy9gDqpH7AGoYOMRKEuI1bYbpWjHl0aJr0EuYSANq3pQwyTkavVZYBactsM1
+\unrestrict pNen3pSxIIWiGmE5Ezg2A8RAHucAqpf2Pcc7UpxgPJYmGzNPPwvZXu7fPU0QiYP
 
