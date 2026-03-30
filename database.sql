@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict pNen3pSxIIWiGmE5Ezg2A8RAHucAqpf2Pcc7UpxgPJYmGzNPPwvZXu7fPU0QiYP
+\restrict B8z5wg7hjzYtMTyuZyeTVnAqssw677k5Q4XGnS67rAkhSnYsPhemGrDhfOKeYFP
 
 -- Dumped from database version 17.7
 -- Dumped by pg_dump version 17.7
@@ -1241,7 +1241,7 @@ COPY public.experiences (id, image_id, start, "end", updated_at, created_at, exp
 7	36	2024-08-07 00:00:00+12	2025-01-15 01:00:00+13	2026-03-30 12:34:32.36+13	2026-03-30 12:31:19.251+13	\N	f
 8	37	2025-02-05 01:00:00+13	2025-10-09 01:00:00+13	2026-03-30 12:50:48.325+13	2026-03-30 12:40:54.697+13	t	f
 6	35	2024-06-12 00:00:00+12	2024-07-04 00:00:00+12	2026-03-30 12:51:03.08+13	2026-03-30 12:25:46.67+13	t	f
-9	38	2025-11-19 01:00:00+13	\N	2026-03-30 13:13:01.968+13	2026-03-30 12:54:53.285+13	f	t
+9	38	2025-11-19 01:00:00+13	\N	2026-03-30 16:32:29.887+13	2026-03-30 12:54:53.285+13	f	t
 \.
 
 
@@ -1258,7 +1258,7 @@ Keyros	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "child
 Datalok	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Developing a datacenter rack sub-renting marketplace in a team of 3 developers", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Backend oriented position working with NestJS, in addition with Stripe and Firebase", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Working on the Angular frontend", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Maintaining and writing CI using GitHub Actions", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 5, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "More than 40 datacenter with 1000+ racks joined", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	43	en	7	Backend software developper	Full remote
 Branches Nursery	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "In a plant nursery, take part in the multiplication and care of plants ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Weeding, Trimming, Cleaning, Potting up, Loading trucks, Preparing and planting cuttings", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Tutoring a new worker joining after me", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	45	en	8	Nursery hand	Mowbray, Australia
 Marquis Macadamia	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "During a professional break, while traveling to Australia, worked as a factory hand in Marquis Macadamia's factory", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pack macadamias", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Prepare honey-roasted nut", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Operate Stackie-Walker", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	46	en	6	Factory labourer	Lindendale, Australia
-P22	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Fullfilling taks for various companies as a consultant", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Creating semi-native mobile app for non-profit's contractors to register coral outplants in the great reef,using Capacitor with React and a Next.js-based REST API.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Working with a client company, Ghost Dynamics' team, on a custom modular website for a petrochemical company, powered by Payload headless CMS, and Next.js, hosted on Vercel", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	53	en	9	Contractor Software developper	Auckland, New Zealand
+P22	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Fullfilling tasks for various companies as a consultant", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Creating semi-native mobile app for non-profit's contractors to register coral outplants in the great reef,using Capacitor with React and a Next.js-based REST API.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Working with a client company, Ghost Dynamics' team, on a custom modular website for a petrochemical company, powered by Payload headless CMS, and Next.js, hosted on Vercel", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	54	en	9	Contractor Software developper	Auckland, New Zealand
 \.
 
 
@@ -1456,7 +1456,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-03-30 13:15:01.859+13	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-03-30 16:21:22.362+13	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -1668,7 +1668,7 @@ COPY public.projects_techs (_order, _parent_id, id, label, icon) FROM stdin;
 --
 
 COPY public.users (id, updated_at, created_at, email, reset_password_token, reset_password_expiration, salt, hash, login_attempts, lock_until) FROM stdin;
-1	2026-03-17 13:42:16.907+13	2025-12-17 21:15:02.465+13	vagahbond@pm.me	\N	\N	075999745062ba90e8efe7be679ca1ec3bacb49e92d4dd33c3ca31ea653c7b55	879d584ba8c7e013c0c82ed50da3e77c6b22921c1f62759ab5d371e657a2cb483e478c06aaebd101f59dc5e0d2c0009a13010f7ac6ebc227279845439e478de58b941624899ded3ecd420163b7942b748cd925c56917f73a94e9d355997a85da74f24ec9b2ea0b5d338d4d53496e4f20dd25dac7aabb3bd7da0c0af034344137fca899a2bb4fc907144fb5c72b55749627209a6b1ba43dbd9b425533eb151f2741ecbed4f6a1d0f1074790afd1391af01c2b641e3bffa3919791cc7d5069daa7a2d24cf6c80679e4c8af0586e5c3da551d866a9bd5a0d06bd5c8dc6d73f24481cf24a3dbf32aaa14e88b6a75739a6d3771d19f307b4c38a10a30f3552236521e19a7b9af119db69bd448cc4f3859db8adedb66e65c058c5ec45650f4cea261e27a0d9f0a3d0dcafcf4ba41a6cd8c3c885ef56ff09c149042a9fed53c27177b155a04ed89c1346663b04f7c94b4f051d3e59eb0ac4a4bd91882c3f4f675a58b5e1214227cd0c2a1caf4c06e678fa5206dcdea4b1fa4f99ae30de5ea3267e94989ad12fec1c61db5369017b6c5e23a825f7e1928bc585b94331e8516efcfb55fb50c10ff7fbf9fcc1adf97a4610bdb5f583f53a6b631e02eb58531cba74e47dc011105891f5ddf1535ed94f9540c9263578cb42de0acedec7c23bca0428067264cd52e498f7ed9ef96846ad43b559e7c7e7b4579a66628852672522e51cb8f4d90	0	\N
+1	2026-03-30 16:32:11.885+13	2025-12-17 21:15:02.465+13	vagahbond@pm.me	\N	\N	075999745062ba90e8efe7be679ca1ec3bacb49e92d4dd33c3ca31ea653c7b55	879d584ba8c7e013c0c82ed50da3e77c6b22921c1f62759ab5d371e657a2cb483e478c06aaebd101f59dc5e0d2c0009a13010f7ac6ebc227279845439e478de58b941624899ded3ecd420163b7942b748cd925c56917f73a94e9d355997a85da74f24ec9b2ea0b5d338d4d53496e4f20dd25dac7aabb3bd7da0c0af034344137fca899a2bb4fc907144fb5c72b55749627209a6b1ba43dbd9b425533eb151f2741ecbed4f6a1d0f1074790afd1391af01c2b641e3bffa3919791cc7d5069daa7a2d24cf6c80679e4c8af0586e5c3da551d866a9bd5a0d06bd5c8dc6d73f24481cf24a3dbf32aaa14e88b6a75739a6d3771d19f307b4c38a10a30f3552236521e19a7b9af119db69bd448cc4f3859db8adedb66e65c058c5ec45650f4cea261e27a0d9f0a3d0dcafcf4ba41a6cd8c3c885ef56ff09c149042a9fed53c27177b155a04ed89c1346663b04f7c94b4f051d3e59eb0ac4a4bd91882c3f4f675a58b5e1214227cd0c2a1caf4c06e678fa5206dcdea4b1fa4f99ae30de5ea3267e94989ad12fec1c61db5369017b6c5e23a825f7e1928bc585b94331e8516efcfb55fb50c10ff7fbf9fcc1adf97a4610bdb5f583f53a6b631e02eb58531cba74e47dc011105891f5ddf1535ed94f9540c9263578cb42de0acedec7c23bca0428067264cd52e498f7ed9ef96846ad43b559e7c7e7b4579a66628852672522e51cb8f4d90	0	\N
 \.
 
 
@@ -1677,7 +1677,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	9e449e25-c50a-40c9-9be8-37cc89ca429f	2026-03-30 11:14:12.375+13	2026-03-30 15:12:50.959+13
+1	1	41deebd5-b544-4dbf-b673-45e8bc7df1bb	2026-03-30 16:32:11.882+13	2026-03-30 18:32:11.882+13
 \.
 
 
@@ -1713,7 +1713,7 @@ SELECT pg_catalog.setval('public.experiences_id_seq', 9, true);
 -- Name: experiences_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.experiences_locales_id_seq', 53, true);
+SELECT pg_catalog.setval('public.experiences_locales_id_seq', 54, true);
 
 
 --
@@ -1769,14 +1769,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 221, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 222, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 349, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 351, true);
 
 
 --
@@ -2611,5 +2611,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict pNen3pSxIIWiGmE5Ezg2A8RAHucAqpf2Pcc7UpxgPJYmGzNPPwvZXu7fPU0QiYP
+\unrestrict B8z5wg7hjzYtMTyuZyeTVnAqssw677k5Q4XGnS67rAkhSnYsPhemGrDhfOKeYFP
 
