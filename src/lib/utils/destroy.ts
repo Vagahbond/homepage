@@ -1,7 +1,7 @@
 export function destroy(document: Document) {
   const chars = '░▒▓█▄▀▌▐■□▪▫▬▭▮▯⠿⡿⣿⠾⢾⣾⠷⡷⣷⠯⡯⣯⠟⡟⣟0123456789';
 
-  const all = document.querySelectorAll('div, h1, h2, h3, h4, h5, h6, p, span, li');
+  const all = document.querySelectorAll('div, h1, h2, h3, h4, h5, h6, p, span, li, button');
 
   all.forEach(text => {
 
@@ -15,15 +15,10 @@ export function destroy(document: Document) {
         return;
       }
 
-      const replaced = text.innerHTML[textIndex];
 
       text.innerHTML = text.innerHTML.substring(0, textIndex) + chars[charIndex] + text.innerHTML.substring(textIndex + 1);
 
-      setTimeout(() => {
-        text.innerHTML = text.innerHTML.substring(0, textIndex) + replaced + text.innerHTML.substring(textIndex + 1);
-      }, 100)
-
-    }, Math.floor(Math.random() * 3000) + 3000)
+    }, 1000)
 
   })
 

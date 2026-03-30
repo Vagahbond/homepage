@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { destroy } from '$lib/utils/destroy';
 	import { glitch } from '$lib/utils/glitch.js';
 	import { onMount } from 'svelte';
 
@@ -33,6 +34,7 @@
 						style:width="20px"
 						style:height="3px"
 						style:border-radius="5px"
+						onclick={() => destroy(document)}
 					></div>
 				</div>
 			</div>
