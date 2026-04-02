@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict B8z5wg7hjzYtMTyuZyeTVnAqssw677k5Q4XGnS67rAkhSnYsPhemGrDhfOKeYFP
+\restrict 5abac7zNpkS5tl4mOMuCMpjkuQUWLzyxGpeUbaGZgMmIciA3sdlKHjm2nmqqtd3
 
 -- Dumped from database version 17.7
 -- Dumped by pg_dump version 17.7
@@ -1456,7 +1456,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-03-30 16:21:22.362+13	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-04-02 20:27:32.345+13	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -1505,11 +1505,11 @@ COPY public.projects (id, updated_at, created_at, image_id, date, index) FROM st
 12	2026-03-19 11:17:47.923+13	2026-02-12 20:48:16.186+13	14	2024-12-02 01:00:00+13	3
 10	2026-03-19 11:18:06.784+13	2026-02-12 20:22:40.761+13	12	2024-05-09 00:00:00+12	4
 9	2026-03-19 11:18:17.791+13	2026-02-12 20:13:28.712+13	11	2025-04-13 00:00:00+12	7
-8	2026-03-19 11:18:24.442+13	2026-01-07 21:33:08.324+13	10	2026-01-14 01:00:00+13	1
 7	2026-03-19 11:18:31.965+13	2026-01-02 20:12:03.553+13	7	2026-01-03 01:00:00+13	2
 21	2026-03-19 12:22:09.613+13	2026-03-19 11:39:56.053+13	25	2026-03-19 01:00:00+13	3
 11	2026-03-19 12:24:42.598+13	2026-02-12 20:38:12.84+13	13	2024-07-21 00:00:00+12	3
 22	2026-03-29 00:43:31.806+13	2026-03-29 00:30:36.386+13	26	2026-03-30 01:00:00+13	2
+8	2026-04-02 20:28:26.205+13	2026-01-07 21:33:08.324+13	10	2026-01-14 01:00:00+13	1
 19	2026-03-19 11:15:55.72+13	2026-02-12 22:04:55.562+13	21	2020-02-07 01:00:00+13	6
 18	2026-03-19 11:16:07.215+13	2026-02-12 21:55:45.989+13	20	2022-02-23 01:00:00+13	5
 17	2026-03-19 11:16:23.528+13	2026-02-12 21:49:25.312+13	19	2023-02-10 01:00:00+13	10
@@ -1526,6 +1526,7 @@ COPY public.projects (id, updated_at, created_at, image_id, date, index) FROM st
 COPY public.projects_links (_order, _parent_id, id, url, icon) FROM stdin;
 1	22	69c7baf4caff052cd85dd7cc	https://github.com/vagahbond/audio-experiments	github
 2	22	69c7bb9acaff052cd85dd7ce	https://audio-experiments.vagahbond.com	try
+1	8	6966b30b726b707b07249145	https://github.com/Vagahbond/nix-config	github
 1	19	698d96c81f9c6b0b47e99cfd	https://github.com/Vagahbond/megumin-lang	repo
 1	18	698d949a1f9c6b0b47e99cfb	https://github.com/Vagahbond/simple-blockchain	repo
 1	17	698d93031f9c6b0b47e99cf9	https://github.com/Vagahbond/CoursesFrontend	repo
@@ -1537,8 +1538,6 @@ COPY public.projects_links (_order, _parent_id, id, url, icon) FROM stdin;
 2	12	698d85c31f9c6b0b47e99cef	https://github.com/Vagahbond/advent-of-code/tree/main/2023	github
 1	10	698d800b1f9c6b0b47e99ce5	https://github.com/Vagahbond/nix-cooker	github
 1	9	698d7dab1f9c6b0b47e99ce3	https://github.com/Vagahbond/guncruft	github
-1	8	6966b30b726b707b07249145	https://github.com/Vagahbond/nix-config	github
-2	8	6966b42f726b707b07249147	https://vagahbond.github.io/nix-config/	doc
 1	7	695770178e408a69ec2e8a0a	https://github.com/Vagahbond/homepage	repo
 2	7	6957707d8e408a69ec2e8a0c	https://yoni-firroloni.com	try
 1	21	69bb29bc2f55f742f0342543	https://github.com/Vagahbond/Charpente/	github
@@ -1554,6 +1553,8 @@ COPY public.projects_links (_order, _parent_id, id, url, icon) FROM stdin;
 
 COPY public.projects_links_locales (label, id, _locale, _parent_id) FROM stdin;
 Repo	158	en	698d8b1c1f9c6b0b47e99cf1
+Github	226	en	6966b30b726b707b07249145
+Github	227	fr	6966b30b726b707b07249145
 Repo	159	fr	698d8b1c1f9c6b0b47e99cf1
 2024	164	en	698d85ac1f9c6b0b47e99ced
 2024	165	fr	698d85ac1f9c6b0b47e99ced
@@ -1563,10 +1564,6 @@ Repo	172	en	698d800b1f9c6b0b47e99ce5
 Repo	173	fr	698d800b1f9c6b0b47e99ce5
 Repo	174	en	698d7dab1f9c6b0b47e99ce3
 Repo	175	fr	698d7dab1f9c6b0b47e99ce3
-Github	176	en	6966b30b726b707b07249145
-Github	177	fr	6966b30b726b707b07249145
-Doc	178	en	6966b42f726b707b07249147
-Doc	179	fr	6966b42f726b707b07249147
 Source code	180	en	695770178e408a69ec2e8a0a
 Code source	181	fr	695770178e408a69ec2e8a0a
 Production	182	en	6957707d8e408a69ec2e8a0c
@@ -1608,11 +1605,13 @@ Audio experiments	{"root": {"type": "root", "format": "", "indent": 0, "version"
 NFpieT	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pendant la bulle blockchain et NFT, il y avait un devoir sur la blockchain à mon université. J'ai créé cette application décentralisée sur le réseau Ethereum. NFpieT est un NFT exécutable. Chaque jeton est une image qui représente le code Piet (des images qui représentent du code). Pour des raisons techniques, ces NFT sont stockés au format JSON et j'ai dû implémenter un analyseur syntaxique pour cela à partir de zéro dans le langage Sol, car tout cela était nouveau à l'époque.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	115	fr	15
 Homepage	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "This project is the website you are currently looking at. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Made with ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957712949eaafa084a46f1d", "type": "link", "fields": {"url": "https://svelte.dev/docs/kit/introduction", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "SvelteKit", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " for the frontend, and ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957715149eaafa084a46f1e", "type": "link", "fields": {"url": "https://payloadcms.com/", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "PayloadCMS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " for the backend. Sveltekit allows building fully bundled static websites with prefetched assets and data.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It is packaged using the nix package manager, that runs the CMS and the frontend's build in an isolated environment and outputs a static website that is then served by a nginx instance.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	132	en	7
 Site vitrine	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ce projet est le site que vous avez sous les yeux. Fait avec ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957712949eaafa084a46f1d", "type": "link", "fields": {"url": "https://svelte.dev/docs/kit/introduction", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "SvelteKit", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " pour le frontend, et ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957715149eaafa084a46f1e", "type": "link", "fields": {"url": "https://payloadcms.com/", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "PayloadCMS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " pour le backend.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Sveltekit permet de générer des sites statiques léger et rapides grâce à des systèmes de pré-requêtes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il est mis en production grâce à nix. Celui-ci fait tourner PayloadCMS en arrière plan et prépare le frontend dans un environnement isolé, puis produit un site statique servi par NginX. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	133	fr	7
+Nix configuration	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I rely on a diverse infrastructure, with, at a point , 2 laptops, a desktop PC and a VPS. With a great interest in customization, and reluctance to do things several times, nix allowed me to have a single repository managing all of my machines. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"type": "linebreak", "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "This project is the code that defines all the infrastructure I use.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	155	en	8
 Simple blockchain	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pour le plaisir et pour la science, j'ai relevé le défi de mettre en œuvre ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "698d95bf2da38925783ffdad", "type": "link", "fields": {"url": "https://levelup.gitconnected.com/learn-blockchain-by-building-it-f2f8ccc54892", "newTab": false, "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "ce tutoriel", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " en C++.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il consiste à mettre en œuvre un système de blockchain simplifié.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	109	fr	18
 Rustlings	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Rustlings is an interesting project to start learning Rust with practical challenges.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "As thousands of people, I completed it in order to start working with Rust. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	116	en	14
 Rustlings	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Rustlings est un projet intéressant pour commencer à apprendre Rust à travers des défis pratiques.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Comme des milliers d'autres personnes, je l'ai terminé afin de pouvoir commencer à travailler avec Rust. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	117	fr	14
 Advent of code	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Yearly, the advent of code opens its doors. It is the opportunity to test and to improve problem solving skills. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "When I have the necessary spare time, I like to tackle this challenge.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "In 2023, I took the challenge to solve every day with a different language.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	122	en	12
 uni-verse	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Uni-verse est un projet universitaire réalisé en équipe. Il s'agit d'une plateforme musicale reproduisant les fonctionnalités de Soundcloud, avec en plus une fonctionnalité d'empreinte audio (similaire à Shazam). Elle dispose d'une API REST back-end, d'une application web front-end et d'une application mobile semi-native, associées à un service d'empreinte audio s'appuyant sur RabbitMQ.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Je reprends régulièrement ce projet, j'ajoute de la documentation et j'essaie de le rendre à nouveau fonctionnel et viable.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Traduit avec DeepL.com (version gratuite)", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	146	fr	11
+Configuration nix	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pour mon travail, je dépend d'une architecture diverse, avec au plus haut 2 PC portables, 1 PC fixe, et un VPS. Mon interêt pour la customisation et mon désinterêt pour la répétition m'ont poussé à créer un répo nix qui gère tous mes postes. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ce projet contient le code qui définit toute mon infrastructure.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	156	fr	8
 MentoreD	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "MentoreD is a concept of courses as code. It allows creating courses as Github Repo, with markdown files for content and yml configuration files for authorization.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It include creating course content and exercises.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	110	en	17
 MentoreD	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "MentoreD est un concept de cours sous forme de code. Il permet de créer des cours sous forme de dépôt Github, avec des fichiers Markdown pour le contenu et des fichiers de configuration YML pour l'autorisation.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il comprend la création du contenu du cours et des exercices.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	111	fr	17
 spreadsheet-to-invoiceshelf	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "InvoiceShelf is a self-hostable web app for creating and storing invoices as a small business. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "During one onf my previous contracts, I was constrained to logging my time on an Excel file. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I created this CLI tool with rust so I could transform my Excel file into InvoiceShelf format so I could import it.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	118	en	13
@@ -1631,8 +1630,6 @@ Simple blockchain	{"root": {"type": "root", "format": "", "indent": 0, "version"
 Rice-cooker	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Nix-cooker permet de gérer les rice (interfaces de bureau Linux personnalisées) de manière ordonnée dans une configuration Nix multi-hôtes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il fournit un module permettant de définir des schémas de couleurs, des thèmes GTK, des fonds d'écran, des polices, des modèles de fichiers de configuration et bien d'autres éléments.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il est actuellement utilisable, mais devrait être complété afin de pouvoir remplacer home-manager en tant qu'alternative minimaliste.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	127	fr	10
 Guncruft	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "As a fan of Guncraft, an old discontinued video-game, I decided to re-create something similar. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "This project is still work in progress. It is relying on ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "698d7d4a2da38925783ffda3", "type": "link", "fields": {"url": "https://bevy.org/", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "Bevy", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": ", written in Rust. This stack allows for a very optimized game that should run on most hardware, while reproducing the nervous and snappy experience of the original Guncraft game. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	128	en	9
 Guncruft	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "En tant que fan de Guncraft, un ancien jeu vidéo qui n'est plus commercialisé, j'ai décidé de recréer quelque chose de similaire.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ce projet est encore en cours de développement. Il s'appuie sur Bevy, écrit en Rust. Cette stack permet d'obtenir un jeu très optimisé qui devrait fonctionner sur la plupart des matériels, tout en reproduisant l'expérience nerveuse et rapide du jeu Guncraft original. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	129	fr	9
-Nix configuration	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I rely on a diverse infrastructure, with, at a point , 2 laptops, a desktop PC and a VPS. With a great interest in customization, and reluctance to do things several times, nix allowed me to have a single repository managing all of my machines. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"type": "linebreak", "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "This project is the code that defines all the infrastructure I use.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	130	en	8
-Configuration nix	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pour mon travail, je dépend d'une architecture diverse, avec au plus haut 2 PC portables, 1 PC fixe, et un VPS. Mon interêt pour la customisation et mon désinterêt pour la répétition m'ont poussé à créer un répo nix qui gère tous mes postes. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ce projet contient le code qui définit toute mon infrastructure.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	131	fr	8
 \.
 
 
@@ -1677,7 +1674,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	41deebd5-b544-4dbf-b673-45e8bc7df1bb	2026-03-30 16:32:11.882+13	2026-03-30 18:32:11.882+13
+1	1	f79c6579-d58f-49fe-9f69-57fae82bfcda	2026-04-02 20:27:55.144+13	2026-04-02 22:27:55.144+13
 \.
 
 
@@ -1769,14 +1766,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 222, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 223, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 351, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 353, true);
 
 
 --
@@ -1811,14 +1808,14 @@ SELECT pg_catalog.setval('public.projects_id_seq', 22, true);
 -- Name: projects_links_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_links_locales_id_seq', 225, true);
+SELECT pg_catalog.setval('public.projects_links_locales_id_seq', 227, true);
 
 
 --
 -- Name: projects_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_locales_id_seq', 154, true);
+SELECT pg_catalog.setval('public.projects_locales_id_seq', 156, true);
 
 
 --
@@ -2611,5 +2608,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict B8z5wg7hjzYtMTyuZyeTVnAqssw677k5Q4XGnS67rAkhSnYsPhemGrDhfOKeYFP
+\unrestrict 5abac7zNpkS5tl4mOMuCMpjkuQUWLzyxGpeUbaGZgMmIciA3sdlKHjm2nmqqtd3
 
