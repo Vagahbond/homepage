@@ -6,19 +6,26 @@ export const HomePageData: GlobalConfig = {
     read: () => true,
   },
   fields: [
-        {
-          label: 'Title',
-          localized: true,
-          name: 'title',
-          type: 'text',
-          required: true
-        },
-        {
-          label: 'Location',
-          localized: true,
-          name: 'location',
-          type: 'text',
-          required: true
-        },
+    {
+      label: 'Title',
+      localized: true,
+      name: 'title',
+      type: 'text',
+      required: true
+    },
+    {
+      label: 'Location',
+      localized: true,
+      name: 'location',
+      type: 'text',
+      required: true
+    },
+    {
+      label: 'Destruction-message',
+      localized: true,
+      name: 'destructionMessage',
+      type: 'text',
+      required: false
+    }
   ]
 }

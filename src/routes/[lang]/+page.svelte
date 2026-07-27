@@ -8,6 +8,11 @@
 	onMount(() => {
 		glitch(document);
 	});
+
+	const onDestroy = () => {
+		alert(data.labels.destructionMessage);
+		destroy(document);
+	};
 </script>
 
 <div class="container">
@@ -34,7 +39,7 @@
 						style:width="20px"
 						style:height="3px"
 						style:border-radius="5px"
-						onclick={() => destroy(document)}
+						onclick={onDestroy}
 					></div>
 				</div>
 			</div>

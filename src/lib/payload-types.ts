@@ -493,6 +493,7 @@ export interface HomePageDatum {
   id: number;
   title: string;
   location: string;
+  destructionMessage?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -616,6 +617,7 @@ export interface ExperiencesPageDatum {
 export interface HomePageDataSelect<T extends boolean = true> {
   title?: T;
   location?: T;
+  destructionMessage?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

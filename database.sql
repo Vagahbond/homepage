@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 5abac7zNpkS5tl4mOMuCMpjkuQUWLzyxGpeUbaGZgMmIciA3sdlKHjm2nmqqtd3
+\restrict NAlpOChFivue9QNnZ3VnVtDW84lMvM5APDuSPWb8jL43fkwxGllitf9uM8L780F
 
 -- Dumped from database version 17.7
 -- Dumped by pg_dump version 17.7
@@ -420,7 +420,8 @@ CREATE TABLE public.home_page_data_locales (
     location character varying NOT NULL,
     id integer NOT NULL,
     _locale public._locales NOT NULL,
-    _parent_id integer NOT NULL
+    _parent_id integer NOT NULL,
+    destruction_message character varying
 );
 
 
@@ -1337,9 +1338,9 @@ COPY public.home_page_data (id, updated_at, created_at) FROM stdin;
 -- Data for Name: home_page_data_locales; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.home_page_data_locales (title, location, id, _locale, _parent_id) FROM stdin;
-Software engineer	New Zealand	2	en	1
-Développeur	Nouvelle Zélande	3	fr	1
+COPY public.home_page_data_locales (title, location, id, _locale, _parent_id, destruction_message) FROM stdin;
+Software engineer	New Zealand	6	en	1	Ooops! You just initiated the self-destroy process! There is no turning back !
+Développeur	Nouvelle Zélande	7	fr	1	Ooops! Tu viens d'activer la procédure d'auto destruction! Tous aux abris!
 \.
 
 
@@ -1456,7 +1457,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-04-02 20:27:32.345+13	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-07-27 15:55:33.506+12	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -1465,6 +1466,7 @@ COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM st
 --
 
 COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM stdin;
+7	locale	"fr"	2026-07-27 15:54:23.632+12	2025-12-28 00:25:16.154+13
 2	collection-projects	{"limit": 10, "editViewType": "default"}	2025-12-17 21:26:21.012+13	2025-12-17 21:25:02.699+13
 5	collection-contactPageData	{"limit": 10, "editViewType": "default"}	2025-12-28 00:05:07.333+13	2025-12-27 23:36:57.387+13
 6	global-contactPageData	{"editViewType": "default"}	2025-12-28 00:09:21.078+13	2025-12-28 00:09:21.079+13
@@ -1474,7 +1476,6 @@ COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM st
 3	collection-media	{"sort": "-updatedAt", "limit": 10, "editViewType": "default"}	2026-02-13 18:48:12.668+13	2025-12-18 22:23:00.699+13
 10	collection-experiences	{"limit": 10, "editViewType": "default"}	2026-03-29 00:48:05.709+13	2026-03-21 12:33:12.11+13
 11	global-experiencesPageData	{"editViewType": "default"}	2026-03-30 08:49:38.732+13	2026-03-30 08:49:38.733+13
-7	locale	"en"	2026-03-30 11:26:01.113+13	2025-12-28 00:25:16.154+13
 \.
 
 
@@ -1491,8 +1492,8 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 90	\N	10	user	1
 91	\N	11	user	1
 30	\N	8	user	1
-98	\N	7	user	1
 32	\N	9	user	1
+99	\N	7	user	1
 \.
 
 
@@ -1674,7 +1675,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	f79c6579-d58f-49fe-9f69-57fae82bfcda	2026-04-02 20:27:55.144+13	2026-04-02 22:27:55.144+13
+1	1	94dc4a92-ba1d-49e2-b915-fd3affca3d67	2026-07-27 15:52:42.801+12	2026-07-27 17:52:42.801+12
 \.
 
 
@@ -1738,7 +1739,7 @@ SELECT pg_catalog.setval('public.home_page_data_id_seq', 1, true);
 -- Name: home_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 3, true);
+SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 7, true);
 
 
 --
@@ -1766,14 +1767,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 223, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 225, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 353, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 355, true);
 
 
 --
@@ -1794,7 +1795,7 @@ SELECT pg_catalog.setval('public.payload_preferences_id_seq', 11, true);
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 98, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 99, true);
 
 
 --
@@ -2608,5 +2609,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 5abac7zNpkS5tl4mOMuCMpjkuQUWLzyxGpeUbaGZgMmIciA3sdlKHjm2nmqqtd3
+\unrestrict NAlpOChFivue9QNnZ3VnVtDW84lMvM5APDuSPWb8jL43fkwxGllitf9uM8L780F
 
