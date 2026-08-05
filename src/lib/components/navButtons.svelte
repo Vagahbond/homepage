@@ -1,8 +1,11 @@
 <script lang="ts">
 	import Arrow from '$lib/icons/arrow.svelte';
+	import Icon from '$lib/icons/icon.svelte';
 	import { scale } from 'svelte/transition';
+	import IconEnum from 'backend/src/icons';
+	import { page } from '$app/state';
 
-	const { onLeftClicked, onRightClicked } = $props();
+	const { onLeftClicked, onRightClicked, onHomeClicked } = $props();
 </script>
 
 <div class="left-area">
@@ -11,7 +14,7 @@
 			onLeftClicked();
 		}}
 		id="scroll-left-button"
-		class="scroll-button "
+		class="scroll-button"
 		transition:scale
 	>
 		<Arrow direction="left" />
@@ -24,21 +27,58 @@
 			onRightClicked();
 		}}
 		id="scroll-right-button"
-		class="scroll-button "
+		class="scroll-button"
 		transition:scale
 	>
 		<Arrow direction="right" />
 	</button>
 </div>
 
+{#if page.route.id !== '/[lang]'}
+	<button
+		onclick={() => {
+			onHomeClicked();
+		}}
+		id="home-button"
+		class="home-button"
+		transition:scale
+	>
+		<Icon icon={IconEnum.HOME} />
+	</button>
+{/if}
+
 <style>
+	.home-button {
+		position: fixed;
+		bottom: 3vh;
+		right: 3vh;
+		width: 3vh;
+		z-index: 15;
+
+		transition: all 0.3s ease-in-out;
+		display: flex;
+		animation: 3s ease infinite spring;
+		overflow: hidden;
+
+		fill: var(--fg);
+		cursor: pointer;
+		background-color: var(--bg);
+		padding: 0.8em;
+		border-radius: 50%;
+	}
+
+	.home-button:hover {
+		width: 6vh;
+	}
+
 	.scroll-button {
-		transition: all 0.5s ease-in-out;
+		transition: all 0.3s ease-in-out;
 		display: flex;
 		animation: 3s ease infinite spring;
 		position: fixed;
 		overflow: hidden;
 		border-radius: 50%;
+		cursor: pointer;
 
 		z-index: 10;
 	}

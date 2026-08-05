@@ -29,6 +29,7 @@
 	.links-container {
 		display: flex;
 		flex-direction: row;
+		justify-content: space-between;
 		width: 100%;
 		height: 100%;
 		overflow-x: scroll;
@@ -43,6 +44,9 @@
 		min-width: max-content;
 		width: 6vh;
 		margin-left: 1em;
+		border-radius: 0.5em;
+		backdrop-filter: blur(10px);
+		padding: 0.2em;
 	}
 
 	.project-link:hover {
@@ -55,8 +59,8 @@
 		max-height: 3vh;
 		margin: 0 auto;
 		margin-bottom: 0.5em;
-		fill: var(--fg);
 		overflow: hidden;
+		color: var(--accent);
 	}
 
 	.project-link:hover .project-link-icon {

@@ -7,11 +7,14 @@ enum Icon {
   CODE = "code",
   CONTACT = "contact",
   DOC = "doc",
+  HOME = "home",
+  EXPERIENCES = "experiences",
   PROJECTS = "projects",
   REPO = "repo",
   RESUME = "resume",
   TOGGLE = "toggle",
-  TRY = "try"
+  TRY = "try",
+  TWITTER = "twitter"
 }
 
 export default Icon

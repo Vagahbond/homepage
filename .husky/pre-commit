@@ -1,0 +1,9 @@
+if command -v pgdump >/dev/null 2>&1; then
+  if pgdump; then
+    git add database.sql
+  else
+    echo "warning: pgdump failed (is the dev postgres instance running via 'pgstart'?). Committing without refreshing database.sql." >&2
+  fi
+else
+  echo "warning: 'pgdump' not found (not in the nix dev shell?). Skipping database.sql refresh." >&2
+fi

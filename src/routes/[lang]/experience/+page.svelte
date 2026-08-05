@@ -5,29 +5,101 @@
 	import { generateMediaUrl } from '$lib/utils/media';
 	import type { PaginatedDocs } from 'payload';
 	import { onMount } from 'svelte';
+	import Arrow from '$lib/icons/arrow.svelte';
 
 	const { data } = $props<{
 		data: { experiences: PaginatedDocs<Experience>; labels: ExperiencesPageDatum };
 	}>();
 
-	onMount(() => {
-		glitch(document);
-	});
+	let currentIndex = $derived(0);
+
+	let lastTouchY = $state(0);
+
+	let cooldown = $state(false);
+	let lastScrollDelta = $state(0);
+
+	onMount(() => glitch(document));
 
 	function formatDate(date: string) {
 		const month = new Date(date).getMonth() + 1;
 		const year = new Date(date).getFullYear();
 		return `${month < 10 ? '0' : ''}${month}/${year}`;
 	}
+
+	function incrementIndex(negative: boolean = false) {
+		if (!negative && currentIndex + 1 < data.experiences.totalDocs) {
+			currentIndex += 1;
+		} else if (negative && currentIndex > 0) {
+			currentIndex -= 1;
+		}
+	}
+
+	function onScroll(e: WheelEvent) {
+		e.preventDefault();
+
+		const delta = e.deltaY;
+
+		const isScrollImportant = Math.abs(delta) > lastScrollDelta;
+
+		lastScrollDelta = Math.abs(delta);
+
+		if (!isScrollImportant || cooldown) {
+			return;
+		}
+
+		cooldown = true;
+
+		if (e.deltaY < 0) {
+			incrementIndex(true);
+		} else if (e.deltaY > 0) {
+			incrementIndex();
+		}
+
+		setTimeout(() => {
+			cooldown = false;
+		}, 300);
+	}
+
+	function onSwipe(e: TouchEvent) {
+		if (!e.changedTouches.length) return;
+
+		let element: HTMLElement = e.changedTouches[0].target as HTMLElement;
+
+		while (element.parentElement) {
+			if (
+				getComputedStyle(element).overflowY === 'scroll' &&
+				element.scrollHeight > element.clientHeight
+			)
+				return;
+			element = element.parentElement;
+		}
+
+		if (e.type === 'touchstart') {
+			lastTouchY = e.changedTouches[0].clientY;
+		} else if (e.type === 'touchend') {
+			const delta = e.changedTouches[0].clientY - lastTouchY;
+
+			if (Math.abs(delta) < 100) {
+				return;
+			}
+
+			if (delta > 0) {
+				incrementIndex(true);
+			} else if (delta < 0 && currentIndex < data.experiences.totalDocs - 1) {
+				incrementIndex();
+			}
+		}
+	}
 </script>
+
+<svelte:window onwheel={onScroll} ontouchstart={onSwipe} ontouchend={onSwipe} />
 
 <div class="experiences-screen">
 	<div class="title bordered blurred-bg">
-		<h1>{data.labels.title}</h1>
-		<h4 class="subtitle">{data.labels.subtitle}</h4>
+		<h1><span style:color="var(--fg)">$_</span> {data.labels.title}</h1>
 	</div>
 
-	<div class="experiences-container">
+	<div class="experiences-container" style:margin-top={`-${currentIndex * 100}vh`}>
 		{#each data.experiences.docs as experience, index (index)}
 			{@const imageUrl = generateMediaUrl(experience?.image?.url)}
 
@@ -35,14 +107,16 @@
 
 			<div class="experience-item">
 				<div class="experience-description">
-					<h1 class="experience-name">{experience.name}</h1>
+					<h1 class="experience-name">
+						{experience.name}
+					</h1>
 					<div class="experience-subtitle">
 						<h3 class="experience-location">{experience.location}</h3>
-						<h6 class="experience-date">
+						<h4 class="experience-date">
 							{formatDate(experience.start)} - {experience.end
 								? formatDate(experience.end)
 								: 'Present'}
-						</h6>
+						</h4>
 					</div>
 					<div class="description">
 						<RichText value={experience.description} />
@@ -65,14 +139,42 @@
 				>
 					<img
 						alt={experience?.image?.alt ?? ''}
-						class="screen-shape screen screen-shadow"
+						class="screen-shape screen-shadow screen"
 						src={imageUrl}
 					/>
 				</div>
 			</div>
+			<!-- <div class="separator"></div> -->
 		{/each}
 	</div>
+	<div
+		class="progress-bar"
+		style:--progress={`${((1 + currentIndex) / data.experiences.totalDocs) * 100}vw`}
+	></div>
 </div>
+{#if currentIndex > 0}
+	<button
+		class="scroll-button up"
+		onclick={() => {
+			if (currentIndex > 0) currentIndex -= 1;
+		}}
+		title="Forward in time"
+	>
+		<Arrow direction="up" />
+	</button>
+{/if}
+
+{#if currentIndex + 1 < data.experiences.totalDocs}
+	<button
+		class="scroll-button down"
+		onclick={() => {
+			if (currentIndex < data.experiences.totalDocs) currentIndex += 1;
+		}}
+		title="Back in time"
+	>
+		<Arrow direction="down" />
+	</button>
+{/if}
 
 <style>
 	* {
@@ -82,12 +184,49 @@
 	.experiences-screen {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 
 		width: 100vw;
 		min-width: 100vw;
 
+		height: 100vh;
+		max-height: 100vh;
+
+		overflow: hidden;
+
 		z-index: 10;
+	}
+
+	.experiences-container {
+		transition: all 0.5s ease-out;
+		margin-top: 0;
+	}
+
+	.scroll-button {
+		transition: all 0.3s ease-out;
+		position: fixed;
+
+		width: 3em;
+		height: 3em;
+		border-radius: 50%;
+		backdrop-filter: blur(10px);
+		left: calc(50% - 1.5em);
+
+		z-index: 11;
+		cursor: pointer;
+	}
+
+	.scroll-button:hover {
+		width: 3.5em;
+		height: 3.5em;
+		left: calc(50% - 1.75em);
+	}
+
+	.scroll-button.up {
+		top: 1.5em;
+	}
+
+	.scroll-button.down {
+		bottom: 1.5em;
 	}
 
 	.title {
@@ -100,30 +239,10 @@
 		padding-top: 0.5em;
 		padding-bottom: 0.5em;
 		width: fit-content;
-		z-index: 10;
-	}
+		z-index: 12;
 
-	.subtitle {
-		transition: all 1s;
-		height: 0;
-		overflow: hidden;
-		padding: 0;
-		margin: 0;
-		padding-left: 1em;
-		filter: brightness(70%);
-		max-width: 100%;
-	}
-
-	.title h1 {
-		transition: all 1s;
-	}
-
-	.title:hover h1 {
-		margin-bottom: 0;
-	}
-
-	.title:hover .subtitle {
-		height: 2em;
+		position: fixed;
+		top: 0;
 	}
 
 	.experience-item {
@@ -132,6 +251,7 @@
 		justify-content: center;
 		align-items: center;
 		width: 100%;
+		height: 100vh;
 	}
 
 	.experience-picture {
@@ -197,6 +317,12 @@
 		color: var(--fg);
 	}
 
+	.description {
+		overflow-y: scroll;
+		margin-bottom: 0.5em;
+		font-size: 1.2em;
+	}
+
 	.experience-date::before {
 		content: '';
 		margin: 0 0.5em;
@@ -208,5 +334,77 @@
 		gap: 1em;
 		align-items: center;
 		justify-content: center;
+	}
+
+	.separator {
+		width: 80%;
+		height: 0.1em;
+		background-color: var(--accent);
+		margin: 1em 10%;
+		border-radius: 0.5em;
+	}
+
+	.progress-bar {
+		transition: all 0.5s ease-in-out;
+		width: var(--progress);
+		height: 0.3em;
+		background-color: var(--accent);
+		border-radius: 0.5em 0.5em 0 0;
+		position: fixed;
+		bottom: 0;
+	}
+
+	@media (max-width: 800px) {
+		.experience-picture {
+			margin: 0;
+			padding: 0 1em;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 0;
+			width: 80vw;
+			max-width: 80vw;
+			max-height: 20vh;
+		}
+
+		.experience-picture img {
+			margin: 0;
+			padding: 1em;
+		}
+
+		.experience-item {
+			flex-direction: column-reverse;
+			align-items: center;
+			justify-content: space-around;
+			max-height: 80vh;
+			height: 80vh;
+			padding-top: 10vh;
+			padding-bottom: 10vh;
+			margin: 0;
+			overflow: hidden;
+			gap: 0;
+		}
+
+		.experience-description {
+			width: 90%;
+			margin: 0;
+			padding: 0;
+		}
+
+		.experience-subtitle {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.experience-date {
+			margin-left: 1em;
+			margin-top: 0.5em;
+		}
+
+		.description {
+			margin-bottom: 1em;
+			max-height: 30vh;
+			font-size: 1em;
+		}
 	}
 </style>

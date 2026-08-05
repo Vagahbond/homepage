@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Icon from '$lib/icons/icon.svelte';
 	import type { Project } from '$lib/payload-types';
 	import Links from './links.svelte';
 	import RichText from './richText.svelte';
