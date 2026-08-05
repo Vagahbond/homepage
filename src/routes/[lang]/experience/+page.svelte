@@ -65,7 +65,7 @@
 				>
 					<img
 						alt={experience?.image?.alt ?? ''}
-						class="screen-shape screen screen-shadow"
+						class="screen-shape screen-shadow screen"
 						src={imageUrl}
 					/>
 				</div>
