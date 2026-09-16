@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict v2laia70It4aBSidaaBFUMPC7811nXLxvEJNSwljtPVXDmd5Mazx22CacIH8Rah
+\restrict NakY4uKnndyKzDf2QCqspVSPzkhEUsYQmzM6CJaARlAa61GXlvWSr0GlcBDocfx
 
 -- Dumped from database version 17.7
 -- Dumped by pg_dump version 17.7
@@ -44,15 +44,44 @@ CREATE TYPE public.enum_contact_page_data_bottom_right_links_icon AS ENUM (
     'code',
     'contact',
     'doc',
+    'home',
+    'experiences',
     'projects',
     'repo',
     'resume',
     'toggle',
-    'try'
+    'try',
+    'twitter'
 );
 
 
 ALTER TYPE public.enum_contact_page_data_bottom_right_links_icon OWNER TO homepage;
+
+--
+-- Name: enum_home_page_data_links_icon; Type: TYPE; Schema: public; Owner: homepage
+--
+
+CREATE TYPE public.enum_home_page_data_links_icon AS ENUM (
+    'mail',
+    'linkedin',
+    'github',
+    'arrow',
+    'close',
+    'code',
+    'contact',
+    'doc',
+    'home',
+    'experiences',
+    'projects',
+    'repo',
+    'resume',
+    'toggle',
+    'try',
+    'twitter'
+);
+
+
+ALTER TYPE public.enum_home_page_data_links_icon OWNER TO homepage;
 
 --
 -- Name: enum_projects_links_icon; Type: TYPE; Schema: public; Owner: homepage
@@ -67,11 +96,14 @@ CREATE TYPE public.enum_projects_links_icon AS ENUM (
     'code',
     'contact',
     'doc',
+    'home',
+    'experiences',
     'projects',
     'repo',
     'resume',
     'toggle',
-    'try'
+    'try',
+    'twitter'
 );
 
 
@@ -412,6 +444,57 @@ ALTER SEQUENCE public.home_page_data_id_seq OWNED BY public.home_page_data.id;
 
 
 --
+-- Name: home_page_data_links; Type: TABLE; Schema: public; Owner: homepage
+--
+
+CREATE TABLE public.home_page_data_links (
+    _order integer NOT NULL,
+    _parent_id integer NOT NULL,
+    id character varying NOT NULL,
+    icon public.enum_home_page_data_links_icon
+);
+
+
+ALTER TABLE public.home_page_data_links OWNER TO homepage;
+
+--
+-- Name: home_page_data_links_locales; Type: TABLE; Schema: public; Owner: homepage
+--
+
+CREATE TABLE public.home_page_data_links_locales (
+    label character varying,
+    url character varying,
+    id integer NOT NULL,
+    _locale public._locales NOT NULL,
+    _parent_id character varying NOT NULL
+);
+
+
+ALTER TABLE public.home_page_data_links_locales OWNER TO homepage;
+
+--
+-- Name: home_page_data_links_locales_id_seq; Type: SEQUENCE; Schema: public; Owner: homepage
+--
+
+CREATE SEQUENCE public.home_page_data_links_locales_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.home_page_data_links_locales_id_seq OWNER TO homepage;
+
+--
+-- Name: home_page_data_links_locales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: homepage
+--
+
+ALTER SEQUENCE public.home_page_data_links_locales_id_seq OWNED BY public.home_page_data_links_locales.id;
+
+
+--
 -- Name: home_page_data_locales; Type: TABLE; Schema: public; Owner: homepage
 --
 
@@ -421,7 +504,8 @@ CREATE TABLE public.home_page_data_locales (
     id integer NOT NULL,
     _locale public._locales NOT NULL,
     _parent_id integer NOT NULL,
-    destruction_message character varying
+    destruction_message character varying,
+    subtitle character varying DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -1078,6 +1162,13 @@ ALTER TABLE ONLY public.home_page_data ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: home_page_data_links_locales id; Type: DEFAULT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_links_locales ALTER COLUMN id SET DEFAULT nextval('public.home_page_data_links_locales_id_seq'::regclass);
+
+
+--
 -- Name: home_page_data_locales id; Type: DEFAULT; Schema: public; Owner: homepage
 --
 
@@ -1335,12 +1426,38 @@ COPY public.home_page_data (id, updated_at, created_at) FROM stdin;
 
 
 --
+-- Data for Name: home_page_data_links; Type: TABLE DATA; Schema: public; Owner: homepage
+--
+
+COPY public.home_page_data_links (_order, _parent_id, id, icon) FROM stdin;
+1	1	6aa8bcabca41ce4c7d262d72	code
+2	1	6aa8c704a95bc6f1611f92a0	github
+3	1	6aa8bf53ca41ce4c7d262d74	linkedin
+4	1	6aa8c752a95bc6f1611f92a2	twitter
+5	1	6aa8c75ea95bc6f1611f92a4	mail
+\.
+
+
+--
+-- Data for Name: home_page_data_links_locales; Type: TABLE DATA; Schema: public; Owner: homepage
+--
+
+COPY public.home_page_data_links_locales (label, url, id, _locale, _parent_id) FROM stdin;
+My code	https://git.vagahbond.com	31	en	6aa8bcabca41ce4c7d262d72
+Github	https://github.com/vagahbond	32	en	6aa8c704a95bc6f1611f92a0
+Linkedin	https://www.linkedin.com/in/yoni-f-%F0%9F%92%BB-a5002b153/	33	en	6aa8bf53ca41ce4c7d262d74
+Twitter	https://x.com/vagahbond_	34	en	6aa8c752a95bc6f1611f92a2
+Mail	mailto:pro@yoni-firroloni.com	35	en	6aa8c75ea95bc6f1611f92a4
+\.
+
+
+--
 -- Data for Name: home_page_data_locales; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.home_page_data_locales (title, location, id, _locale, _parent_id, destruction_message) FROM stdin;
-Software engineer	New Zealand	6	en	1	Ooops! You just initiated the self-destroy process! There is no turning back !
-Développeur	Nouvelle Zélande	7	fr	1	Ooops! Tu viens d'activer la procédure d'auto destruction! Tous aux abris!
+COPY public.home_page_data_locales (title, location, id, _locale, _parent_id, destruction_message, subtitle) FROM stdin;
+Freelance software engineer	New Zealand	46	en	1	Ooops! You just initiated the self-destroy process! There is no turning back ! (Beware if you are epileptic)	Computer enthousiast
+Développeur	Nouvelle Zélande	47	fr	1	Ooops! Tu viens d'activer la procédure d'auto destruction! Tous aux abris! (Attention, dangereux pour les épileptiques)	
 \.
 
 
@@ -1441,6 +1558,7 @@ COPY public.payload_kv (id, key, data) FROM stdin;
 --
 
 COPY public.payload_locked_documents (id, global_slug, updated_at, created_at) FROM stdin;
+245	homePageData	2026-09-15 16:33:35.266+12	2026-09-15 16:33:35.265+12
 \.
 
 
@@ -1449,6 +1567,7 @@ COPY public.payload_locked_documents (id, global_slug, updated_at, created_at) F
 --
 
 COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_id, media_id, projects_id, experiences_id) FROM stdin;
+375	\N	245	user	1	\N	\N	\N
 \.
 
 
@@ -1457,7 +1576,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-07-27 17:16:57.509+12	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-09-15 16:33:35.08+12	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -1466,11 +1585,11 @@ COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM st
 --
 
 COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM stdin;
-7	locale	"fr"	2026-07-27 15:54:23.632+12	2025-12-28 00:25:16.154+13
 2	collection-projects	{"limit": 10, "editViewType": "default"}	2025-12-17 21:26:21.012+13	2025-12-17 21:25:02.699+13
 5	collection-contactPageData	{"limit": 10, "editViewType": "default"}	2025-12-28 00:05:07.333+13	2025-12-27 23:36:57.387+13
 6	global-contactPageData	{"editViewType": "default"}	2025-12-28 00:09:21.078+13	2025-12-28 00:09:21.079+13
 1	collection-users	{"limit": 10}	2025-12-28 00:24:13.138+13	2025-12-17 21:15:05.108+13
+7	locale	"en"	2026-09-15 13:23:01.022+12	2025-12-28 00:25:16.154+13
 8	global-homePageData	{"editViewType": "default"}	2025-12-28 19:47:06.152+13	2025-12-28 19:47:06.154+13
 9	global-projectsPageData	{"editViewType": "default"}	2025-12-28 19:54:40.332+13	2025-12-28 19:54:40.333+13
 3	collection-media	{"sort": "-updatedAt", "limit": 10, "editViewType": "default"}	2026-02-13 18:48:12.668+13	2025-12-18 22:23:00.699+13
@@ -1493,7 +1612,7 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 91	\N	11	user	1
 30	\N	8	user	1
 32	\N	9	user	1
-99	\N	7	user	1
+102	\N	7	user	1
 \.
 
 
@@ -1675,7 +1794,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	94dc4a92-ba1d-49e2-b915-fd3affca3d67	2026-07-27 15:52:42.801+12	2026-07-27 17:52:42.801+12
+1	1	6317f689-a3a6-4ec3-a79e-7c1e6761021d	2026-09-16 09:49:49.843+12	2026-09-16 11:49:49.843+12
 \.
 
 
@@ -1736,10 +1855,17 @@ SELECT pg_catalog.setval('public.home_page_data_id_seq', 1, true);
 
 
 --
+-- Name: home_page_data_links_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
+--
+
+SELECT pg_catalog.setval('public.home_page_data_links_locales_id_seq', 35, true);
+
+
+--
 -- Name: home_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 7, true);
+SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 47, true);
 
 
 --
@@ -1767,14 +1893,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 225, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 245, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 355, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 375, true);
 
 
 --
@@ -1795,7 +1921,7 @@ SELECT pg_catalog.setval('public.payload_preferences_id_seq', 11, true);
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 99, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 102, true);
 
 
 --
@@ -1910,6 +2036,22 @@ ALTER TABLE ONLY public.experiences
 
 ALTER TABLE ONLY public.experiences_techs
     ADD CONSTRAINT experiences_techs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: home_page_data_links_locales home_page_data_links_locales_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_links_locales
+    ADD CONSTRAINT home_page_data_links_locales_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: home_page_data_links home_page_data_links_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_links
+    ADD CONSTRAINT home_page_data_links_pkey PRIMARY KEY (id);
 
 
 --
@@ -2139,6 +2281,27 @@ CREATE INDEX experiences_techs_parent_id_idx ON public.experiences_techs USING b
 --
 
 CREATE INDEX experiences_updated_at_idx ON public.experiences USING btree (updated_at);
+
+
+--
+-- Name: home_page_data_links_locales_locale_parent_id_unique; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE UNIQUE INDEX home_page_data_links_locales_locale_parent_id_unique ON public.home_page_data_links_locales USING btree (_locale, _parent_id);
+
+
+--
+-- Name: home_page_data_links_order_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX home_page_data_links_order_idx ON public.home_page_data_links USING btree (_order);
+
+
+--
+-- Name: home_page_data_links_parent_id_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX home_page_data_links_parent_id_idx ON public.home_page_data_links USING btree (_parent_id);
 
 
 --
@@ -2478,6 +2641,22 @@ ALTER TABLE ONLY public.experiences_techs
 
 
 --
+-- Name: home_page_data_links_locales home_page_data_links_locales_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_links_locales
+    ADD CONSTRAINT home_page_data_links_locales_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.home_page_data_links(id) ON DELETE CASCADE;
+
+
+--
+-- Name: home_page_data_links home_page_data_links_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_links
+    ADD CONSTRAINT home_page_data_links_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.home_page_data(id) ON DELETE CASCADE;
+
+
+--
 -- Name: home_page_data_locales home_page_data_locales_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
 --
 
@@ -2609,5 +2788,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict v2laia70It4aBSidaaBFUMPC7811nXLxvEJNSwljtPVXDmd5Mazx22CacIH8Rah
+\unrestrict NakY4uKnndyKzDf2QCqspVSPzkhEUsYQmzM6CJaARlAa61GXlvWSr0GlcBDocfx
 
