@@ -32,32 +32,6 @@ CREATE TYPE public._locales AS ENUM (
 ALTER TYPE public._locales OWNER TO homepage;
 
 --
--- Name: enum_contact_page_data_bottom_right_links_icon; Type: TYPE; Schema: public; Owner: homepage
---
-
-CREATE TYPE public.enum_contact_page_data_bottom_right_links_icon AS ENUM (
-    'mail',
-    'linkedin',
-    'github',
-    'arrow',
-    'close',
-    'code',
-    'contact',
-    'doc',
-    'home',
-    'experiences',
-    'projects',
-    'repo',
-    'resume',
-    'toggle',
-    'try',
-    'twitter'
-);
-
-
-ALTER TYPE public.enum_contact_page_data_bottom_right_links_icon OWNER TO homepage;
-
---
 -- Name: enum_home_page_data_links_icon; Type: TYPE; Schema: public; Owner: homepage
 --
 
@@ -82,6 +56,32 @@ CREATE TYPE public.enum_home_page_data_links_icon AS ENUM (
 
 
 ALTER TYPE public.enum_home_page_data_links_icon OWNER TO homepage;
+
+--
+-- Name: enum_home_page_data_nav_icon; Type: TYPE; Schema: public; Owner: homepage
+--
+
+CREATE TYPE public.enum_home_page_data_nav_icon AS ENUM (
+    'mail',
+    'linkedin',
+    'github',
+    'arrow',
+    'close',
+    'code',
+    'contact',
+    'doc',
+    'home',
+    'experiences',
+    'projects',
+    'repo',
+    'resume',
+    'toggle',
+    'try',
+    'twitter'
+);
+
+
+ALTER TYPE public.enum_home_page_data_nav_icon OWNER TO homepage;
 
 --
 -- Name: enum_projects_links_icon; Type: TYPE; Schema: public; Owner: homepage
@@ -114,52 +114,51 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: contact_page_data; Type: TABLE; Schema: public; Owner: homepage
+-- Name: about_page_data; Type: TABLE; Schema: public; Owner: homepage
 --
 
-CREATE TABLE public.contact_page_data (
+CREATE TABLE public.about_page_data (
     id integer NOT NULL,
     updated_at timestamp(3) with time zone,
     created_at timestamp(3) with time zone
 );
 
 
-ALTER TABLE public.contact_page_data OWNER TO homepage;
+ALTER TABLE public.about_page_data OWNER TO homepage;
 
 --
--- Name: contact_page_data_bottom_right_links; Type: TABLE; Schema: public; Owner: homepage
+-- Name: about_page_data_locales; Type: TABLE; Schema: public; Owner: homepage
 --
 
-CREATE TABLE public.contact_page_data_bottom_right_links (
-    _order integer NOT NULL,
-    _parent_id integer NOT NULL,
-    id character varying NOT NULL,
-    icon public.enum_contact_page_data_bottom_right_links_icon
-);
-
-
-ALTER TABLE public.contact_page_data_bottom_right_links OWNER TO homepage;
-
---
--- Name: contact_page_data_bottom_right_links_locales; Type: TABLE; Schema: public; Owner: homepage
---
-
-CREATE TABLE public.contact_page_data_bottom_right_links_locales (
-    label character varying,
+CREATE TABLE public.about_page_data_locales (
+    title character varying NOT NULL,
+    text jsonb NOT NULL,
     id integer NOT NULL,
     _locale public._locales NOT NULL,
-    _parent_id character varying NOT NULL,
-    url character varying
+    _parent_id integer NOT NULL
 );
 
 
-ALTER TABLE public.contact_page_data_bottom_right_links_locales OWNER TO homepage;
+ALTER TABLE public.about_page_data_locales OWNER TO homepage;
 
 --
--- Name: contact_page_data_bottom_right_links_locales_id_seq; Type: SEQUENCE; Schema: public; Owner: homepage
+-- Name: articles; Type: TABLE; Schema: public; Owner: homepage
 --
 
-CREATE SEQUENCE public.contact_page_data_bottom_right_links_locales_id_seq
+CREATE TABLE public.articles (
+    id integer NOT NULL,
+    updated_at timestamp(3) with time zone DEFAULT now() NOT NULL,
+    created_at timestamp(3) with time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.articles OWNER TO homepage;
+
+--
+-- Name: articles_id_seq; Type: SEQUENCE; Schema: public; Owner: homepage
+--
+
+CREATE SEQUENCE public.articles_id_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -168,13 +167,51 @@ CREATE SEQUENCE public.contact_page_data_bottom_right_links_locales_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.contact_page_data_bottom_right_links_locales_id_seq OWNER TO homepage;
+ALTER SEQUENCE public.articles_id_seq OWNER TO homepage;
 
 --
--- Name: contact_page_data_bottom_right_links_locales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: homepage
+-- Name: articles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: homepage
 --
 
-ALTER SEQUENCE public.contact_page_data_bottom_right_links_locales_id_seq OWNED BY public.contact_page_data_bottom_right_links_locales.id;
+ALTER SEQUENCE public.articles_id_seq OWNED BY public.articles.id;
+
+
+--
+-- Name: articles_locales; Type: TABLE; Schema: public; Owner: homepage
+--
+
+CREATE TABLE public.articles_locales (
+    title character varying NOT NULL,
+    exceprt character varying NOT NULL,
+    text jsonb NOT NULL,
+    id integer NOT NULL,
+    _locale public._locales NOT NULL,
+    _parent_id integer NOT NULL
+);
+
+
+ALTER TABLE public.articles_locales OWNER TO homepage;
+
+--
+-- Name: articles_locales_id_seq; Type: SEQUENCE; Schema: public; Owner: homepage
+--
+
+CREATE SEQUENCE public.articles_locales_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.articles_locales_id_seq OWNER TO homepage;
+
+--
+-- Name: articles_locales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: homepage
+--
+
+ALTER SEQUENCE public.articles_locales_id_seq OWNED BY public.articles_locales.id;
 
 
 --
@@ -196,29 +233,8 @@ ALTER SEQUENCE public.contact_page_data_id_seq OWNER TO homepage;
 -- Name: contact_page_data_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: homepage
 --
 
-ALTER SEQUENCE public.contact_page_data_id_seq OWNED BY public.contact_page_data.id;
+ALTER SEQUENCE public.contact_page_data_id_seq OWNED BY public.about_page_data.id;
 
-
---
--- Name: contact_page_data_locales; Type: TABLE; Schema: public; Owner: homepage
---
-
-CREATE TABLE public.contact_page_data_locales (
-    top_left_title character varying NOT NULL,
-    top_left_text jsonb NOT NULL,
-    id integer NOT NULL,
-    _locale public._locales NOT NULL,
-    _parent_id integer NOT NULL,
-    top_right_title character varying NOT NULL,
-    top_right_text jsonb NOT NULL,
-    bottom_left_title character varying NOT NULL,
-    bottom_left_text jsonb NOT NULL,
-    bottom_right_title character varying NOT NULL,
-    bottom_right_email character varying NOT NULL
-);
-
-
-ALTER TABLE public.contact_page_data_locales OWNER TO homepage;
 
 --
 -- Name: contact_page_data_locales_id_seq; Type: SEQUENCE; Schema: public; Owner: homepage
@@ -239,7 +255,7 @@ ALTER SEQUENCE public.contact_page_data_locales_id_seq OWNER TO homepage;
 -- Name: contact_page_data_locales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: homepage
 --
 
-ALTER SEQUENCE public.contact_page_data_locales_id_seq OWNED BY public.contact_page_data_locales.id;
+ALTER SEQUENCE public.contact_page_data_locales_id_seq OWNED BY public.about_page_data_locales.id;
 
 
 --
@@ -362,7 +378,6 @@ ALTER SEQUENCE public.experiences_page_data_id_seq OWNED BY public.experiences_p
 
 CREATE TABLE public.experiences_page_data_locales (
     title character varying NOT NULL,
-    subtitle character varying NOT NULL,
     id integer NOT NULL,
     _locale public._locales NOT NULL,
     _parent_id integer NOT NULL
@@ -534,6 +549,57 @@ ALTER SEQUENCE public.home_page_data_locales_id_seq OWNED BY public.home_page_da
 
 
 --
+-- Name: home_page_data_nav; Type: TABLE; Schema: public; Owner: homepage
+--
+
+CREATE TABLE public.home_page_data_nav (
+    _order integer NOT NULL,
+    _parent_id integer NOT NULL,
+    id character varying NOT NULL,
+    icon public.enum_home_page_data_nav_icon
+);
+
+
+ALTER TABLE public.home_page_data_nav OWNER TO homepage;
+
+--
+-- Name: home_page_data_nav_locales; Type: TABLE; Schema: public; Owner: homepage
+--
+
+CREATE TABLE public.home_page_data_nav_locales (
+    label character varying,
+    url character varying,
+    id integer NOT NULL,
+    _locale public._locales NOT NULL,
+    _parent_id character varying NOT NULL
+);
+
+
+ALTER TABLE public.home_page_data_nav_locales OWNER TO homepage;
+
+--
+-- Name: home_page_data_nav_locales_id_seq; Type: SEQUENCE; Schema: public; Owner: homepage
+--
+
+CREATE SEQUENCE public.home_page_data_nav_locales_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.home_page_data_nav_locales_id_seq OWNER TO homepage;
+
+--
+-- Name: home_page_data_nav_locales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: homepage
+--
+
+ALTER SEQUENCE public.home_page_data_nav_locales_id_seq OWNED BY public.home_page_data_nav_locales.id;
+
+
+--
 -- Name: media; Type: TABLE; Schema: public; Owner: homepage
 --
 
@@ -696,7 +762,8 @@ CREATE TABLE public.payload_locked_documents_rels (
     users_id integer,
     media_id integer,
     projects_id integer,
-    experiences_id integer
+    experiences_id integer,
+    articles_id integer
 );
 
 
@@ -1002,7 +1069,6 @@ ALTER SEQUENCE public.projects_page_data_id_seq OWNED BY public.projects_page_da
 
 CREATE TABLE public.projects_page_data_locales (
     title character varying NOT NULL,
-    subtitle character varying NOT NULL,
     id integer NOT NULL,
     _locale public._locales NOT NULL,
     _parent_id integer NOT NULL
@@ -1106,24 +1172,31 @@ CREATE TABLE public.users_sessions (
 ALTER TABLE public.users_sessions OWNER TO homepage;
 
 --
--- Name: contact_page_data id; Type: DEFAULT; Schema: public; Owner: homepage
+-- Name: about_page_data id; Type: DEFAULT; Schema: public; Owner: homepage
 --
 
-ALTER TABLE ONLY public.contact_page_data ALTER COLUMN id SET DEFAULT nextval('public.contact_page_data_id_seq'::regclass);
-
-
---
--- Name: contact_page_data_bottom_right_links_locales id; Type: DEFAULT; Schema: public; Owner: homepage
---
-
-ALTER TABLE ONLY public.contact_page_data_bottom_right_links_locales ALTER COLUMN id SET DEFAULT nextval('public.contact_page_data_bottom_right_links_locales_id_seq'::regclass);
+ALTER TABLE ONLY public.about_page_data ALTER COLUMN id SET DEFAULT nextval('public.contact_page_data_id_seq'::regclass);
 
 
 --
--- Name: contact_page_data_locales id; Type: DEFAULT; Schema: public; Owner: homepage
+-- Name: about_page_data_locales id; Type: DEFAULT; Schema: public; Owner: homepage
 --
 
-ALTER TABLE ONLY public.contact_page_data_locales ALTER COLUMN id SET DEFAULT nextval('public.contact_page_data_locales_id_seq'::regclass);
+ALTER TABLE ONLY public.about_page_data_locales ALTER COLUMN id SET DEFAULT nextval('public.contact_page_data_locales_id_seq'::regclass);
+
+
+--
+-- Name: articles id; Type: DEFAULT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.articles ALTER COLUMN id SET DEFAULT nextval('public.articles_id_seq'::regclass);
+
+
+--
+-- Name: articles_locales id; Type: DEFAULT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.articles_locales ALTER COLUMN id SET DEFAULT nextval('public.articles_locales_id_seq'::regclass);
 
 
 --
@@ -1173,6 +1246,13 @@ ALTER TABLE ONLY public.home_page_data_links_locales ALTER COLUMN id SET DEFAULT
 --
 
 ALTER TABLE ONLY public.home_page_data_locales ALTER COLUMN id SET DEFAULT nextval('public.home_page_data_locales_id_seq'::regclass);
+
+
+--
+-- Name: home_page_data_nav_locales id; Type: DEFAULT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_nav_locales ALTER COLUMN id SET DEFAULT nextval('public.home_page_data_nav_locales_id_seq'::regclass);
 
 
 --
@@ -1274,49 +1354,40 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- Data for Name: contact_page_data; Type: TABLE DATA; Schema: public; Owner: homepage
+-- Data for Name: about_page_data; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.contact_page_data (id, updated_at, created_at) FROM stdin;
+COPY public.about_page_data (id, updated_at, created_at) FROM stdin;
 1	2025-12-28 00:36:18.016+13	2025-12-28 00:36:03.765+13
 \.
 
 
 --
--- Data for Name: contact_page_data_bottom_right_links; Type: TABLE DATA; Schema: public; Owner: homepage
+-- Data for Name: about_page_data_locales; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.contact_page_data_bottom_right_links (_order, _parent_id, id, icon) FROM stdin;
-1	1	69575e522f047c3e56db46a0	mail
-2	1	6955d90585bcb935b4b1d05b	resume
-3	1	6955d91385bcb935b4b1d05d	github
-4	1	69575d1c2f047c3e56db469e	linkedin
+COPY public.about_page_data_locales (title, text, id, _locale, _parent_id) FROM stdin;
+A word about AI	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Everybody says programming is dead.  But is it ?", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "When I graduated, everybody was talking about how coding is an intangible craftsmanship, in which every line should be the most elegant possible way there is to solve a problem. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Now, it is even optional to understand the codebase. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Something is broken? Claude will fix it. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "The codebase is convoluted ? Just forget about it and pay for more tokens. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "The pendulum should not have to swing all the way :", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have cars, but people still ride horses and bicycles", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have pre-fab buildings, but countless people pay heaps to travel and see remains of the Roman or Greek architectures", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have Ikea, but people are still seeking hard wood furniture.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have AI, but not everyone is going to give up on man-made software.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Like an Ikea cabinet, AI-written code, depending on the use-case, can be brittle, unreliable, degrade quickly and need replacing very fast, defeating its economic advantage.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On the other end, even the most old-school craftsmen are using modern tools to save time when sanding, cutting, assembling quality wood, or the process would take them ages.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "There is no denying the activity of writing software has shifted paradigm, but every software does not have to come out of a factory. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Can we make AI the power-tool replacing manual chisels to the software engineer ? ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "AI does not have intentions: the intentions are the developer's asset.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "A good software engineer, in this new paradigm, is the same as a good engineer before AI, with the added knowledge of ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "where", "type": "text", "style": "", "detail": 0, "format": 1, "version": 1}, {"mode": "normal", "text": " the AI should intervene in the project, to optimize the trade-off between immediate economic gains, final product quality, and tech debt.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	115	en	1
+Un mot sur l'IA	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Tout le monde dit que la programmation, c'est fini. Mais est-ce vraiment le cas ?", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Quand j’ai obtenu mon diplôme, tout le monde disait que le code était un art intangible, dans lequel chaque ligne devait contribuer à résoudre un problème de la manière la plus élégante possible.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Aujourd’hui, comprendre le code n’est même plus indispensable.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Quelque chose ne fonctionne pas ? Claude s’en chargera.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Le code est alambiqué ? Tant pis, dépensez davantage de tokens.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On devrait pouvoir toruver un compromis:", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On a des voitures, mais on continue de monter à cheval ou de faire du vélo.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On a des bâtiments préfabriqués, mais d’innombrables personnes dépensent des fortunes pour voyager et admirer les vestiges de l’architecture romaine ou grecque.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On a Ikea, mais on recherche toujours des meubles en bois massif.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Nous avons l’IA, mais tout le monde ne va pas pour autant renoncer aux logiciels créés par l’homme.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "À l’instar d’un meuble Ikea, le code écrit par l’IA, selon le cas d’utilisation, peut être fragile, peu fiable, se détériorer rapidement et devoir être remplacé très vite, ce qui annule son avantage économique.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "À l’inverse, même les artisans les plus traditionnels utilisent des outils modernes pour gagner du temps lorsqu’ils poncent, coupent ou assemblent du bois de qualité, sans quoi le processus leur prendrait une éternité.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On ne peut nier que l’activité de développement logiciel a changé de paradigme, mais tous les logiciels ne doivent pas nécessairement sortir d’une usine.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pouvons-nous faire de l’IA l’outil électrique qui remplacera les ciseaux à bois manuels pour l’ingénieur logiciel ?", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"type": "linebreak", "version": 1}, {"mode": "normal", "text": "L'IA n'a pas d'intentions : les intentions ne peuvent émaner que du développeur.", "type": "text", "style": "", "detail": 0, "format": 2, "version": 1}], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Dans ce nouveau paradigme, un bon ingénieur maintenant est identique à ce qu'était un bon ingénieur avant l'avènement de l'IA, à ceci près qu'il sait désormais à quel moment l'IA doit intervenir dans le projet afin d'optimiser le compromis entre les gains économiques immédiats, la qualité du produit final et la dette technique.", "type": "text", "style": "", "detail": 0, "format": 2, "version": 1}], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}], "direction": null, "textFormat": 2}}	116	fr	1
 \.
 
 
 --
--- Data for Name: contact_page_data_bottom_right_links_locales; Type: TABLE DATA; Schema: public; Owner: homepage
+-- Data for Name: articles; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.contact_page_data_bottom_right_links_locales (label, id, _locale, _parent_id, url) FROM stdin;
-email	276	en	69575e522f047c3e56db46a0	mailto:contact@yoni-firroloni.com
-E-mail	277	fr	69575e522f047c3e56db46a0	mailto:contact@vagahbond.com
-Resume	278	en	6955d90585bcb935b4b1d05b	https://vagahbond.com/resume.pdf
-CV	279	fr	6955d90585bcb935b4b1d05b	https://nuage.vagahbond.com/s/KnYmaAF75B4dHWd
-Github	280	en	6955d91385bcb935b4b1d05d	https://github.com/Vagahbond
-Github	281	fr	6955d91385bcb935b4b1d05d	https://github.com/Vagahbond
-Linkedin	282	en	69575d1c2f047c3e56db469e	https://linkedin.com/in/yoni-firroloni-%F0%9F%92%BB-a5002b153
-Linkedin	283	fr	69575d1c2f047c3e56db469e	https://nz.linkedin.com/in/yoni-firroloni-%F0%9F%92%BB-a5002b153
+COPY public.articles (id, updated_at, created_at) FROM stdin;
+1	2026-09-29 12:45:54.078+13	2026-09-29 12:45:54.078+13
 \.
 
 
 --
--- Data for Name: contact_page_data_locales; Type: TABLE DATA; Schema: public; Owner: homepage
+-- Data for Name: articles_locales; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.contact_page_data_locales (top_left_title, top_left_text, id, _locale, _parent_id, top_right_title, top_right_text, bottom_left_title, bottom_left_text, bottom_right_title, bottom_right_email) FROM stdin;
-Simple solutions to complex problems	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "In an era where it is increasingly common to seek simplicity in the ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "process", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": ", we tend to forget the importance of simplicity in ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "solutions", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": ".", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "For any problem, however ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "complex", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": ", I believe there always is ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "simple", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": " and ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "clear", "type": "text", "style": "", "detail": 0, "format": 17, "version": 1}, {"mode": "normal", "text": " solution.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "While it may require more work to find it, a simple solution is easier to maintain and adapt later.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I advocate for pouring more energy in creating solution and less in maintaining them.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	87	en	1	Full-stack to bare metal	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "From front-end to Infrastructure as Code, through REST APIs and DevOps, I can work across the full depth of systems - and am comfortable at most layers.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "As a former teacher for C and REST APIs development with NodeJS, I do not fall short on communication. I have been trained to write readable, intentional code and explain it clearly.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Whether it is SvelteKit or React, Built on SQL or NoSQL, NextJS or Express, and even Rust, I am prepared and eager to take most challenges.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Infrastructure do not scare me either with  strong background with nix and NixOS, Docker,  and CI/CD systems.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I take full ownership of my work and follow a no black box, no \\"works on my machine\\" philosophy.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	Who's that guy?	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I am a 27 year old software engineer with a particular interest in self-hosting, privacy and online freedom. With a strong belief in the importance of understanding the systems I rely on, I have been running my own infrastructure for years. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I have been tweaking and building things just about since I could type, and still cannot stop to this day.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Outside of tech, I am a sucker for trek, mountain-biking, climbing, and music with guitar and DAWs.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	Find me on the internet	contact@yoni-firroloni.com
-Des solutions simples à des problèmes complexes	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Dans une ère ou la recherche de simplicité dans les processus, on tend à oublier l'importance de la simplicité des solutions.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ma philosophie est que tout problème, aussi complexe qu'il soit, a une solution simple.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Tout en respectant vos priorités, je produit des livrables simples et efficaces, avec une forte attention portée à la dette technique et la réduction du besoin de maintenance.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Faites appel à mes services pour une approche plus humaine et efficace à la compréhension de vos projets et à leur réalisation. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	88	fr	1	Dipplomé et auto-didacte	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Aussi importante que puisse être la théorie en informatique, elle ne peut pas remplacer l'experience du terrain.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "De son côté, si l'experience aide à comprendre les besoins des clients, elle ne suffit pas à apporter des solutions innovantes qui necessitent des compétences théoriques.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Avec un master en architecture logicielle et 5 ans d'expérience à divers postes, j'ai la polyvalence necessaire pour travailler sur et m'adapter à toute sorte de projets, y compris avec des technologies et outils que je ne connais pas initialement.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Avec une veille constante à travers des projets personnels, j'entretiens un fort interêt pour la tech et une attitude positive pour mettre cette expertise en pratique dans les meilleurs conditions possible.  ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	À propos de moi	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Je suis un développeur de 26 ans, actif et paresseux : Quand je dois faire quelque chose, j'aime m'assurer que la tâche sera plus simple la fois suivante.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Cette mentalité m'a poussé à devenir un développeur, avec aujourd'hui un fort interêt pour les choses ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "as code", "type": "text", "style": "", "detail": 0, "format": 16, "version": 1}, {"mode": "normal", "text": ". Par exemple, ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "nix", "type": "text", "style": "", "detail": 0, "format": 16, "version": 1}, {"mode": "normal", "text": " (IaS) est probablement un des langages que je manipule le plus.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Je m'interesse aussi beaucoup à la protection de la vie privée et la liberté en ligne.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	Me trouver en ligne	contact@vagahbond.com
+COPY public.articles_locales (title, exceprt, text, id, _locale, _parent_id) FROM stdin;
+A word about AI	It sounds like my job is threatened. Here is a more positive insight of what is happening.	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Everybody says programming is dead.  But is it ?", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "When I graduated, everybody was talking about how coding is an intangible craftsmanship, in which every line should be the most elegant possible way there is to solve a problem. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Now, it is even optional to understand the codebase. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Something is broken? Claude will fix it. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "The codebase is convoluted ? Just forget about it and pay for more tokens. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "The pendulum should not have to swing all the way :", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have cars, but people still ride horses and bicycles", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have pre-fab buildings, but countless people pay heaps to travel and see remains of the Roman or Greek architectures", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have Ikea, but people are still seeking hard wood furniture.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have AI, but not everyone is going to give up on man-made software.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Like an Ikea cabinet, AI-written code, depending on the use-case, can be brittle, unreliable, degrade quickly and need replacing very fast, defeating its economic advantage.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On the other end, even the most old-school craftsmen are using modern tools to save time when sanding, cutting, assembling quality wood, or the process would take them ages.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "There is no denying the activity of writing software has shifted paradigm, but every software does not have to come out of a factory. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Can we make AI the power-tool replacing manual chisels to the software engineer ? ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "AI does not have intentions: the intentions are the developer's asset.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "A good software engineer, in this new paradigm, is the same as a good engineer before AI, with the added knowledge of ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "where", "type": "text", "style": "", "detail": 0, "format": 1, "version": 1}, {"mode": "normal", "text": " the AI should intervene in the project, to optimize the trade-off between immediate economic gains, final product quality, and tech debt.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	11	en	1
+Un mot sur l'IA	Un point de vue un peu positif sur l'IA et sa prétendue capacité à me voler mon travail.	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Tout le monde dit que la programmation, c'est fini. Mais est-ce vraiment le cas ?", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Quand j’ai obtenu mon diplôme, tout le monde disait que le code était un art intangible, dans lequel chaque ligne devait contribuer à résoudre un problème de la manière la plus élégante possible.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Aujourd’hui, comprendre le code n’est même plus indispensable.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Quelque chose ne fonctionne pas ? Claude s’en chargera.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Le code est alambiqué ? Tant pis, dépensez davantage de tokens.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On devrait pouvoir trouver un compromis:", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On a des voitures, mais on continue de monter à cheval ou de faire du vélo.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On a des bâtiments préfabriqués, mais d’innombrables personnes dépensent des fortunes pour voyager et admirer les vestiges de l’architecture romaine ou grecque.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On a Ikea, mais on recherche toujours des meubles en bois massif.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Nous avons l’IA, mais tout le monde ne va pas pour autant renoncer aux logiciels créés par l’Homme.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "À l’instar d’un meuble Ikea, le code écrit par l’IA, selon le cas d’utilisation, peut être fragile, peu fiable, se détériorer rapidement et devoir être remplacé très vite, ce qui annule son avantage économique.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "À l’inverse, même les artisans les plus traditionnels utilisent des outils modernes pour gagner du temps lorsqu’ils poncent, coupent ou assemblent du bois de qualité, sans quoi le processus leur prendrait une éternité.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On ne peut nier que l’activité de développement logiciel a changé de paradigme, mais tous les logiciels ne doivent pas nécessairement sortir d’une usine.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pouvons-nous faire de l’IA l’outil électrique qui remplacera les ciseaux à bois manuels pour l’ingénieur logiciel ?", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"type": "linebreak", "version": 1}, {"mode": "normal", "text": "L'IA n'a pas d'intentions : les intentions ne peuvent émaner que du développeur.", "type": "text", "style": "", "detail": 0, "format": 2, "version": 1}], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Dans ce nouveau paradigme, un bon ingénieur maintenant est identique à ce qu'était un bon ingénieur avant l'avènement de l'IA, à ceci près qu'il sait désormais à quel moment l'IA doit intervenir dans le projet afin d'optimiser le compromis entre les gains économiques immédiats, la qualité du produit final et la dette technique.", "type": "text", "style": "", "detail": 0, "format": 2, "version": 1}], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}], "direction": null}}	12	fr	1
 \.
 
 
@@ -1325,15 +1396,15 @@ Des solutions simples à des problèmes complexes	{"root": {"type": "root", "for
 --
 
 COPY public.experiences (id, image_id, start, "end", updated_at, created_at, expand_image, light_image_bg) FROM stdin;
-1	27	2018-06-02 00:00:00+12	2018-07-02 00:00:00+12	2026-03-30 11:19:58.335+13	2026-03-29 00:56:02.307+13	\N	f
-2	29	2019-01-31 01:00:00+13	2019-07-31 00:00:00+12	2026-03-30 11:45:56.104+13	2026-03-30 11:30:27.852+13	\N	f
-3	30	2019-09-26 00:00:00+12	2020-07-16 00:00:00+12	2026-03-30 11:58:11.02+13	2026-03-30 11:51:44.979+13	\N	f
-5	33	2022-09-08 00:00:00+12	2024-04-19 00:00:00+12	2026-03-30 12:20:27.51+13	2026-03-30 12:12:56.198+13	\N	f
-4	34	2020-08-12 00:00:00+12	2023-09-13 00:00:00+12	2026-03-30 12:22:34.482+13	2026-03-30 12:01:01.638+13	\N	f
-7	36	2024-08-07 00:00:00+12	2025-01-15 01:00:00+13	2026-03-30 12:34:32.36+13	2026-03-30 12:31:19.251+13	\N	f
-8	37	2025-02-05 01:00:00+13	2025-10-09 01:00:00+13	2026-03-30 12:50:48.325+13	2026-03-30 12:40:54.697+13	t	f
-6	35	2024-06-12 00:00:00+12	2024-07-04 00:00:00+12	2026-03-30 12:51:03.08+13	2026-03-30 12:25:46.67+13	t	f
-9	38	2025-11-19 01:00:00+13	\N	2026-03-30 16:32:29.887+13	2026-03-30 12:54:53.285+13	f	t
+1	27	2018-06-02 00:00:00+12	2018-07-02 00:00:00+12	2026-09-29 14:51:35.923+13	2026-03-29 00:56:02.307+13	\N	f
+4	34	2020-08-12 00:00:00+12	2023-09-13 00:00:00+12	2026-09-29 15:02:28.583+13	2026-03-30 12:01:01.638+13	\N	f
+3	30	2019-09-26 00:00:00+12	2020-07-16 00:00:00+12	2026-09-29 15:02:46.571+13	2026-03-30 11:51:44.979+13	\N	f
+2	29	2019-01-31 01:00:00+13	2019-07-31 00:00:00+12	2026-09-29 15:03:00.067+13	2026-03-30 11:30:27.852+13	\N	f
+5	33	2022-09-08 00:00:00+12	2024-04-19 00:00:00+12	2026-09-29 15:05:50.421+13	2026-03-30 12:12:56.198+13	\N	f
+6	35	2024-06-12 00:00:00+12	2024-07-04 00:00:00+12	2026-09-29 15:10:50.447+13	2026-03-30 12:25:46.67+13	t	f
+7	36	2024-08-07 00:00:00+12	2025-01-15 01:00:00+13	2026-09-29 15:13:17.534+13	2026-03-30 12:31:19.251+13	\N	f
+8	37	2025-02-05 01:00:00+13	2025-10-09 01:00:00+13	2026-09-29 15:17:02.827+13	2026-03-30 12:40:54.697+13	t	f
+9	38	2025-11-19 01:00:00+13	\N	2026-09-29 15:23:04.19+13	2026-03-30 12:54:53.285+13	f	t
 \.
 
 
@@ -1342,15 +1413,24 @@ COPY public.experiences (id, image_id, start, "end", updated_at, created_at, exp
 --
 
 COPY public.experiences_locales (name, description, id, _locale, _parent_id, title, location) FROM stdin;
-ABECEDAIRE	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Building interactive kiosk software and a marketplace based on WordPress for a motorbike equipment brand.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "In full autonomy, creating a planning software with CSS, JQuery, HTML and PHP for a client", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	21	en	2	Intern software developer	Rouen, France
-IDEA Informatique	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Writing an ERP with Embarcadero Delphi", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Fixing bugs and writing new features", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Using TurtleSVN/Apache Subversion as a VCS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	11	en	1	Intern software developer	Évreux, France
-Newrest Wagons-lits	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Studying and documenting an Oracle ERP for a modern rewrite", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Writing and connecting a C# backoffice and an Android app allowing bar wagons in trains to play announcements on train's sound Systems and connect their EFTPOS.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	25	en	3	Apprentice software engineer	Paris, France
-ESGI, ESIEE, H3 HITEMA	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Teaching 10+ groups of ~30 bachelors students with different specializations", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Creating bespoke teaching material, exercises and assessments to get the best out of students", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Topics included the C language, REST API development with Node.js and introduction to web protocols", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Supervision and support for trainings and assignments of C++", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	35	en	5	Professor	Paris, France
-Keyros	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Creating an interactive map system that helps visualize the impact of floods from the Seine in the city", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Taking in account dependence between infrastructures, estimate the span of time left before they stop working using the Seine's water level sensors reports.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Working on the fullstack Ruby on Rails app with embedded React, as well as a Go map layer processing workers", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Setting up and maintaining CI with GitLab CI", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 5, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Creating on a Python Django API tool for Enedis to automate their reports", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	36	en	4	Software developer	Paris, France
-Datalok	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Developing a datacenter rack sub-renting marketplace in a team of 3 developers", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Backend oriented position working with NestJS, in addition with Stripe and Firebase", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Working on the Angular frontend", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Maintaining and writing CI using GitHub Actions", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 5, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "More than 40 datacenter with 1000+ racks joined", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	43	en	7	Backend software developper	Full remote
-Branches Nursery	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "In a plant nursery, take part in the multiplication and care of plants ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Weeding, Trimming, Cleaning, Potting up, Loading trucks, Preparing and planting cuttings", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Tutoring a new worker joining after me", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	45	en	8	Nursery hand	Mowbray, Australia
-Marquis Macadamia	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "During a professional break, while traveling to Australia, worked as a factory hand in Marquis Macadamia's factory", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pack macadamias", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Prepare honey-roasted nut", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Operate Stackie-Walker", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	46	en	6	Factory labourer	Lindendale, Australia
-P22	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Fullfilling tasks for various companies as a consultant", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Creating semi-native mobile app for non-profit's contractors to register coral outplants in the great reef,using Capacitor with React and a Next.js-based REST API.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Working with a client company, Ghost Dynamics' team, on a custom modular website for a petrochemical company, powered by Payload headless CMS, and Next.js, hosted on Vercel", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	54	en	9	Contractor Software developper	Auckland, New Zealand
+ESGI, ESIEE, H3 HITEMA	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Teaching 10+ groups of ~30 bachelors students with different specializations", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Creating bespoke teaching material, exercises and assessments to get the best out of students", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Topics included the C language, REST API development with Node.js and introduction to web protocols", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Supervision and support for trainings and assignments of C++", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	83	en	5	Professor	Paris, France
+ESGI, ESIEE, H3 HITEMA	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Enseignements pour plus de 10 groupes d'environ 30 bachelors dans diverse spécialisations (Cybersécurité, Architecture logicielle...)", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Création de supports adaptés avec exercices et examens pour guider l'apprentissage des élèves", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Les matières incluent le C, les API REST, le developpement avec NodeJS, et une introduction aux protocoles qui font le web", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Suppervision et aide aux élèves préparant des examens en C++", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	84	fr	5	Professeur	Paris, France
+Marquis Macadamia	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "During a professional break, while traveling to Australia, worked as a factory hand in Marquis Macadamia's factory", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pack macadamias", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Prepare honey-roasted nut", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Operate Stackie-Walker", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	87	en	6	Factory labourer	Lindendale, Australia
+Marquis Macadamia	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Durant une année sabatique, en Australie, travail dans une usine de Marquis Macadamia", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Préparation de palettes pour livraison", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Préparation de noix grillées au miel", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Maniement de chariot élévateur", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	88	fr	6	Ouvrier à l'usine	Lindendale, Australia
+Datalok	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Developing a datacenter rack sub-renting marketplace in a team of 3 developers", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Backend oriented position working with NestJS, in addition with Stripe and Firebase", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Working on the Angular frontend", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Maintaining and writing CI using GitHub Actions", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 5, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "More than 40 datacenter with 1000+ racks joined", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	91	en	7	Backend software developper	Full remote
+Datalok	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Développement d'un marketplace de sous-location de racks en datacenter, avec une équipe incluant 3 développeurs", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Poste orienté backend avec utilisation de NestJS, Stripe et Firebase", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ajout de fonctionnalités full-stack incluant du travail sur Angular", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Maintenance et ajout de CI/CD avec Github Actions", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 5, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Plus de 40 datacenters avec plus de 1000 racks listés sur la plateforme à ce jour", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	92	fr	7	Développeur backend	Full remote
+Branches Nursery	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "In a plant nursery, take part in the multiplication and care of plants ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Weeding, Trimming, Cleaning, Potting up, Loading trucks, Preparing and planting cuttings", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Tutoring a new worker joining after me", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Touching grass everyday", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	95	en	8	Nursery hand	Mowbray, Australia
+Branches Nursery	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Dans une pépinière, participer à l'entretien et la propagation des plantes", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Désherbage, taille, nettoyage, mise en pot, chargement de camions, boutures", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Formation d'un nouvel employé", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	96	fr	8	Ouvrier en pépinière	Mowbray, Australia
+IDEA Informatique	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Writing an ERP with Embarcadero Delphi", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Fixing bugs and writing new features", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Using TurtleSVN/Apache Subversion as a VCS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	63	en	1	Intern software developer	Évreux, France
+IDEA Informatique	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Écriture d'un ERP avec Embarcadero Delphi", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Résolution de bugs et ajout de fonctionnalitéa", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Travail en collaboration via le Système de contrôle Tortoise SVN.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	64	fr	1	Developpeur en alternance	Évreux, France
+Keyros	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Creating an interactive map system that helps visualize the impact of floods from the Seine in the city", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Taking in account dependence between infrastructures, estimate the span of time left before they stop working using the Seine's water level sensors reports.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Working on the fullstack Ruby on Rails app with embedded React, as well as a Go map layer processing workers", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Setting up and maintaining CI with GitLab CI", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 5, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Creating on a Python Django API tool for Enedis to automate their reports", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	75	en	4	Software developer	Paris, France
+Keyros	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Création d'une carte interactive aidant à visualiser l'impact de crues de la Seine sur les infrastructures de la ville", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Prise en ocmpte de la dépendance que les infrastructures ont entre elle, estimation d'un temps éstimé durant lequel elles fonctionneront encore grâce aux données en temps réel de la crue de la Seine", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Solution fullstack : Ruby on Rails avec une interface React embarquée, et un service de traitement des couches cartographiques en Go.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Mise en place et maintenance de CI/CD avec Gitlab CI.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 5, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Création d'un API Django pour permettre à Enedis d'automatiser l'envoi de rapports.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	76	fr	4	Développeur	Paris, France
+Newrest Wagons-lits	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Studying and documenting an Oracle ERP for a modern rewrite", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Writing and connecting a C# backoffice and an Android app allowing bar wagons in trains to play announcements on train's sound Systems and connect their EFTPOS.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	77	en	3	Apprentice software engineer	Paris, France
+Newrest Wagons-lits	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Étude et documentation d'un ERP Oracle pour une réédition complète du programme.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Création et mise en production d'un backoffice et une app Android permettant aux commerciaux des bars de trains de jouer leurs annonces sur les hauts parleurs du train et de connecter leurs TPEs.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	78	fr	3	Ingénieur logiciel en alternance	Paris, France
+ABECEDAIRE	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Building interactive kiosk software and a marketplace based on WordPress for a motorbike equipment brand.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "In full autonomy, creating a planning software with CSS, JQuery, HTML and PHP for a client", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	79	en	2	Intern software developer	Rouen, France
+ABECEDAIRE	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Création d'un logiciel pour kiosque et d'un marketplace basé sur WordPress, pour une marque d'équipements de moto.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "En autonomie, création d'un logiciel de planning avec le CSS, HTML, JQuery et PHP.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	80	fr	2	Développeur en alternance	Rouen, France
+P22	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Fullfilling tasks for various companies as a consultant", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Semi-native mobile app for non-profit's contractors to register coral outplants in the great reef,using Capacitor with React and a Next.js-based REST API.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Custom modular website for a petrochemical company, powered by Payload headless CMS, and Next.js, hosted on Vercel", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "PoC for streamlining diverse enterprise processes via AI", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 5, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Maintenance on an artist collective's website", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	101	en	9	Contractor Software developper	Auckland, New Zealand
+P22	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Accomplissement de diverse tâches en tant que consultant", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Application semi-native pour une ONG recensant les corails de la grande barrière, avec Capacitor, React et un monolithe API+interface basé sur NextJS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Site modulaire sur-mesure pour une entreprise pétrochimique, basée sur le CMS headless Sanity, NextJS, et hébergée sur Vercel", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 4, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "PoC pour experimenter l'optimisation de processus au sein de diverses entreprises à l'aide de l'IA", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 5, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Maintenance d'un site appartenant à un collectif artistique américain", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}], "direction": null}}	102	fr	9	Développeur en freelance	Auckland, New Zealand
 \.
 
 
@@ -1367,9 +1447,9 @@ COPY public.experiences_page_data (id, updated_at, created_at) FROM stdin;
 -- Data for Name: experiences_page_data_locales; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.experiences_page_data_locales (title, subtitle, id, _locale, _parent_id) FROM stdin;
-My career	the jobs I was trusted for	15	en	1
-Ma carrière	Ces entreprises m'ont fait confiance	16	fr	1
+COPY public.experiences_page_data_locales (title, id, _locale, _parent_id) FROM stdin;
+My career	15	en	1
+Ma carrière	16	fr	1
 \.
 
 
@@ -1378,34 +1458,18 @@ Ma carrière	Ces entreprises m'ont fait confiance	16	fr	1
 --
 
 COPY public.experiences_techs (_order, _parent_id, id, icon, label) FROM stdin;
-1	1	69c7c097caff052cd85dd7d0	delphi	Delphi
-2	1	69c9a43fc46fb37154039a02	subversion	Subversion
-1	5	69c9b32ec46fb37154039a26	cplusplus	C++
-2	5	69c9b344c46fb37154039a28	nodedotjs	Node.js
-3	5	69c9b36ac46fb37154039a2a	C	The C language
-4	5	69c9b373c46fb37154039a2c	apache	Apache http server
-1	4	69c9afbac46fb37154039a16	gitlab	Gitlab
-2	4	69c9afc2c46fb37154039a18	docker	Docker
-3	4	69c9afc7c46fb37154039a1a	rubyonrails	Ruby on Rails
-4	4	69c9afd1c46fb37154039a1c	react	React
-5	4	69c9afd7c46fb37154039a1e	django	Django
-6	4	69c9afdfc46fb37154039a20	openstreetmap	Open Street Map
-7	4	69c9aff0c46fb37154039a22	go	Go
-8	4	69c9b0a4c46fb37154039a24	arangodb	ArangoDB
-1	2	69c9a8f8c46fb37154039a04	shopify	Shopify
-2	2	69c9a904c46fb37154039a06	wordpress	WordPress
-3	2	69c9a917c46fb37154039a08	jquery	JQuery
-4	2	69c9a9b1c46fb37154039a0a	html5	HTML
-5	2	69c9a9bac46fb37154039a0c	css	CSS
-6	2	69c9a9bec46fb37154039a0e	javascript	JavaScript
-1	3	69c9ad0ec46fb37154039a12	androidstudio	Android Studio
-2	3	69c9ad2ac46fb37154039a14	dotnet	Windows Forms
 1	7	69c9b674c46fb37154039a2e	angular	Angular
 2	7	69c9b67bc46fb37154039a30	github	Github
+1	1	69c7c097caff052cd85dd7d0	delphi	Delphi
+2	1	69c9a43fc46fb37154039a02	subversion	Subversion
 3	7	69c9b682c46fb37154039a32	nestjs	Nest.js
 4	7	69c9b6acc46fb37154039a34	docker	Docker
 5	7	69c9b6f6c46fb37154039a36	stripe	Stripe
 6	7	69c9b6fec46fb37154039a38	firebase	Firebase
+1	4	69c9afbac46fb37154039a16	gitlab	Gitlab
+2	4	69c9afc2c46fb37154039a18	docker	Docker
+3	4	69c9afc7c46fb37154039a1a	rubyonrails	Ruby on Rails
+4	4	69c9afd1c46fb37154039a1c	react	React
 1	9	69c9befcf6b08e7f2bf0744b	react	React
 2	9	69c9bf92f6b08e7f2bf0744d	nextdotjs	NextJS
 3	9	69c9bfa6f6b08e7f2bf0744f	sanity	Sanity cms
@@ -1413,6 +1477,23 @@ COPY public.experiences_techs (_order, _parent_id, id, icon, label) FROM stdin;
 5	9	69c9bfc1f6b08e7f2bf07453	android	Android
 6	9	69c9bfc9f6b08e7f2bf07455	ios	iOS
 7	9	69c9c001f6b08e7f2bf07457	tailwindcss	Tailwind CSS
+8	9	6abb15781e6915ce53c50405	svelte	Sveltekit
+5	4	69c9afd7c46fb37154039a1e	django	Django
+6	4	69c9afdfc46fb37154039a20	openstreetmap	Open Street Map
+7	4	69c9aff0c46fb37154039a22	go	Go
+8	4	69c9b0a4c46fb37154039a24	arangodb	ArangoDB
+1	3	69c9ad0ec46fb37154039a12	androidstudio	Android Studio
+2	3	69c9ad2ac46fb37154039a14	dotnet	Windows Forms
+1	2	69c9a8f8c46fb37154039a04	shopify	Shopify
+2	2	69c9a904c46fb37154039a06	wordpress	WordPress
+3	2	69c9a917c46fb37154039a08	jquery	JQuery
+4	2	69c9a9b1c46fb37154039a0a	html5	HTML
+5	2	69c9a9bac46fb37154039a0c	css	CSS
+6	2	69c9a9bec46fb37154039a0e	javascript	JavaScript
+1	5	69c9b32ec46fb37154039a26	cplusplus	C++
+2	5	69c9b344c46fb37154039a28	nodedotjs	Node.js
+3	5	69c9b36ac46fb37154039a2a	C	The C language
+4	5	69c9b373c46fb37154039a2c	apache	Apache http server
 \.
 
 
@@ -1430,11 +1511,10 @@ COPY public.home_page_data (id, updated_at, created_at) FROM stdin;
 --
 
 COPY public.home_page_data_links (_order, _parent_id, id, icon) FROM stdin;
-1	1	6aa8bcabca41ce4c7d262d72	code
-2	1	6aa8c704a95bc6f1611f92a0	github
-3	1	6aa8bf53ca41ce4c7d262d74	linkedin
-4	1	6aa8c752a95bc6f1611f92a2	twitter
-5	1	6aa8c75ea95bc6f1611f92a4	mail
+1	1	6aa8c704a95bc6f1611f92a0	github
+2	1	6aa8bf53ca41ce4c7d262d74	linkedin
+3	1	6aa8c752a95bc6f1611f92a2	twitter
+4	1	6aa8c75ea95bc6f1611f92a4	mail
 \.
 
 
@@ -1443,11 +1523,11 @@ COPY public.home_page_data_links (_order, _parent_id, id, icon) FROM stdin;
 --
 
 COPY public.home_page_data_links_locales (label, url, id, _locale, _parent_id) FROM stdin;
-My code	https://git.vagahbond.com	31	en	6aa8bcabca41ce4c7d262d72
-Github	https://github.com/vagahbond	32	en	6aa8c704a95bc6f1611f92a0
-Linkedin	https://www.linkedin.com/in/yoni-f-%F0%9F%92%BB-a5002b153/	33	en	6aa8bf53ca41ce4c7d262d74
-Twitter	https://x.com/vagahbond_	34	en	6aa8c752a95bc6f1611f92a2
-Mail	mailto:pro@yoni-firroloni.com	35	en	6aa8c75ea95bc6f1611f92a4
+Github	https://github.com/vagahbond	58	en	6aa8c704a95bc6f1611f92a0
+	\N	59	fr	6aa8c704a95bc6f1611f92a0
+Linkedin	https://www.linkedin.com/in/yoni-f-%F0%9F%92%BB-a5002b153/	60	en	6aa8bf53ca41ce4c7d262d74
+Twitter	https://x.com/vagahbond_	61	en	6aa8c752a95bc6f1611f92a2
+Mail	mailto:pro@yoni-firroloni.com	62	en	6aa8c75ea95bc6f1611f92a4
 \.
 
 
@@ -1456,8 +1536,33 @@ Mail	mailto:pro@yoni-firroloni.com	35	en	6aa8c75ea95bc6f1611f92a4
 --
 
 COPY public.home_page_data_locales (title, location, id, _locale, _parent_id, destruction_message, subtitle) FROM stdin;
-Freelance software engineer	New Zealand	46	en	1	Ooops! You just initiated the self-destroy process! There is no turning back ! (Beware if you are epileptic)	Computer enthousiast
-Développeur	Nouvelle Zélande	47	fr	1	Ooops! Tu viens d'activer la procédure d'auto destruction! Tous aux abris! (Attention, dangereux pour les épileptiques)	
+Freelance software engineer	New Zealand	58	en	1	Ooops! You just initiated the self-destroy process! There is no turning back ! (Beware if you are epileptic)	Computer enthousiast
+Développeur freelance	Nouvelle Zélande	59	fr	1	Ooops! Tu viens d'activer la procédure d'auto destruction! Tous aux abris! (Attention, dangereux pour les épileptiques)	Passionné de technologie
+\.
+
+
+--
+-- Data for Name: home_page_data_nav; Type: TABLE DATA; Schema: public; Owner: homepage
+--
+
+COPY public.home_page_data_nav (_order, _parent_id, id, icon) FROM stdin;
+1	1	6ab331d6fe9e7f8d3220efd9	experiences
+2	1	6ab33261fe9e7f8d3220efdb	code
+3	1	6ab3327efe9e7f8d3220efdd	contact
+\.
+
+
+--
+-- Data for Name: home_page_data_nav_locales; Type: TABLE DATA; Schema: public; Owner: homepage
+--
+
+COPY public.home_page_data_nav_locales (label, url, id, _locale, _parent_id) FROM stdin;
+My career	/en/experience	19	en	6ab331d6fe9e7f8d3220efd9
+Ma carrière	/fr/experience	20	fr	6ab331d6fe9e7f8d3220efd9
+My projects	/en/projects	21	en	6ab33261fe9e7f8d3220efdb
+Mes projets	/fr/projects	22	fr	6ab33261fe9e7f8d3220efdb
+About me	/en/contact	23	en	6ab3327efe9e7f8d3220efdd
+À propos	/fr/contact	24	fr	6ab3327efe9e7f8d3220efdd
 \.
 
 
@@ -1501,6 +1606,8 @@ COPY public.media (id, updated_at, created_at, url, thumbnail_u_r_l, filename, m
 36	2026-03-30 12:31:12.951+13	2026-03-30 12:31:12.95+13	\N	\N	datalok-logo.svg	image/svg+xml	1980	325	65	\N	\N
 37	2026-03-30 12:40:29.342+13	2026-03-30 12:40:29.342+13	\N	\N	branches-nursery-kewarra-beach-4879-logo-519888122.gif	image/gif	150181	592	442	50	50
 38	2026-03-30 13:00:54.173+13	2026-03-30 13:00:54.172+13	\N	\N	p22_logo.svg	image/svg+xml	1212	17	23	\N	\N
+39	2026-09-29 15:44:53.923+13	2026-09-29 15:44:53.922+13	\N	\N	affine.png	image/png	70218	800	800	50	50
+40	2026-09-29 16:13:39.305+13	2026-09-29 16:13:39.304+13	\N	\N	firesplit.png	image/png	261266	2530	1784	50	50
 \.
 
 
@@ -1542,6 +1649,8 @@ Marquis macadamia	40	en	35
 Datalok 	41	en	36
 Branches nursery	42	en	37
 P22 logo	43	en	38
+Affine's logo	44	en	39
+A screenshot of firesplit	45	en	40
 \.
 
 
@@ -1558,7 +1667,6 @@ COPY public.payload_kv (id, key, data) FROM stdin;
 --
 
 COPY public.payload_locked_documents (id, global_slug, updated_at, created_at) FROM stdin;
-245	homePageData	2026-09-15 16:33:35.266+12	2026-09-15 16:33:35.265+12
 \.
 
 
@@ -1566,8 +1674,7 @@ COPY public.payload_locked_documents (id, global_slug, updated_at, created_at) F
 -- Data for Name: payload_locked_documents_rels; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_id, media_id, projects_id, experiences_id) FROM stdin;
-375	\N	245	user	1	\N	\N	\N
+COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_id, media_id, projects_id, experiences_id, articles_id) FROM stdin;
 \.
 
 
@@ -1576,7 +1683,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-09-15 16:33:35.08+12	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-09-29 16:31:59.848+13	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -1588,10 +1695,14 @@ COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM st
 2	collection-projects	{"limit": 10, "editViewType": "default"}	2025-12-17 21:26:21.012+13	2025-12-17 21:25:02.699+13
 5	collection-contactPageData	{"limit": 10, "editViewType": "default"}	2025-12-28 00:05:07.333+13	2025-12-27 23:36:57.387+13
 6	global-contactPageData	{"editViewType": "default"}	2025-12-28 00:09:21.078+13	2025-12-28 00:09:21.079+13
-1	collection-users	{"limit": 10}	2025-12-28 00:24:13.138+13	2025-12-17 21:15:05.108+13
-7	locale	"en"	2026-09-15 13:23:01.022+12	2025-12-28 00:25:16.154+13
-8	global-homePageData	{"editViewType": "default"}	2025-12-28 19:47:06.152+13	2025-12-28 19:47:06.154+13
+8	global-homePageData	{"fields": {"links": {"collapsed": ["6aa8bcabca41ce4c7d262d72"]}}, "editViewType": "default"}	2026-09-23 14:05:41.451+12	2025-12-28 19:47:06.154+13
+1	collection-users	{"limit": 10, "editViewType": "default"}	2026-09-28 15:45:00.595+13	2025-12-17 21:15:05.108+13
+12	global-aboutPageData	{"editViewType": "default"}	2026-09-29 10:26:27.289+13	2026-09-29 10:26:27.29+13
 9	global-projectsPageData	{"editViewType": "default"}	2025-12-28 19:54:40.332+13	2025-12-28 19:54:40.333+13
+13	nav	{"groups": {"Collections": {"open": true}}}	2026-09-29 12:35:37.303+13	2026-09-29 12:35:36.38+13
+14	collection-articles	{"limit": 10, "editViewType": "default"}	2026-09-29 14:20:49.709+13	2026-09-29 12:44:07.568+13
+15	collection-projects-21	{"fields": {"links": {"collapsed": ["69bb29bc2f55f742f0342544"]}}}	2026-09-29 16:26:45.409+13	2026-09-29 16:26:41.026+13
+7	locale	"fr"	2026-09-29 16:27:21.326+13	2025-12-28 00:25:16.154+13
 3	collection-media	{"sort": "-updatedAt", "limit": 10, "editViewType": "default"}	2026-02-13 18:48:12.668+13	2025-12-18 22:23:00.699+13
 10	collection-experiences	{"limit": 10, "editViewType": "default"}	2026-03-29 00:48:05.709+13	2026-03-21 12:33:12.11+13
 11	global-experiencesPageData	{"editViewType": "default"}	2026-03-30 08:49:38.732+13	2026-03-30 08:49:38.733+13
@@ -1606,13 +1717,17 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 4	\N	2	user	1
 11	\N	5	user	1
 12	\N	6	user	1
-13	\N	1	user	1
 82	\N	3	user	1
 90	\N	10	user	1
 91	\N	11	user	1
-30	\N	8	user	1
+155	\N	15	user	1
+156	\N	7	user	1
 32	\N	9	user	1
-102	\N	7	user	1
+103	\N	8	user	1
+106	\N	1	user	1
+111	\N	12	user	1
+117	\N	13	user	1
+122	\N	14	user	1
 \.
 
 
@@ -1626,13 +1741,14 @@ COPY public.projects (id, updated_at, created_at, image_id, date, index) FROM st
 10	2026-03-19 11:18:06.784+13	2026-02-12 20:22:40.761+13	12	2024-05-09 00:00:00+12	4
 9	2026-03-19 11:18:17.791+13	2026-02-12 20:13:28.712+13	11	2025-04-13 00:00:00+12	7
 7	2026-03-19 11:18:31.965+13	2026-01-02 20:12:03.553+13	7	2026-01-03 01:00:00+13	2
-21	2026-03-19 12:22:09.613+13	2026-03-19 11:39:56.053+13	25	2026-03-19 01:00:00+13	3
 11	2026-03-19 12:24:42.598+13	2026-02-12 20:38:12.84+13	13	2024-07-21 00:00:00+12	3
-22	2026-03-29 00:43:31.806+13	2026-03-29 00:30:36.386+13	26	2026-03-30 01:00:00+13	2
 8	2026-04-02 20:28:26.205+13	2026-01-07 21:33:08.324+13	10	2026-01-14 01:00:00+13	1
+22	2026-09-29 15:34:21.942+13	2026-03-29 00:30:36.386+13	26	2026-03-30 01:00:00+13	2
+24	2026-09-29 16:15:56.465+13	2026-09-29 16:13:56.389+13	40	2026-09-30 01:00:00+13	4
+23	2026-09-29 16:17:48.723+13	2026-09-29 15:46:28.22+13	39	2026-09-30 01:00:00+13	2
+21	2026-09-29 16:27:40.62+13	2026-03-19 11:39:56.053+13	25	2026-03-19 01:00:00+13	3
 19	2026-03-19 11:15:55.72+13	2026-02-12 22:04:55.562+13	21	2020-02-07 01:00:00+13	6
 18	2026-03-19 11:16:07.215+13	2026-02-12 21:55:45.989+13	20	2022-02-23 01:00:00+13	5
-17	2026-03-19 11:16:23.528+13	2026-02-12 21:49:25.312+13	19	2023-02-10 01:00:00+13	10
 16	2026-03-19 11:16:36.634+13	2026-02-12 21:41:11.754+13	18	2023-11-09 01:00:00+13	4
 15	2026-03-19 11:16:56.295+13	2026-02-12 21:34:47.132+13	17	2022-02-17 01:00:00+13	3
 14	2026-03-19 11:17:09.9+13	2026-02-12 21:21:41.467+13	16	2024-10-21 01:00:00+13	3
@@ -1644,12 +1760,9 @@ COPY public.projects (id, updated_at, created_at, image_id, date, index) FROM st
 --
 
 COPY public.projects_links (_order, _parent_id, id, url, icon) FROM stdin;
-1	22	69c7baf4caff052cd85dd7cc	https://github.com/vagahbond/audio-experiments	github
-2	22	69c7bb9acaff052cd85dd7ce	https://audio-experiments.vagahbond.com	try
 1	8	6966b30b726b707b07249145	https://github.com/Vagahbond/nix-config	github
 1	19	698d96c81f9c6b0b47e99cfd	https://github.com/Vagahbond/megumin-lang	repo
 1	18	698d949a1f9c6b0b47e99cfb	https://github.com/Vagahbond/simple-blockchain	repo
-1	17	698d93031f9c6b0b47e99cf9	https://github.com/Vagahbond/CoursesFrontend	repo
 1	16	698d911b1f9c6b0b47e99cf7	https://github.com/Vagahbond/hyprspace	repo
 1	15	698d90931f9c6b0b47e99cf5	https://github.com/NFpieT	repo
 1	14	698d8d5c1f9c6b0b47e99cf3	https://github.com/Vagahbond/rustlings	repo
@@ -1659,9 +1772,13 @@ COPY public.projects_links (_order, _parent_id, id, url, icon) FROM stdin;
 1	10	698d800b1f9c6b0b47e99ce5	https://github.com/Vagahbond/nix-cooker	github
 1	9	698d7dab1f9c6b0b47e99ce3	https://github.com/Vagahbond/guncruft	github
 1	7	695770178e408a69ec2e8a0a	https://github.com/Vagahbond/homepage	repo
+1	22	69c7baf4caff052cd85dd7cc	https://github.com/vagahbond/audio-experiments	github
+2	22	69c7bb9acaff052cd85dd7ce	https://audio-experiments.vagahbond.com	try
 2	7	6957707d8e408a69ec2e8a0c	https://yoni-firroloni.com	try
-1	21	69bb29bc2f55f742f0342543	https://github.com/Vagahbond/Charpente/	github
-2	21	69bb29bc2f55f742f0342544	https://github.com/Vagahbond/Charpente/wiki	doc
+1	24	6abb2b1561b690ad0f76efc9	https://github.com/Vagahbond/firesplit	github
+2	24	6abb2d0a61b690ad0f76efd1	https://www.firefly-iii.org/	home
+1	23	6abb263942690e44e7c57e6e	https://github.com/Vagahbond/nix-affine	github
+2	23	6abb2d7661b690ad0f76efd3	https://affine.pro	home
 1	11	698d83411f9c6b0b47e99ce7	https://github.com/uni-verse-fm	repo
 2	11	698d83dc1f9c6b0b47e99ceb	https://uni-verse-fm.github.io/	doc
 \.
@@ -1688,30 +1805,32 @@ Source code	180	en	695770178e408a69ec2e8a0a
 Code source	181	fr	695770178e408a69ec2e8a0a
 Production	182	en	6957707d8e408a69ec2e8a0c
 Production	183	fr	6957707d8e408a69ec2e8a0c
-Repo	198	en	69bb29bc2f55f742f0342543
-Repo	199	fr	69bb29bc2f55f742f0342543
-Documentation	200	en	69bb29bc2f55f742f0342544
-Documentation	201	fr	69bb29bc2f55f742f0342544
 Organisation	206	en	698d83411f9c6b0b47e99ce7
 Organisation	207	fr	698d83411f9c6b0b47e99ce7
 Documentation	208	en	698d83dc1f9c6b0b47e99ceb
 Documentation	209	fr	698d83dc1f9c6b0b47e99ceb
+Repo	236	en	69c7baf4caff052cd85dd7cc
+Repo	237	fr	69c7baf4caff052cd85dd7cc
+Demo	238	en	69c7bb9acaff052cd85dd7ce
+Demo	239	fr	69c7bb9acaff052cd85dd7ce
 Repo	146	en	698d96c81f9c6b0b47e99cfd
 Repo	147	fr	698d96c81f9c6b0b47e99cfd
 Repo	148	en	698d949a1f9c6b0b47e99cfb
 Repo	149	fr	698d949a1f9c6b0b47e99cfb
-Repo	150	en	698d93031f9c6b0b47e99cf9
-Repo	151	fr	698d93031f9c6b0b47e99cf9
 Repo	152	en	698d911b1f9c6b0b47e99cf7
 Repo	153	fr	698d911b1f9c6b0b47e99cf7
 Organization	154	en	698d90931f9c6b0b47e99cf5
 Repo	155	fr	698d90931f9c6b0b47e99cf5
 Repo	156	en	698d8d5c1f9c6b0b47e99cf3
 Repo	157	fr	698d8d5c1f9c6b0b47e99cf3
-Repo	222	en	69c7baf4caff052cd85dd7cc
-Repo	223	fr	69c7baf4caff052cd85dd7cc
-Demo	224	en	69c7bb9acaff052cd85dd7ce
-Demo	225	fr	69c7bb9acaff052cd85dd7ce
+Repo	255	en	6abb2b1561b690ad0f76efc9
+Repo	256	fr	6abb2b1561b690ad0f76efc9
+Firefly	257	en	6abb2d0a61b690ad0f76efd1
+Firefly	258	fr	6abb2d0a61b690ad0f76efd1
+Github	262	en	6abb263942690e44e7c57e6e
+Répo	263	fr	6abb263942690e44e7c57e6e
+Affine	264	en	6abb2d7661b690ad0f76efd3
+Affine	265	fr	6abb2d7661b690ad0f76efd3
 \.
 
 
@@ -1721,7 +1840,6 @@ Demo	225	fr	69c7bb9acaff052cd85dd7ce
 
 COPY public.projects_locales (name, description, id, _locale, _parent_id) FROM stdin;
 Uni-verse	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Uni-verse is a uni project that was made in a team. It is a music platform replicating Soundcloud's features, with the addition of an audio-fingerprinting feature (Similar to Shazam). It has a back-end REST API, a front-end web app, and a mobile semi-native app, associated with a fingerprinting service relying on RabbitMQ.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I periodically pick this project up, adding documentation and trying to make it functional and viable again.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	145	en	11
-Audio experiments	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il y a quelque temps, j'ai acheté un livre intitulé « The audio programming book ». Je l'ai acheté parce que, lors de ma dernière année à l'université, j'avais entrepris de créer un service d'empreinte audio évolutif, reproduisant la fonctionnalité de base de Shazam. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Je n'ai jamais lu ce livre en entier, mais je n'ai jamais abandonné non plus. Récemment, j'ai téléchargé la version numérique de ce livre et j'ai recommencé à faire les exercices, avec une petite variante.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "J'écris désormais les exercices en Rust plutôt qu'en C, et je les compile en WASM, afin de les transformer en composants interactifs sur un site web qui permet à tout le monde de les manipuler tout en apprenant comment ils fonctionnent grâce aux explications de mon escargot mascotte.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	154	fr	22
 NFpieT	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pendant la bulle blockchain et NFT, il y avait un devoir sur la blockchain à mon université. J'ai créé cette application décentralisée sur le réseau Ethereum. NFpieT est un NFT exécutable. Chaque jeton est une image qui représente le code Piet (des images qui représentent du code). Pour des raisons techniques, ces NFT sont stockés au format JSON et j'ai dû implémenter un analyseur syntaxique pour cela à partir de zéro dans le langage Sol, car tout cela était nouveau à l'époque.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	115	fr	15
 Homepage	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "This project is the website you are currently looking at. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Made with ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957712949eaafa084a46f1d", "type": "link", "fields": {"url": "https://svelte.dev/docs/kit/introduction", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "SvelteKit", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " for the frontend, and ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957715149eaafa084a46f1e", "type": "link", "fields": {"url": "https://payloadcms.com/", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "PayloadCMS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " for the backend. Sveltekit allows building fully bundled static websites with prefetched assets and data.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It is packaged using the nix package manager, that runs the CMS and the frontend's build in an isolated environment and outputs a static website that is then served by a nginx instance.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	132	en	7
 Site vitrine	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ce projet est le site que vous avez sous les yeux. Fait avec ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957712949eaafa084a46f1d", "type": "link", "fields": {"url": "https://svelte.dev/docs/kit/introduction", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "SvelteKit", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " pour le frontend, et ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "6957715149eaafa084a46f1e", "type": "link", "fields": {"url": "https://payloadcms.com/", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "PayloadCMS", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " pour le backend.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Sveltekit permet de générer des sites statiques léger et rapides grâce à des systèmes de pré-requêtes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il est mis en production grâce à nix. Celui-ci fait tourner PayloadCMS en arrière plan et prépare le frontend dans un environnement isolé, puis produit un site statique servi par NginX. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	133	fr	7
@@ -1732,24 +1850,27 @@ Rustlings	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "ch
 Advent of code	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Yearly, the advent of code opens its doors. It is the opportunity to test and to improve problem solving skills. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "When I have the necessary spare time, I like to tackle this challenge.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "In 2023, I took the challenge to solve every day with a different language.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	122	en	12
 uni-verse	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Uni-verse est un projet universitaire réalisé en équipe. Il s'agit d'une plateforme musicale reproduisant les fonctionnalités de Soundcloud, avec en plus une fonctionnalité d'empreinte audio (similaire à Shazam). Elle dispose d'une API REST back-end, d'une application web front-end et d'une application mobile semi-native, associées à un service d'empreinte audio s'appuyant sur RabbitMQ.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Je reprends régulièrement ce projet, j'ajoute de la documentation et j'essaie de le rendre à nouveau fonctionnel et viable.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Traduit avec DeepL.com (version gratuite)", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	146	fr	11
 Configuration nix	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pour mon travail, je dépend d'une architecture diverse, avec au plus haut 2 PC portables, 1 PC fixe, et un VPS. Mon interêt pour la customisation et mon désinterêt pour la répétition m'ont poussé à créer un répo nix qui gère tous mes postes. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ce projet contient le code qui définit toute mon infrastructure.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	156	fr	8
-MentoreD	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "MentoreD is a concept of courses as code. It allows creating courses as Github Repo, with markdown files for content and yml configuration files for authorization.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It include creating course content and exercises.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	110	en	17
-MentoreD	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "MentoreD est un concept de cours sous forme de code. Il permet de créer des cours sous forme de dépôt Github, avec des fichiers Markdown pour le contenu et des fichiers de configuration YML pour l'autorisation.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il comprend la création du contenu du cours et des exercices.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	111	fr	17
 spreadsheet-to-invoiceshelf	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "InvoiceShelf is a self-hostable web app for creating and storing invoices as a small business. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "During one onf my previous contracts, I was constrained to logging my time on an Excel file. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I created this CLI tool with rust so I could transform my Excel file into InvoiceShelf format so I could import it.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	118	en	13
 Spreadsheet-to-invoiceshelf	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "InvoiceShelf est une application web auto-hébergée permettant aux petites entreprises de créer et de stocker leurs factures.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Au cours d'un de mes précédents contrats, j'étais obligé d'enregistrer mes heures de travail dans un fichier Excel.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "J'ai créé cet outil CLI avec Rust afin de pouvoir convertir mon fichier Excel au format InvoiceShelf et l'importer.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	119	fr	13
 Advent of Code	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Chaque année, le calendrier de l'avent du code ouvre ses portes. C'est l'occasion de tester et d'améliorer ses compétences en matière de résolution de problèmes. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Lorsque j'ai le temps nécessaire, j'aime relever ce défi.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "En 2023, j'ai relevé le défi de résoudre chaque jour avec un langage différent.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	123	fr	12
 HyprSpace	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "The Hyprland (A Wayland Tiling Compositor) community organized a competition for the most creative Rice (Custom Linux desktop interface). I created this plugin for this competition, using C++, that transforms windows in comets.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	112	en	16
-Charpente	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Charpente is a library that helps you organize your nix config in between several hosts. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It allows you to easily define structured various modules and easily target them at whichever host you need. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "With Charpente, separate your nix config by domain, by topic have all of your configs organized in a way that everything is easy to find.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "To easily enforce its structural concept, Charpente comes with a Rust CLI to scaffold modules and hosts.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	141	en	21
 HyprSpace	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "La communauté Hyprland (un compositeur de mosaïque Wayland) a organisé un concours pour récompenser le Rice (interface de bureau Linux personnalisée) le plus créatif. J'ai créé ce plugin pour ce concours, en utilisant C++, qui transforme les fenêtres en comètes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	113	fr	16
 Nix-cooker	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Nix-cooker allows managing rices (Customized linux desktop interfaces) in a tidy way in a multi-host nix configuration.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It provides a module to define color schemes, GTK themes, wallpapers, fonts, configuration file templates, and many other.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It is currently usable but meant to be completed in order to be used instead of home-manager as a minimalist alternative. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	126	en	10
-Charpente	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Charpente est une bibliothèque qui vous aide à organiser votre configuration nix sur plusieurs hôtes. Elle vous permet de définir facilement des modules variés et structurés, et de les cibler simplement sur les hôtes de votre choix. Avec Charpente, séparez votre configuration nix par domaine, par thématique, et gardez l'ensemble organisé de façon à ce que tout soit facile à retrouver. Pour faciliter l'application de son concept structurant, Charpente est accompagné d'une CLI en Rust pour générer des modules et des hôtes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	142	fr	21
 Megumin-lang	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "MeguminLang is a programming language that I created as a language theory assessment at the uni, using Python and yacc.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It is inspired by a character from KonoSuba, an anime.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	106	en	19
 Megumin-lang	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "MeguminLang est un langage de programmation que j'ai créé dans le cadre d'un examen théorique sur les langages à l'université, à l'aide de Python et de yacc.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il s'inspire d'un personnage de l'anime KonoSuba.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	107	fr	19
 NFpieT	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "During the blockchain and NFT bubble, there was a blockchain assignment at my uni. I created this decentralized app on the Etherum network. NFpieT is a NFT that is runnable. Each token is an image that represents Piet code (images that represent code). For technical reasons, those NFTs are stored as JSON and I had to implement a parser for it from scratch in the Sol language, as it was all new at the time.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	114	en	15
-Audio experiments	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "A while ago, I bought a book called \\"The audio programming book\\". I bought it because for my last year of uni, I attended to create a scalable audio fingerprinting service, replicating Shazam's base feature. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I never went through this book, but I never gave up either. Recently, I downloaded the digital version of this book, and started re-doing the exercises, with a twist. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I am now writing the exercises in Rust instead of C, and compiling them to WASM, to turn them into interactive components on a website that allows everyone to fidget with it while learning how it works from my mascot snail's explanations.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	153	en	22
 Simple blockchain	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "For fun and for science I took the challenge to implement ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "698d954c2da38925783ffda6", "type": "link", "fields": {"url": "https://levelup.gitconnected.com/learn-blockchain-by-building-it-f2f8ccc54892", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "this tutorial", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " in C++.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It consists in implementing a simplified blockchain system.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	108	en	18
 Rice-cooker	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Nix-cooker permet de gérer les rice (interfaces de bureau Linux personnalisées) de manière ordonnée dans une configuration Nix multi-hôtes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il fournit un module permettant de définir des schémas de couleurs, des thèmes GTK, des fonds d'écran, des polices, des modèles de fichiers de configuration et bien d'autres éléments.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il est actuellement utilisable, mais devrait être complété afin de pouvoir remplacer home-manager en tant qu'alternative minimaliste.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	127	fr	10
 Guncruft	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "As a fan of Guncraft, an old discontinued video-game, I decided to re-create something similar. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "This project is still work in progress. It is relying on ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"id": "698d7d4a2da38925783ffda3", "type": "link", "fields": {"url": "https://bevy.org/", "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "Bevy", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": ", written in Rust. This stack allows for a very optimized game that should run on most hardware, while reproducing the nervous and snappy experience of the original Guncraft game. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	128	en	9
 Guncruft	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "En tant que fan de Guncraft, un ancien jeu vidéo qui n'est plus commercialisé, j'ai décidé de recréer quelque chose de similaire.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ce projet est encore en cours de développement. Il s'appuie sur Bevy, écrit en Rust. Cette stack permet d'obtenir un jeu très optimisé qui devrait fonctionner sur la plupart des matériels, tout en reproduisant l'expérience nerveuse et rapide du jeu Guncraft original. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	129	fr	9
+Audio experiments	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "A while ago, I bought a book called \\"The audio programming book\\". I bought it because for my last year of uni, I attended to create a scalable audio fingerprinting service, replicating Shazam's base feature. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I never went through this book, but I never gave up either. Recently, I downloaded the digital version of this book, and started re-doing the exercises, with a twist...", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I am now writing the exercises in Rust instead of C, and compiling them to WASM, to turn them into interactive components on a website that allows everyone to fidget with it while learning how it works from my mascot snail's explanations.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	161	en	22
+Charpente	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Charpente is a library that helps you organize your nix config in between several hosts. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "It allows you to easily define structured various modules and easily target them at whichever host you need. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "With Charpente, separate your nix config by domain, by topic have all of your configs organized in a way that everything is easy to find.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "To easily enforce its structural concept, Charpente comes with a Rust CLI to scaffold modules and hosts.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "PS: Charpente was merged right into my NixOS config, to simplify things.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	183	en	21
+Audio experiments	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Il y a quelque temps, j'ai acheté un livre intitulé « The audio programming book ». Je l'ai acheté parce que, lors de ma dernière année à l'université, j'avais entrepris de créer un service d'empreinte audio évolutif, reproduisant la fonctionnalité de base de Shazam. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Je n'ai jamais lu ce livre en entier, mais je n'ai jamais abandonné non plus. Récemment, j'ai téléchargé la version numérique de ce livre et j'ai recommencé à faire les exercices, avec une petite variante...", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "J'écris désormais les exercices en Rust plutôt qu'en C, et je les compile en WASM, afin de les transformer en composants interactifs sur un site web qui permet à tout le monde de les manipuler tout en apprenant comment ils fonctionnent grâce aux explications de mon escargot mascotte, Sacagot.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	162	fr	22
+Firesplit	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"id": "6abb2a3da5fc4e326a861f10", "type": "link", "fields": {"url": "https://www.firefly-iii.org/", "newTab": true, "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "Firefly-III", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " is a self-hosted budget manager app.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "My girlfriend and I like to pay for each other, at the restaurant and cafe, which makes it very hard to keep track of who spends how much.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "This even more true when we are traveling.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I made this applet that connects to Firefly-III's auth and database, and queries all relevant transactions to show a clear, easy to read, dashboards.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "To share a transaction with someone, simply tag their e-mail. To reimburse them, set their e-mail address as recipient. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "All the rest is taken care of by Firesplit, as it will use your Firefly session to identify you. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	175	en	24
+Firesplit	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Firefly-III est une application de gestion budgétaire auto-hébergée.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ma copine et moi aimons payer l'un pour l'autre, au restaurant ou au café, ce qui rend très difficile de savoir qui dépense combien.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "C'est d'autant plus vrai lorsque nous voyageons.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "J'ai créé cette applet qui se connecte au système d'authentification et à la base de données de Firefly-III, et qui interroge toutes les transactions pertinentes pour afficher des tableaux de bord clairs et faciles à lire.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pour partager une transaction avec quelqu'un, il suffit de mentionner son adresse e-mail. Pour le rembourser, indiquez son adresse e-mail comme destinataire.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Firesplit s'occupe du reste, puisqu'il utilise votre session Firefly pour vous identifier.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	176	fr	24
+Nix-affine	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"id": "6abb29c9a5fc4e326a861f0f", "type": "link", "fields": {"url": "https://affine.pro/", "newTab": true, "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "Affine", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " is an app that mixes the main features of Miro and Notion. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "I have been using it for a while as it is, for my own needs, the best self-hosted app of its segment. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Its clients are more than solid, work on all my devices, and the features make it really easy to take and organize notes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Only problem: No one maintains an Affine nix package, which means I had to use a docker-compose. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "This defeats the purpose of NixOS, and overloads my VPS's small resources. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "So I packaged Affine and made a module. I intend to submit it in a PR to nixpkgs, after testing it for a few weeks to make sure it works well.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	179	en	23
+nix-affine	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"id": "6abb29b2a5fc4e326a861f0e", "type": "link", "fields": {"url": "https://affine.pro/", "newTab": true, "linkType": "custom"}, "format": "", "indent": 0, "version": 3, "children": [{"mode": "normal", "text": "Affine", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"mode": "normal", "text": " est une application qui combine les principales fonctionnalités de Miro et de Notion.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Je l’utilise depuis un certain temps déjà, car c’est, pour mes besoins personnels, la meilleure application auto-hébergée de sa catégorie.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Ses clients sont plus que fiables, fonctionnent sur tous mes appareils, et ses fonctionnalités facilitent grandement la prise et l’organisation de notes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Seul problème : personne ne gère de paquet Nix pour Affine, ce qui m’a obligé à utiliser un docker-compose.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Cela va à l’encontre de l’intérêt de NixOS et surcharge les maigres ressources de mon VPS.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "J’ai donc créé un paquet pour Affine et développé un module. J’ai l’intention de le soumettre sous forme de pull request à nixpkgs, après l’avoir testé pendant quelques semaines pour m’assurer qu’il fonctionne correctement.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Traduit avec DeepL.com (version gratuite)", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	180	fr	23
+Charpente	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Charpente est une bibliothèque qui vous aide à organiser votre configuration nix sur plusieurs hôtes. Elle vous permet de définir facilement des modules variés et structurés, et de les cibler simplement sur les hôtes de votre choix. Avec Charpente, séparez votre configuration nix par domaine, par thématique, et gardez l'ensemble organisé de façon à ce que tout soit facile à retrouver. Pour faciliter l'application de son concept structurant, Charpente est accompagné d'une CLI en Rust pour générer des modules et des hôtes.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "PS: Charpente a été incorporé à ma nix-config pour des raisons de simplicité.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	184	fr	21
 \.
 
 
@@ -1766,9 +1887,9 @@ COPY public.projects_page_data (id, updated_at, created_at) FROM stdin;
 -- Data for Name: projects_page_data_locales; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.projects_page_data_locales (title, subtitle, id, _locale, _parent_id) FROM stdin;
-Practice makes perfect	Constatly building skills	36	en	1
-C'est en forgeant qu'on devient forgeron.	Un travail constant, pour entretenir mes compétences.	37	fr	1
+COPY public.projects_page_data_locales (title, id, _locale, _parent_id) FROM stdin;
+What I build for fun	40	en	1
+Mes projets personnels	41	fr	1
 \.
 
 
@@ -1777,6 +1898,10 @@ C'est en forgeant qu'on devient forgeron.	Un travail constant, pour entretenir m
 --
 
 COPY public.projects_techs (_order, _parent_id, id, label, icon) FROM stdin;
+1	24	6abb2b7361b690ad0f76efcb	Pug	pug
+2	24	6abb2bb161b690ad0f76efcd	Bun	bun
+3	24	6abb2bb861b690ad0f76efcf	SQL	sql
+1	23	6abb266542690e44e7c57e70	Nix	nix
 \.
 
 
@@ -1794,15 +1919,22 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	6317f689-a3a6-4ec3-a79e-7c1e6761021d	2026-09-16 09:49:49.843+12	2026-09-16 11:49:49.843+12
+1	1	70d9fb2f-c22c-4582-a2a2-85c6a61bf7e5	2026-09-29 12:31:03.193+13	2026-09-29 18:30:13.775+13
 \.
 
 
 --
--- Name: contact_page_data_bottom_right_links_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
+-- Name: articles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.contact_page_data_bottom_right_links_locales_id_seq', 283, true);
+SELECT pg_catalog.setval('public.articles_id_seq', 3, true);
+
+
+--
+-- Name: articles_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
+--
+
+SELECT pg_catalog.setval('public.articles_locales_id_seq', 12, true);
 
 
 --
@@ -1816,7 +1948,7 @@ SELECT pg_catalog.setval('public.contact_page_data_id_seq', 1, true);
 -- Name: contact_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.contact_page_data_locales_id_seq', 88, true);
+SELECT pg_catalog.setval('public.contact_page_data_locales_id_seq', 116, true);
 
 
 --
@@ -1830,7 +1962,7 @@ SELECT pg_catalog.setval('public.experiences_id_seq', 9, true);
 -- Name: experiences_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.experiences_locales_id_seq', 54, true);
+SELECT pg_catalog.setval('public.experiences_locales_id_seq', 102, true);
 
 
 --
@@ -1858,28 +1990,35 @@ SELECT pg_catalog.setval('public.home_page_data_id_seq', 1, true);
 -- Name: home_page_data_links_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_links_locales_id_seq', 35, true);
+SELECT pg_catalog.setval('public.home_page_data_links_locales_id_seq', 62, true);
 
 
 --
 -- Name: home_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 47, true);
+SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 59, true);
+
+
+--
+-- Name: home_page_data_nav_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
+--
+
+SELECT pg_catalog.setval('public.home_page_data_nav_locales_id_seq', 24, true);
 
 
 --
 -- Name: media_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.media_id_seq', 38, true);
+SELECT pg_catalog.setval('public.media_id_seq', 40, true);
 
 
 --
 -- Name: media_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.media_locales_id_seq', 43, true);
+SELECT pg_catalog.setval('public.media_locales_id_seq', 45, true);
 
 
 --
@@ -1893,14 +2032,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 245, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 306, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 375, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 474, true);
 
 
 --
@@ -1914,35 +2053,35 @@ SELECT pg_catalog.setval('public.payload_migrations_id_seq', 1, true);
 -- Name: payload_preferences_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_id_seq', 11, true);
+SELECT pg_catalog.setval('public.payload_preferences_id_seq', 15, true);
 
 
 --
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 102, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 156, true);
 
 
 --
 -- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_id_seq', 22, true);
+SELECT pg_catalog.setval('public.projects_id_seq', 24, true);
 
 
 --
 -- Name: projects_links_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_links_locales_id_seq', 227, true);
+SELECT pg_catalog.setval('public.projects_links_locales_id_seq', 265, true);
 
 
 --
 -- Name: projects_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_locales_id_seq', 156, true);
+SELECT pg_catalog.setval('public.projects_locales_id_seq', 184, true);
 
 
 --
@@ -1956,7 +2095,7 @@ SELECT pg_catalog.setval('public.projects_page_data_id_seq', 1, true);
 -- Name: projects_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_page_data_locales_id_seq', 37, true);
+SELECT pg_catalog.setval('public.projects_page_data_locales_id_seq', 41, true);
 
 
 --
@@ -1967,34 +2106,34 @@ SELECT pg_catalog.setval('public.users_id_seq', 1, true);
 
 
 --
--- Name: contact_page_data_bottom_right_links_locales contact_page_data_bottom_right_links_locales_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+-- Name: articles_locales articles_locales_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
 --
 
-ALTER TABLE ONLY public.contact_page_data_bottom_right_links_locales
-    ADD CONSTRAINT contact_page_data_bottom_right_links_locales_pkey PRIMARY KEY (id);
-
-
---
--- Name: contact_page_data_bottom_right_links contact_page_data_bottom_right_links_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
---
-
-ALTER TABLE ONLY public.contact_page_data_bottom_right_links
-    ADD CONSTRAINT contact_page_data_bottom_right_links_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.articles_locales
+    ADD CONSTRAINT articles_locales_pkey PRIMARY KEY (id);
 
 
 --
--- Name: contact_page_data_locales contact_page_data_locales_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+-- Name: articles articles_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
 --
 
-ALTER TABLE ONLY public.contact_page_data_locales
+ALTER TABLE ONLY public.articles
+    ADD CONSTRAINT articles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: about_page_data_locales contact_page_data_locales_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.about_page_data_locales
     ADD CONSTRAINT contact_page_data_locales_pkey PRIMARY KEY (id);
 
 
 --
--- Name: contact_page_data contact_page_data_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+-- Name: about_page_data contact_page_data_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
 --
 
-ALTER TABLE ONLY public.contact_page_data
+ALTER TABLE ONLY public.about_page_data
     ADD CONSTRAINT contact_page_data_pkey PRIMARY KEY (id);
 
 
@@ -2060,6 +2199,22 @@ ALTER TABLE ONLY public.home_page_data_links
 
 ALTER TABLE ONLY public.home_page_data_locales
     ADD CONSTRAINT home_page_data_locales_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: home_page_data_nav_locales home_page_data_nav_locales_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_nav_locales
+    ADD CONSTRAINT home_page_data_nav_locales_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: home_page_data_nav home_page_data_nav_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_nav
+    ADD CONSTRAINT home_page_data_nav_pkey PRIMARY KEY (id);
 
 
 --
@@ -2207,31 +2362,31 @@ ALTER TABLE ONLY public.users_sessions
 
 
 --
--- Name: contact_page_data_bottom_right_links_locales_locale_parent_i; Type: INDEX; Schema: public; Owner: homepage
+-- Name: about_page_data_locales_locale_parent_id_unique; Type: INDEX; Schema: public; Owner: homepage
 --
 
-CREATE UNIQUE INDEX contact_page_data_bottom_right_links_locales_locale_parent_i ON public.contact_page_data_bottom_right_links_locales USING btree (_locale, _parent_id);
-
-
---
--- Name: contact_page_data_bottom_right_links_order_idx; Type: INDEX; Schema: public; Owner: homepage
---
-
-CREATE INDEX contact_page_data_bottom_right_links_order_idx ON public.contact_page_data_bottom_right_links USING btree (_order);
+CREATE UNIQUE INDEX about_page_data_locales_locale_parent_id_unique ON public.about_page_data_locales USING btree (_locale, _parent_id);
 
 
 --
--- Name: contact_page_data_bottom_right_links_parent_id_idx; Type: INDEX; Schema: public; Owner: homepage
+-- Name: articles_created_at_idx; Type: INDEX; Schema: public; Owner: homepage
 --
 
-CREATE INDEX contact_page_data_bottom_right_links_parent_id_idx ON public.contact_page_data_bottom_right_links USING btree (_parent_id);
+CREATE INDEX articles_created_at_idx ON public.articles USING btree (created_at);
 
 
 --
--- Name: contact_page_data_locales_locale_parent_id_unique; Type: INDEX; Schema: public; Owner: homepage
+-- Name: articles_locales_locale_parent_id_unique; Type: INDEX; Schema: public; Owner: homepage
 --
 
-CREATE UNIQUE INDEX contact_page_data_locales_locale_parent_id_unique ON public.contact_page_data_locales USING btree (_locale, _parent_id);
+CREATE UNIQUE INDEX articles_locales_locale_parent_id_unique ON public.articles_locales USING btree (_locale, _parent_id);
+
+
+--
+-- Name: articles_updated_at_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX articles_updated_at_idx ON public.articles USING btree (updated_at);
 
 
 --
@@ -2312,6 +2467,27 @@ CREATE UNIQUE INDEX home_page_data_locales_locale_parent_id_unique ON public.hom
 
 
 --
+-- Name: home_page_data_nav_locales_locale_parent_id_unique; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE UNIQUE INDEX home_page_data_nav_locales_locale_parent_id_unique ON public.home_page_data_nav_locales USING btree (_locale, _parent_id);
+
+
+--
+-- Name: home_page_data_nav_order_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX home_page_data_nav_order_idx ON public.home_page_data_nav USING btree (_order);
+
+
+--
+-- Name: home_page_data_nav_parent_id_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX home_page_data_nav_parent_id_idx ON public.home_page_data_nav USING btree (_parent_id);
+
+
+--
 -- Name: media_created_at_idx; Type: INDEX; Schema: public; Owner: homepage
 --
 
@@ -2358,6 +2534,13 @@ CREATE INDEX payload_locked_documents_created_at_idx ON public.payload_locked_do
 --
 
 CREATE INDEX payload_locked_documents_global_slug_idx ON public.payload_locked_documents USING btree (global_slug);
+
+
+--
+-- Name: payload_locked_documents_rels_articles_id_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX payload_locked_documents_rels_articles_id_idx ON public.payload_locked_documents_rels USING btree (articles_id);
 
 
 --
@@ -2585,27 +2768,19 @@ CREATE INDEX users_updated_at_idx ON public.users USING btree (updated_at);
 
 
 --
--- Name: contact_page_data_bottom_right_links_locales contact_page_data_bottom_right_links_locales_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+-- Name: about_page_data_locales about_page_data_locales_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
 --
 
-ALTER TABLE ONLY public.contact_page_data_bottom_right_links_locales
-    ADD CONSTRAINT contact_page_data_bottom_right_links_locales_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.contact_page_data_bottom_right_links(id) ON DELETE CASCADE;
-
-
---
--- Name: contact_page_data_bottom_right_links contact_page_data_bottom_right_links_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
---
-
-ALTER TABLE ONLY public.contact_page_data_bottom_right_links
-    ADD CONSTRAINT contact_page_data_bottom_right_links_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.contact_page_data(id) ON DELETE CASCADE;
+ALTER TABLE ONLY public.about_page_data_locales
+    ADD CONSTRAINT about_page_data_locales_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.about_page_data(id) ON DELETE CASCADE;
 
 
 --
--- Name: contact_page_data_locales contact_page_data_locales_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+-- Name: articles_locales articles_locales_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
 --
 
-ALTER TABLE ONLY public.contact_page_data_locales
-    ADD CONSTRAINT contact_page_data_locales_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.contact_page_data(id) ON DELETE CASCADE;
+ALTER TABLE ONLY public.articles_locales
+    ADD CONSTRAINT articles_locales_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.articles(id) ON DELETE CASCADE;
 
 
 --
@@ -2665,11 +2840,35 @@ ALTER TABLE ONLY public.home_page_data_locales
 
 
 --
+-- Name: home_page_data_nav_locales home_page_data_nav_locales_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_nav_locales
+    ADD CONSTRAINT home_page_data_nav_locales_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.home_page_data_nav(id) ON DELETE CASCADE;
+
+
+--
+-- Name: home_page_data_nav home_page_data_nav_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_nav
+    ADD CONSTRAINT home_page_data_nav_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.home_page_data(id) ON DELETE CASCADE;
+
+
+--
 -- Name: media_locales media_locales_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
 --
 
 ALTER TABLE ONLY public.media_locales
     ADD CONSTRAINT media_locales_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.media(id) ON DELETE CASCADE;
+
+
+--
+-- Name: payload_locked_documents_rels payload_locked_documents_rels_articles_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.payload_locked_documents_rels
+    ADD CONSTRAINT payload_locked_documents_rels_articles_fk FOREIGN KEY (articles_id) REFERENCES public.articles(id) ON DELETE CASCADE;
 
 
 --
