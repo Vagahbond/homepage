@@ -53,20 +53,6 @@
 
             shellHook = ''
               # start db if not running
-              if ! pgrep -f postgres > /dev/null; then
-                pgstart
-                echo "Started database.\n"
-              else
-                echo "Database already running.\n"
-              fi
-
-              # seed db if not seeded
-              if ! psql -h localhost -p 5432 -d homepage -c "SELECT * FROM users;" > /dev/null; then
-                pgseed
-                echo "Seeded database.\n"
-              else
-                echo "Database already seeded.\n"
-              fi
 
               echo "pginit init database"
               echo "pgstart start database"

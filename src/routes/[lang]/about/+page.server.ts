@@ -19,7 +19,7 @@ export const load: PageServerLoad = async ({ url, params }) => {
     redirect(308, "/")
   }
 
-  const articleIndex = url.searchParams.get('article');
+  const articleIndex = "1";// url.searchParams.get('article');
 
   const payload = await payloadHandle.getInstance()
 
@@ -31,13 +31,13 @@ export const load: PageServerLoad = async ({ url, params }) => {
     page: articleIndex ? parseInt(articleIndex) : 1
   });
 
-  const nextArticle = await payload.find({
+  const nextArticle = { docs: [] }; /* await payload.find({
     collection: 'articles',
     sort: ["-date"],
     locale: params.lang as Config['locale'],
     limit: 1,
     page: articleIndex ? parseInt(articleIndex) + 1 : 2
   });
-
+*/
   return { article: article.docs[0], nextArticle: nextArticle.docs[0], currentIndex: Number.parseInt(articleIndex ?? "1") };
 }

@@ -12,7 +12,6 @@ buildNpmPackage {
   src = ../.;
   # Does not matter as Payload is only ran durign build
   PAYLOAD_SECRET = "YOUR_SECRET_HERE";
-  DATABASE_URI = "pg://homepage:homepage@localhost:5432/homepage";
 
   nativeBuildInputs = with db; [
     pkgs.postgresql
@@ -24,9 +23,14 @@ buildNpmPackage {
   ];
 
   buildPhase = ''
-    pginit
+    export DATABASE_URI="pg://homepage:homepage@/homepage?host=$(pwd)/data";
+
+    pginit 
+
     pgstart
+
     pgconfigure
+
     pgseed
 
     npm --workspace backend run dev &
@@ -41,5 +45,5 @@ buildNpmPackage {
 
   packageJSON = ../package.json;
   packageLock = ../package-lock.json;
-  npmDepsHash = "sha256-PmxRZerXwW1aT2JpvrnaJRexd/qF9hgxnFunKHN1Q+Q=";
+  npmDepsHash = "sha256-2v6mFV1dezllg+sh9x8oDgzYV3UL/TajFLAz+aD9Gfs=";
 }

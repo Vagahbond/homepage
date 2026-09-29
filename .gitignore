@@ -24,5 +24,6 @@ vite.config.ts.timestamp-*
 
 data
 pglogfile
+pgsocket
 
 result

@@ -18,6 +18,8 @@ import { Article } from './collections/Articles'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+console.log(process.env.DATABASE_URI)
+
 export default buildConfig({
   admin: {
     user: Users.slug,
