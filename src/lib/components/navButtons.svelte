@@ -4,8 +4,18 @@
 	import { scale } from 'svelte/transition';
 	import IconEnum from 'backend/src/icons';
 	import { page } from '$app/state';
+	import { onMount } from 'svelte';
 
 	const { onLeftClicked, onRightClicked, onHomeClicked } = $props();
+
+	let nudged = $state(true);
+
+	onMount(() => {
+		nudged = false;
+		setTimeout(() => {
+			nudged = true;
+		}, 2000);
+	});
 </script>
 
 <div class="left-area">
@@ -15,6 +25,7 @@
 		}}
 		id="scroll-left-button"
 		class="scroll-button"
+		class:nudging={!nudged}
 		transition:scale
 	>
 		<Arrow direction="left" />
@@ -28,6 +39,7 @@
 		}}
 		id="scroll-right-button"
 		class="scroll-button"
+		class:nudging={!nudged}
 		transition:scale
 	>
 		<Arrow direction="right" />
@@ -81,6 +93,34 @@
 		cursor: pointer;
 
 		z-index: 10;
+	}
+
+	@keyframes nudge {
+		0% {
+			transform: translateY(0) rotate(0);
+		}
+		25% {
+			transform: translateY(0.5em);
+		}
+		50% {
+			transform: translateY(-0.5em);
+		}
+		75% {
+			transform: translateY(0.5em);
+		}
+		100% {
+			transform: translateY(0) rotate(360deg);
+		}
+	}
+
+	#scroll-left-button.nudging {
+		left: 1em;
+		animation: nudge 2s ease-in-out;
+	}
+
+	#scroll-right-button.nudging {
+		right: 1em;
+		animation: nudge 2s ease-in-out;
 	}
 
 	.left-area {

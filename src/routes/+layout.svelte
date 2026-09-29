@@ -115,6 +115,6 @@
 
 	.scrollable {
 		max-height: 100vh;
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
 </style>

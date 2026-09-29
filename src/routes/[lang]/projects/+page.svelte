@@ -26,54 +26,56 @@
 	<div class="title bordered blurred-bg">
 		<h1><span style:color="var(--fg)">❯_</span> {data.labels.title}</h1>
 	</div>
-	<div class="timeline-top"></div>
-	{#each data.projects.docs as project, index (index)}
-		{@const color = getProjectColor(index)}
-		{@const imageUrl = generateMediaUrl(project?.image?.url)}
+	<div class="timeline">
+		<div class="timeline-top"></div>
+		{#each data.projects.docs as project, index (index)}
+			{@const color = getProjectColor(index)}
+			{@const imageUrl = generateMediaUrl(project?.image?.url)}
 
-		<link rel="preload" as="image" href={imageUrl} />
+			<link rel="preload" as="image" href={imageUrl} />
 
-		<div class={`project-item ${index % 2 && 'reverse'}`}>
-			<div class="project-picture">
-				<div class="">
-					<img
-						alt={project?.image?.alt ?? ''}
-						class="screen-shape screen-shadow"
-						src={imageUrl}
-						style:--accent={color}
-					/>
-				</div>
-			</div>
-			<div class="project-center" style:--accent={color}>
-				<div class="project-circle" style:--accent={color}></div>
-			</div>
-			<div class="project-desc">
-				<div class="project-desc-frame bordered blurred-bg" style:--accent={color}>
-					<h1>{project.name}</h1>
-					<!-- <h6 class="project-date">{date.getMonth() + 1}/{date.getFullYear()}</h6> -->
-					<button
-						class="mobile-project-picture screen-shape screen-shadow"
-						onclick={() => (mobileImageModalPic = imageUrl)}
-					>
+			<div class={`project-item ${index % 2 && 'reverse'}`}>
+				<div class="project-picture">
+					<div class="">
 						<img
 							alt={project?.image?.alt ?? ''}
+							class="screen-shape screen-shadow"
 							src={imageUrl}
-							class="bordered blurred-bg"
 							style:--accent={color}
 						/>
-					</button>
-
-					<div class="project-desc-text">
-						<RichText value={project.description} />
 					</div>
-					<div class="icons-container">
-						<Links links={project.links} />
+				</div>
+				<div class="project-center" style:--accent={color}>
+					<div class="project-circle" style:--accent={color}></div>
+				</div>
+				<div class="project-desc">
+					<div class="project-desc-frame bordered blurred-bg" style:--accent={color}>
+						<h1>{project.name}</h1>
+						<!-- <h6 class="project-date">{date.getMonth() + 1}/{date.getFullYear()}</h6> -->
+						<button
+							class="mobile-project-picture screen-shape screen-shadow"
+							onclick={() => (mobileImageModalPic = imageUrl)}
+						>
+							<img
+								alt={project?.image?.alt ?? ''}
+								src={imageUrl}
+								class="bordered blurred-bg"
+								style:--accent={color}
+							/>
+						</button>
+
+						<div class="project-desc-text">
+							<RichText value={project.description} />
+						</div>
+						<div class="icons-container">
+							<Links links={project.links} />
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	{/each}
-	<div class="timeline-bottom bordered blurred-bg"></div>
+		{/each}
+		<div class="timeline-bottom bordered blurred-bg"></div>
+	</div>
 
 	<div class={`mobile-image-modal blurred-bg ${mobileImageModalPic && 'show'}`}>
 		<button onclick={() => (mobileImageModalPic = null)}>
@@ -95,17 +97,22 @@
 		z-index: 10;
 	}
 
+	.timeline {
+		overflow-y: auto;
+	}
+
 	.title {
 		transition: all 1s;
 		margin-left: 1em;
-		margin-right: 1em;
-		margin-bottom: 2em;
-		padding-left: 1em;
-		padding-right: 1em;
-		padding-top: 0.5em;
-		padding-bottom: 0.5em;
-		width: fit-content;
-		z-index: 10;
+		margin-top: 0.5em;
+		padding: 1em;
+
+		top: 0;
+		left: 0;
+
+		z-index: 30;
+
+		position: absolute;
 	}
 	.subtitle {
 		transition: all 1s;
@@ -133,6 +140,9 @@
 
 		width: 100vw;
 		min-width: 100vw;
+
+		height: 100vh;
+		max-height: 100vh;
 	}
 
 	.timeline-top {

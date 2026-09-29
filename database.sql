@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict fmLbnVUjTKWf2g75ulekgfbvYX4F0tag0DOnL9AWs5f8ChEEiAQs1J5mvO2VK7C
+\restrict mFt2brubZF3MDTndUk9QY28RlFo2vR9uhwnT8xhnv2Rtsy5A7TF82XRHSgcOntf
 
 -- Dumped from database version 18.6
 -- Dumped by pg_dump version 18.6
@@ -1606,8 +1606,8 @@ COPY public.media (id, updated_at, created_at, url, thumbnail_u_r_l, filename, m
 36	2026-03-30 12:31:12.951+13	2026-03-30 12:31:12.95+13	\N	\N	datalok-logo.svg	image/svg+xml	1980	325	65	\N	\N
 37	2026-03-30 12:40:29.342+13	2026-03-30 12:40:29.342+13	\N	\N	branches-nursery-kewarra-beach-4879-logo-519888122.gif	image/gif	150181	592	442	50	50
 38	2026-03-30 13:00:54.173+13	2026-03-30 13:00:54.172+13	\N	\N	p22_logo.svg	image/svg+xml	1212	17	23	\N	\N
-39	2026-09-29 15:44:53.923+13	2026-09-29 15:44:53.922+13	\N	\N	affine.png	image/png	70218	800	800	50	50
 40	2026-09-29 16:13:39.305+13	2026-09-29 16:13:39.304+13	\N	\N	firesplit.png	image/png	261266	2530	1784	50	50
+39	2026-09-29 23:37:38.752+13	2026-09-29 15:44:53.922+13	/api/media/file/affine.png	\N	affine-1.png	image/png	196741	1000	629	50	50
 \.
 
 
@@ -1649,8 +1649,9 @@ Marquis macadamia	40	en	35
 Datalok 	41	en	36
 Branches nursery	42	en	37
 P22 logo	43	en	38
-Affine's logo	44	en	39
 A screenshot of firesplit	45	en	40
+Affine's logo	46	en	39
+Une capture d'écran de Affine	47	fr	39
 \.
 
 
@@ -2018,7 +2019,7 @@ SELECT pg_catalog.setval('public.media_id_seq', 40, true);
 -- Name: media_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.media_locales_id_seq', 45, true);
+SELECT pg_catalog.setval('public.media_locales_id_seq', 47, true);
 
 
 --
@@ -2032,14 +2033,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 311, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 312, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 484, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 486, true);
 
 
 --
@@ -2987,5 +2988,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict fmLbnVUjTKWf2g75ulekgfbvYX4F0tag0DOnL9AWs5f8ChEEiAQs1J5mvO2VK7C
+\unrestrict mFt2brubZF3MDTndUk9QY28RlFo2vR9uhwnT8xhnv2Rtsy5A7TF82XRHSgcOntf
 
