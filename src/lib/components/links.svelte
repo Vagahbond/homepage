@@ -32,7 +32,7 @@
 		justify-content: space-between;
 		width: 100%;
 		height: 100%;
-		overflow-x: scroll;
+		overflow-x: auto;
 	}
 
 	.project-link {

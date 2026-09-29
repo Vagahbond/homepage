@@ -98,7 +98,7 @@
 
 		{#if showPage}
 			<AnimatedFrame {forward}>
-				<div class="scrollable">
+				<div class="">
 					{@render children()}
 				</div>
 			</AnimatedFrame>
