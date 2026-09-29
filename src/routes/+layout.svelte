@@ -23,13 +23,17 @@
 		'/[lang]',
 		'/[lang]/experience',
 		'/[lang]/projects',
-		'/[lang]/contact'
+		'/[lang]/about'
 	];
 
 	let curScreen = $state<RouteId>(page.route.id ?? '/[lang]');
 
 	let forward = $state<boolean>(false);
 	let showPage = $state(false);
+
+	function navigateHome(): void {
+		navigate('/[lang]');
+	}
 
 	function nextScreen(): void {
 		forward = true;
@@ -86,7 +90,11 @@
 	<svelte-css-wrapper style:--accent={accentColor}>
 		<AnimatedBackground />
 		<LangSelector />
-		<NavButtons onLeftClicked={prevScreen} onRightClicked={nextScreen} />
+		<NavButtons
+			onLeftClicked={prevScreen}
+			onRightClicked={nextScreen}
+			onHomeClicked={navigateHome}
+		/>
 
 		{#if showPage}
 			<AnimatedFrame {forward}>

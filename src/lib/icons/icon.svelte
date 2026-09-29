@@ -4,6 +4,8 @@
 	import Code from './code.svelte';
 	import Contact from './contact.svelte';
 	import Doc from './doc.svelte';
+	import Home from './home.svelte';
+	import Experiences from './experiences.svelte';
 	import Github from './github.svelte';
 	import Linkedin from './linkedin.svelte';
 	import Mail from './mail.svelte';
@@ -13,6 +15,7 @@
 	import Toggle from './toggle.svelte';
 	import Try from './try.svelte';
 	import Icon from 'backend/src/icons';
+	import Twitter from './twitter.svelte';
 
 	const { icon, ...props } = $props();
 </script>
@@ -27,6 +30,10 @@
 	<Contact {...props} />
 {:else if icon === Icon.DOC}
 	<Doc {...props} />
+{:else if icon === Icon.HOME}
+	<Home {...props} />
+{:else if icon === Icon.EXPERIENCES}
+	<Experiences {...props} />
 {:else if icon === Icon.PROJECTS}
 	<Projects {...props} />
 {:else if icon === Icon.REPO}
@@ -43,4 +50,6 @@
 	<Linkedin {...props} />
 {:else if icon === Icon.MAIL}
 	<Mail {...props} />
+{:else if icon === Icon.TWITTER}
+	<Twitter {...props} />
 {/if}

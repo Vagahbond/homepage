@@ -2,58 +2,117 @@
 	import { destroy } from '$lib/utils/destroy';
 	import { glitch } from '$lib/utils/glitch.js';
 	import { onMount } from 'svelte';
+	import Links from '$lib/components/links.svelte';
 
 	const { data } = $props();
 
-	onMount(() => {
-		glitch(document);
-	});
+	onMount(() => glitch(document));
 
 	const onDestroy = () => {
 		alert(data.labels.destructionMessage);
 		destroy(document);
 	};
+
+	let tvSkewAmount = $state({ x: 0, y: 0 });
+
+	function onMouseMove(event: MouseEvent) {
+		console.log(tvSkewAmount);
+		tvSkewAmount.x = -(event.clientX / window.innerWidth - 0.25);
+		tvSkewAmount.y = event.clientY / window.innerHeight - 0.5;
+	}
 </script>
+
+<svelte:window onmousemove={onMouseMove} />
 
 <div class="container">
 	<div class="home-screen">
 		<div class="avatar-picture-container">
-			<div class="antenna-container">
-				<div class="antenna section-base"></div>
-				<div class="antenna section-1"></div>
-				<div class="antenna section-2"></div>
-				<div class="antenna section-3"></div>
-				<div class="antenna section-bitonio"></div>
+			<div class="tv" style:transform={`rotate3d(${tvSkewAmount.y}, ${tvSkewAmount.x}, 0, 10deg)`}>
+				<div class="antenna-container">
+					<div class="antenna section-base"></div>
+					<div class="antenna section-1"></div>
+					<div class="antenna section-2"></div>
+					<div class="antenna section-3"></div>
+					<div class="antenna section-bitonio"></div>
+				</div>
+				<div class=" avatar-picture">
+					<div class="screen-shape screen-shadow screen">
+						<div class="snail-container">
+							<img alt="A magnificent snail" src="/snail.png" />
+						</div>
+					</div>
+					<div class="controls">
+						<div class="control color"><div class="dot"></div></div>
+						<div class="control glitch"><div class="dot"></div></div>
+						<div class="control position"><div class="dot"></div></div>
+						<div class="control" style:margin-top="auto" style:width="1px" style:height="1px"></div>
+						<div
+							class="control"
+							role="button"
+							tabindex="0"
+							style:width="20px"
+							style:height="3px"
+							style:border-radius="5px"
+							onclick={onDestroy}
+							onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && onDestroy()}
+						></div>
+					</div>
+				</div>
 			</div>
-			<div class=" avatar-picture">
-				<div class="screen-shape screen-shadow screen">
-					<img alt="A magnificent snail" src="/snail.png" />
-				</div>
-				<div class="controls">
-					<div class="control color"><div class="dot"></div></div>
-					<div class="control glitch"><div class="dot"></div></div>
-					<div class="control position"><div class="dot"></div></div>
-					<div class="control" style:margin-top="auto" style:width="1px" style:height="1px"></div>
-					<div
-						class="control"
-						style:width="20px"
-						style:height="3px"
-						style:border-radius="5px"
-						onclick={onDestroy}
-					></div>
-				</div>
+
+			<div class="bordered blurred-bg links">
+				<Links links={data.labels.links} />
 			</div>
 		</div>
+
 		<div class="bordered blurred-bg name">
-			<h1 id="name" class="glitch-text">Vagahbond</h1>
-			<!-- <h4 id="aka">A.K.A.</h4> -->
-			<!-- <h1 id="username">Vagahbond</h1> -->
-			<h2 id="title" class="glitch-text">
-				{data.labels.title}
+			<h1 id="name"><span style:color="var(--accent)">#_</span> Vagahbond</h1>
+			<div class="navbar">
+				<!--
+				<div class="navbar-item clickable">
+					<a href={resolve('/[lang]/experience', { lang: lang })} class="navbar-link">
+						<div class="navbar-link-icon">
+							<Icon width="auto" height="100%" icon={IconEnum.EXPERIENCES} class="clickable" />
+						</div>
+						Career</a
+					>
+				</div>
+
+				<div class="navbar-item clickable">
+					<a href={resolve('/[lang]/projects', { lang: lang })} class="navbar-link">
+						<div class="navbar-link-icon">
+							<Icon width="auto" height="100%" icon={IconEnum.CODE} class="clickable" />
+						</div>
+						Projects</a
+					>
+				</div>
+
+				<div class="navbar-item clickable">
+					<a href={resolve('/[lang]/about', { lang: lang })} class="navbar-link">
+						<div class="navbar-link-icon">
+							<Icon width="auto" height="100%" icon={IconEnum.CONTACT} class="clickable" />
+						</div>
+						About</a
+					>
+				</div>
+        -->
+
+				<Links links={data.labels.nav} />
+			</div>
+
+			<div class="titles">
+				<h2 id="title" class="glitch-text">
+					{data.labels.title}
+				</h2>
+				<h2 style:color="var(--accent)">&amp;</h2>
+				<h2 id="other-title" class="glitch-text">
+					{data.labels.subtitle}
+				</h2>
+			</div>
+
+			<h2 id="location" class="glitch-text">
+				<span id="location-name">{data.labels.location}</span>
 			</h2>
-			<h3 id="location" class="glitch-text">
-				Location: <span id="location-name">{data.labels.location}</span>
-			</h3>
 		</div>
 	</div>
 </div>
@@ -83,8 +142,13 @@
 	}
 
 	.avatar-picture-container {
-		margin-top: auto;
-		margin-bottom: auto;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		height: 100%;
+
+		gap: 1em;
 	}
 
 	.avatar-picture * {
@@ -119,6 +183,8 @@
 		background-color: var(--fg);
 		border-radius: 20px;
 		padding: 0em;
+
+		box-shadow: 10px 10px 10px var(--accent);
 	}
 
 	.avatar-picture-container:hover img {
@@ -174,7 +240,6 @@
 	.avatar-picture:has(.glitch:hover) .screen::after {
 		left: 3em;
 		right: 0em;
-		background-color: var(--fg);
 		opacity: 0.5;
 		animation: glitch3 2.5s infinite;
 	}
@@ -183,6 +248,10 @@
 		animation: glitch1 2.5s infinite;
 		filter: brightness(60%) contrast(0.3) hue-rotate(10deg);
 		opacity: 0.4;
+	}
+
+	.avatar-picture:has(.glitch:hover) .snail-container {
+		animation: distort 6s ease-in-out infinite;
 	}
 
 	.avatar-picture:has(.position:hover) img {
@@ -196,12 +265,12 @@
 	.name {
 		transition: all 0.5s ease-in-out;
 		padding: 0em 0em;
-		margin-top: auto;
-		margin-bottom: auto;
 
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		align-items: center;
+		justify-content: center;
+		gap: 3rem;
 	}
 
 	.name * {
@@ -216,35 +285,51 @@
 		height: 1.75em;
 		margin: 0;
 		color: var(--fg);
+		display: inline-block;
+		width: max-content;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
 	}
 
-	#aka,
-	#username {
-		height: 0;
-		overflow: hidden;
-		white-space: nowrap;
+	#name span {
+		width: min-content;
+	}
+
+	.titles {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	#title {
 		margin: 0;
+		color: var(--fg);
 	}
 
-	#username {
-		color: var(--accent);
+	#other-title {
+		margin: 0;
+		color: var(--fg);
 	}
 
 	#location {
-		color: var(--fg);
-		white-space: nowrap;
-		display: block;
+		margin: 0;
+		text-overflow: clip;
 	}
 
 	#location-name {
 		color: var(--accent);
-		white-space: nowrap;
-		display: inline;
+		width: max-content;
 	}
 
-	.name:hover #aka,
-	.name:hover #username {
-		height: 1.75em;
+	.navbar {
+		display: flex;
+		flex-direction: row;
+		gap: 0.5em;
+		justify-content: space-between;
+		width: 100%;
 	}
 
 	@media (max-width: 800px) {
@@ -272,8 +357,39 @@
 	}
 
 	@media (max-width: 600px) {
+		.home-screen {
+			flex-direction: column-reverse;
+			justify-content: center;
+			align-items: center;
+			gap: 2em;
+
+			max-width: 100vw;
+			overflow: hidden;
+
+			margin: 0;
+		}
+
+		.avatar-picture-container {
+			height: auto;
+			margin: 0;
+		}
+
 		.name {
 			padding: 0.5em 1.5em;
+			margin: 0;
+		}
+
+		#location {
+			display: none;
+		}
+
+		.titles {
+			display: none;
+		}
+
+		.navbar {
+			max-width: 100vw;
+			overflow: hidden;
 		}
 	}
 
@@ -322,7 +438,7 @@
 	}
 
 	.antenna-container {
-		transition: all 3s ease-in-out;
+		transition: all 1s ease-in-out;
 		margin: 0 1em;
 		padding: 0;
 		height: 10px;
@@ -336,15 +452,15 @@
 		width: 100%;
 	}
 
-	.avatar-picture-container:hover .antenna-container {
+	.tv:hover .antenna-container {
 		transform: rotate(330deg);
 	}
 
-	.avatar-picture-container:hover .antenna-container .section-3 {
+	.tv:hover .antenna-container .section-3 {
 		width: 32%;
 	}
 
-	.avatar-picture-container:hover .antenna-container .section-2 {
+	.tv:hover .antenna-container .section-2 {
 		width: 32%;
 	}
 
@@ -359,13 +475,13 @@
 	}
 
 	.section-2 {
-		transition: width 3s ease-in-out;
+		transition: width 1s ease-in-out;
 		height: 3px;
 		width: 0;
 	}
 
 	.section-3 {
-		transition: width 2s ease-in-out;
+		transition: width 1s ease-in-out;
 		height: 1px;
 		width: 0;
 	}
@@ -379,5 +495,64 @@
 		width: 10px;
 		height: 10px;
 		border-radius: 100%;
+	}
+
+	@keyframes distort {
+		0% {
+			transform: skew(0deg, 0deg);
+		}
+		12% {
+			transform: skew(0deg, 0deg);
+		}
+		13% {
+			transform: skew(120deg, 0deg);
+		}
+		14% {
+			transform: skew(0deg, 0deg);
+		}
+		15% {
+			transform: skew(110deg, 0deg);
+		}
+		16% {
+			transform: skew(0deg, 0deg);
+		}
+		40% {
+			transform: skew(0deg, 0deg);
+		}
+		41% {
+			transform: skew(-98deg, 0deg);
+		}
+		42% {
+			transform: skew(0deg, 0deg);
+		}
+		70% {
+			transform: skew(0deg, 0deg);
+		}
+		71% {
+			transform: skew(110deg, 0deg);
+		}
+		72% {
+			transform: skew(-90deg, 0deg);
+		}
+		73% {
+			transform: skew(110deg, 0deg);
+		}
+		74% {
+			transform: skew(0deg, 0deg);
+		}
+		100% {
+			transform: skew(0deg, 0deg);
+		}
+	}
+
+	.snail-container {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	.links {
+		padding: 2em 0;
 	}
 </style>

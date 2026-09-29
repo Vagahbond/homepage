@@ -10,9 +10,7 @@
 
 	const { data } = $props<{ data: PaginatedDocs<Project> }>();
 
-	onMount(() => {
-		glitch(document);
-	});
+	onMount(() => glitch(document));
 
 	let mobileImageModalPic = $state<string | null>(null);
 
@@ -26,8 +24,7 @@
 
 <div class="projects-screen">
 	<div class="title bordered blurred-bg">
-		<h1>{data.labels.title}</h1>
-		<h4 class="subtitle">{data.labels.subtitle}</h4>
+		<h1><span style:color="var(--fg)">❯_</span> {data.labels.title}</h1>
 	</div>
 	<div class="timeline-top"></div>
 	{#each data.projects.docs as project, index (index)}
@@ -127,10 +124,6 @@
 
 	.title:hover h1 {
 		margin-bottom: 0;
-	}
-
-	.title:hover .subtitle {
-		height: 2em;
 	}
 
 	.projects-screen {
@@ -273,7 +266,7 @@
 		margin-top: 2em;
 		display: flex;
 		flex-direction: row;
-		width: 100%;
+		width: min-content;
 	}
 
 	.mobile-image-modal {
@@ -290,11 +283,6 @@
 		.subtitle {
 			margin-left: 0;
 			padding-left: 0;
-		}
-
-		.title:hover .subtitle {
-			padding-top: 1em;
-			height: 3em;
 		}
 
 		.project-item {

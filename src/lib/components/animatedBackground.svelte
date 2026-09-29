@@ -12,6 +12,7 @@
 <style>
 	#bg-anim {
 		position: fixed;
+		z-index: -1;
 		padding: 0;
 		width: 100%;
 		display: grid;

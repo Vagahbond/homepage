@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     projects: Project;
     experiences: Experience;
+    articles: Article;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     experiences: ExperiencesSelect<false> | ExperiencesSelect<true>;
+    articles: ArticlesSelect<false> | ArticlesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -94,13 +96,13 @@ export interface Config {
   globals: {
     homePageData: HomePageDatum;
     projectsPageData: ProjectsPageDatum;
-    contactPageData: ContactPageDatum;
+    aboutPageData: AboutPageDatum;
     experiencesPageData: ExperiencesPageDatum;
   };
   globalsSelect: {
     homePageData: HomePageDataSelect<false> | HomePageDataSelect<true>;
     projectsPageData: ProjectsPageDataSelect<false> | ProjectsPageDataSelect<true>;
-    contactPageData: ContactPageDataSelect<false> | ContactPageDataSelect<true>;
+    aboutPageData: AboutPageDataSelect<false> | AboutPageDataSelect<true>;
     experiencesPageData: ExperiencesPageDataSelect<false> | ExperiencesPageDataSelect<true>;
   };
   locale: 'en' | 'fr';
@@ -212,11 +214,14 @@ export interface Project {
               | 'code'
               | 'contact'
               | 'doc'
+              | 'home'
+              | 'experiences'
               | 'projects'
               | 'repo'
               | 'resume'
               | 'toggle'
               | 'try'
+              | 'twitter'
             )
           | null;
         id?: string | null;
@@ -273,6 +278,32 @@ export interface Experience {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles".
+ */
+export interface Article {
+  id: number;
+  title: string;
+  exceprt: string;
+  text: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -310,6 +341,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'experiences';
         value: number | Experience;
+      } | null)
+    | ({
+        relationTo: 'articles';
+        value: number | Article;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -447,6 +482,17 @@ export interface ExperiencesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles_select".
+ */
+export interface ArticlesSelect<T extends boolean = true> {
+  title?: T;
+  exceprt?: T;
+  text?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -492,8 +538,63 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface HomePageDatum {
   id: number;
   title: string;
+  subtitle: string;
   location: string;
   destructionMessage?: string | null;
+  links?:
+    | {
+        label?: string | null;
+        url?: string | null;
+        icon?:
+          | (
+              | 'mail'
+              | 'linkedin'
+              | 'github'
+              | 'arrow'
+              | 'close'
+              | 'code'
+              | 'contact'
+              | 'doc'
+              | 'home'
+              | 'experiences'
+              | 'projects'
+              | 'repo'
+              | 'resume'
+              | 'toggle'
+              | 'try'
+              | 'twitter'
+            )
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  nav?:
+    | {
+        label?: string | null;
+        url?: string | null;
+        icon?:
+          | (
+              | 'mail'
+              | 'linkedin'
+              | 'github'
+              | 'arrow'
+              | 'close'
+              | 'code'
+              | 'contact'
+              | 'doc'
+              | 'home'
+              | 'experiences'
+              | 'projects'
+              | 'repo'
+              | 'resume'
+              | 'toggle'
+              | 'try'
+              | 'twitter'
+            )
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -504,97 +605,30 @@ export interface HomePageDatum {
 export interface ProjectsPageDatum {
   id: number;
   title: string;
-  subtitle: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contactPageData".
+ * via the `definition` "aboutPageData".
  */
-export interface ContactPageDatum {
+export interface AboutPageDatum {
   id: number;
-  topLeft: {
-    title: string;
-    text: {
-      root: {
-        type: string;
-        children: {
-          type: any;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
+  title: string;
+  text: {
+    root: {
+      type: string;
+      children: {
+        type: any;
         version: number;
-      };
-      [k: string]: unknown;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
     };
-  };
-  topRight: {
-    title: string;
-    text: {
-      root: {
-        type: string;
-        children: {
-          type: any;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    };
-  };
-  bottomLeft: {
-    title: string;
-    text: {
-      root: {
-        type: string;
-        children: {
-          type: any;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    };
-  };
-  bottomRight: {
-    title: string;
-    email: string;
-    links?:
-      | {
-          label?: string | null;
-          url?: string | null;
-          icon?:
-            | (
-                | 'mail'
-                | 'linkedin'
-                | 'github'
-                | 'arrow'
-                | 'close'
-                | 'code'
-                | 'contact'
-                | 'doc'
-                | 'projects'
-                | 'repo'
-                | 'resume'
-                | 'toggle'
-                | 'try'
-              )
-            | null;
-          id?: string | null;
-        }[]
-      | null;
+    [k: string]: unknown;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -606,7 +640,6 @@ export interface ContactPageDatum {
 export interface ExperiencesPageDatum {
   id: number;
   title: string;
-  subtitle: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -616,8 +649,25 @@ export interface ExperiencesPageDatum {
  */
 export interface HomePageDataSelect<T extends boolean = true> {
   title?: T;
+  subtitle?: T;
   location?: T;
   destructionMessage?: T;
+  links?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        icon?: T;
+        id?: T;
+      };
+  nav?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        icon?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -628,48 +678,17 @@ export interface HomePageDataSelect<T extends boolean = true> {
  */
 export interface ProjectsPageDataSelect<T extends boolean = true> {
   title?: T;
-  subtitle?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "contactPageData_select".
+ * via the `definition` "aboutPageData_select".
  */
-export interface ContactPageDataSelect<T extends boolean = true> {
-  topLeft?:
-    | T
-    | {
-        title?: T;
-        text?: T;
-      };
-  topRight?:
-    | T
-    | {
-        title?: T;
-        text?: T;
-      };
-  bottomLeft?:
-    | T
-    | {
-        title?: T;
-        text?: T;
-      };
-  bottomRight?:
-    | T
-    | {
-        title?: T;
-        email?: T;
-        links?:
-          | T
-          | {
-              label?: T;
-              url?: T;
-              icon?: T;
-              id?: T;
-            };
-      };
+export interface AboutPageDataSelect<T extends boolean = true> {
+  title?: T;
+  text?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -680,7 +699,6 @@ export interface ContactPageDataSelect<T extends boolean = true> {
  */
 export interface ExperiencesPageDataSelect<T extends boolean = true> {
   title?: T;
-  subtitle?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

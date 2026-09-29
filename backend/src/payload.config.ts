@@ -8,11 +8,12 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Project } from './collections/Project'
-import { ContactPageData } from './globales/ContactPageData'
+import { AboutPageData } from './globales/AboutPageData'
 import { HomePageData } from './globales/HomePageData'
 import { ProjectsPageData } from './globales/ProjectsPageData'
 import { Experience } from './collections/Experiences'
 import { ExperiencesPageData } from './globales/ExperiencePageData'
+import { Article } from './collections/Articles'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -28,8 +29,8 @@ export default buildConfig({
     defaultLocale: "en",
     locales: ["en", "fr"]
   },
-  collections: [Users, Media, Project, Experience],
-  globals: [HomePageData, ProjectsPageData, ContactPageData, ExperiencesPageData],
+  collections: [Users, Media, Project, Experience, Article],
+  globals: [HomePageData, ProjectsPageData, AboutPageData, ExperiencesPageData],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

@@ -13,12 +13,5 @@ export const ProjectsPageData: GlobalConfig = {
       type: 'text',
       required: true
     },
-    {
-      label: 'Subtitle',
-      localized: true,
-      name: 'subtitle',
-      type: 'text',
-      required: true
-    },
   ]
 }

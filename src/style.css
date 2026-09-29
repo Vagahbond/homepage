@@ -19,14 +19,13 @@
   font-style: monospace;
 }
 
+/*
 * {
   -ms-overflow-style: none;
-  /* IE 11 */
   scrollbar-width: none;
-  /* Firefox 64 */
   scrollbar-width: none;
 }
-
+*/
 
 html {
   padding: 0;
@@ -67,12 +66,13 @@ h6,
   color: var(--accent);
 }
 
+
 .subtitle {
   color: var(--fg);
 }
 
 
-.bordered * {
+.bordered {
   cursor: url(/default_helpsel.cur), auto;
 }
 
