@@ -129,10 +129,6 @@
 		transition: all 1s;
 	}
 
-	.title:hover h1 {
-		margin-bottom: 0;
-	}
-
 	.projects-screen {
 		display: flex;
 		flex-direction: column;
@@ -287,20 +283,15 @@
 		.title {
 			width: auto;
 			margin: 0em 1em;
-			margin-bottom: 2em;
-		}
-
-		.subtitle {
-			margin-left: 0;
-			padding-left: 0;
+			padding: 0;
+			position: relative;
 		}
 
 		.project-item {
-			padding-left: 1em;
-			padding-right: 1em;
 			justify-content: space-between;
 			width: 100%;
 			margin: 0;
+			padding: 0;
 			max-height: unset;
 			height: fit-content;
 		}
@@ -320,7 +311,7 @@
 		}
 
 		.project-circle {
-			width: 2vw;
+			width: 0;
 			border-radius: 2vw;
 		}
 
@@ -347,8 +338,8 @@
 		}
 
 		.project-desc-frame {
-			padding: 1em 1em;
-			margin: 2em 1em;
+			/*padding: 1em 1em;
+			margin: 1em 1em;*/
 			width: 100%;
 
 			max-height: unset;

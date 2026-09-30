@@ -96,4 +96,10 @@
 
 		backdrop-filter: blur(10px);
 	}
+
+  @media (max-width: 800px) {
+    .rich-text {
+      padding: 0 1em;
+    }
+  }
 </style>

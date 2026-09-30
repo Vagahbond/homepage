@@ -95,7 +95,7 @@
 <svelte:window onwheel={onScroll} ontouchstart={onSwipe} ontouchend={onSwipe} />
 
 <div class="experiences-screen">
-	<div class="title bordered blurred-bg">
+	<div class="title bordered blurred-bg" class:hidden-on-mobile={currentIndex > 0}>
 		<h1><span style:color="var(--fg)">$_</span> {data.labels.title}</h1>
 	</div>
 
@@ -223,10 +223,12 @@
 
 	.scroll-button.up {
 		top: 1.5em;
+		z-index: 30;
 	}
 
 	.scroll-button.down {
 		bottom: 1.5em;
+		z-index: 30;
 	}
 
 	.title {
@@ -355,6 +357,10 @@
 	}
 
 	@media (max-width: 800px) {
+		.hidden-on-mobile {
+			display: none;
+		}
+
 		.experience-picture {
 			margin: 0;
 			padding: 0 1em;
