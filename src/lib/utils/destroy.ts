@@ -18,7 +18,7 @@ export function destroy(document: Document) {
 
       text.innerHTML = text.innerHTML.substring(0, textIndex) + chars[charIndex] + text.innerHTML.substring(textIndex + 1);
 
-    }, 1000)
+    }, 200)
 
   })
 
