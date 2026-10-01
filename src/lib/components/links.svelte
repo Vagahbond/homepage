@@ -18,7 +18,7 @@
 
 		<a class="project-link" href={link.url}>
 			<div class="project-link-icon">
-				<Icon width="auto" height="100%" {icon} />
+				<Icon style={{ width: 'auto' }} height="100%" {icon} />
 			</div>
 			{link.label}
 		</a>
@@ -29,8 +29,10 @@
 	.links-container {
 		display: flex;
 		flex-direction: row;
+		gap: 1em;
 		justify-content: space-between;
 		width: 100%;
+		max-width: 100vw;
 		height: 100%;
 		overflow-x: auto;
 	}
@@ -42,8 +44,6 @@
 		text-align: center;
 
 		min-width: max-content;
-		width: 6vh;
-		margin-left: 1em;
 		border-radius: 0.5em;
 		backdrop-filter: blur(10px);
 		padding: 0.2em;
@@ -57,10 +57,12 @@
 		transition: all 1s;
 		min-height: 3vh;
 		max-height: 3vh;
-		margin: 0 auto;
+		margin: 0;
 		margin-bottom: 0.5em;
 		overflow: hidden;
 		color: var(--accent);
+
+		width: auto;
 	}
 
 	.project-link:hover .project-link-icon {

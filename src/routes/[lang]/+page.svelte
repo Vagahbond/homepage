@@ -339,6 +339,10 @@
 			overflow-y: scroll;
 		}
 
+		.navbar {
+			max-width: 100vw;
+			overflow: hidden;
+		}
 		.avatar-picture-container {
 			margin-left: auto;
 			margin-right: auto;
@@ -367,6 +371,7 @@
 			overflow: hidden;
 
 			margin: 0;
+			padding: 0;
 		}
 
 		.avatar-picture-container {
@@ -390,6 +395,7 @@
 		.navbar {
 			max-width: 100vw;
 			overflow: hidden;
+			margin: 0;
 		}
 	}
 
