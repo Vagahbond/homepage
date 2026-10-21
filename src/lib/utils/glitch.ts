@@ -5,7 +5,7 @@ export function glitch(document: Document) {
   const timeouts = new Set<ReturnType<typeof setTimeout>>();
 
   // All the divs that contain text
-  const all = document.querySelectorAll('h1, h2, h3, h4, h5, h6, span, p')
+  const all = document.querySelectorAll('h1:not(.exclude), h2:not(.exclude), h3:not(.exclude), h4:not(.exclude), h5:not(.exclude), h6:not(.exclude), span:not(.exclude), p:not(.exclude)')
     .entries().filter(e => e[1].textContent.length > 0).map(e => e[1]);
 
   all.forEach(element => {

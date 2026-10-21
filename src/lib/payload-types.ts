@@ -538,7 +538,10 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface HomePageDatum {
   id: number;
   title: string;
-  subtitle: string;
+  subtitles: {
+    label?: string | null;
+    id?: string | null;
+  }[];
   location: string;
   destructionMessage?: string | null;
   links?:
@@ -649,7 +652,12 @@ export interface ExperiencesPageDatum {
  */
 export interface HomePageDataSelect<T extends boolean = true> {
   title?: T;
-  subtitle?: T;
+  subtitles?:
+    | T
+    | {
+        label?: T;
+        id?: T;
+      };
   location?: T;
   destructionMessage?: T;
   links?:

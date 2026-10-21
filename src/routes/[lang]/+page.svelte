@@ -4,7 +4,14 @@
 	import { onMount } from 'svelte';
 	import Links from '$lib/components/links.svelte';
 
+	const GLITCH_CHARACTERS = ['░', '▒', '▓', '█', '▄', '▀'];
+
 	const { data } = $props();
+
+	let subTitleIndex = $state(0);
+	let subTitle = $state('');
+
+	$inspect(subTitle);
 
 	onMount(() => glitch(document));
 
@@ -16,10 +23,77 @@
 	let tvSkewAmount = $state({ x: 0, y: 0 });
 
 	function onMouseMove(event: MouseEvent) {
-		console.log(tvSkewAmount);
 		tvSkewAmount.x = -(event.clientX / window.innerWidth - 0.25);
 		tvSkewAmount.y = event.clientY / window.innerHeight - 0.5;
 	}
+
+	function switchSubtitle(targetLabel: string) {
+		if (!targetLabel) return;
+
+		if (subTitle.length > targetLabel.length) {
+			subTitle = subTitle.slice(0, targetLabel.length - 1);
+		} else if (subTitle.length < targetLabel.length) {
+			subTitle = subTitle.padEnd(targetLabel.length, ' ');
+		}
+
+		for (let i = 0; i < targetLabel.length; i++) {
+			const random = Math.floor(Math.random() * 500);
+
+			setTimeout(() => {
+				let glitchChar =
+					GLITCH_CHARACTERS[Math.floor(Math.random() * GLITCH_CHARACTERS.length) - 1];
+
+				let newSubTitle = replaceAt(subTitle, i, glitchChar);
+
+				subTitle = newSubTitle;
+
+				setTimeout(() => {
+					let newSubTitle = replaceAt(subTitle, i, targetLabel[i]);
+					subTitle = newSubTitle;
+				}, random);
+			}, random);
+		}
+	}
+
+	onMount(() => {
+		switchSubtitle(data.labels.subtitles[subTitleIndex].label ?? '');
+		setInterval(() => {
+			subTitleIndex = (subTitleIndex + 1) % data.labels.subtitles.length;
+			switchSubtitle(data.labels.subtitles[subTitleIndex].label ?? '');
+		}, 5000);
+	});
+
+	function replaceAt(str: string, index: number, replacement: string | undefined) {
+		let arr = str.split('');
+		arr[index] = replacement ?? '#';
+		return arr.join('');
+	}
+
+	/*
+	onMount(() => {
+		const targetLabel = data.labels.subtitles[subTitleIndex].label;
+		if (!targetLabel) return;
+
+		for (let i = 0; i < Math.max(targetLabel.length, subTitle.length); i++) {
+			const random = Math.floor(Math.random() * 500);
+
+			setTimeout(() => {
+				if (i >= targetLabel.length) {
+					const newSubTitle = (subTitle = subTitle.slice(0, i));
+					subTitle = newSubTitle;
+					return;
+				}
+
+				let glitchChar = GLITCH_CHARACTERS[Math.floor(Math.random() * GLITCH_CHARACTERS.length)];
+				let newSubTitle = replaceAt(subTitle, i, glitchChar);
+				subTitle = newSubTitle;
+				setTimeout(() => {
+					let newSubTitle = replaceAt(subTitle, i, targetLabel[i]);
+					subTitle = newSubTitle;
+				}, random);
+			}, random);
+		}
+	}); */
 </script>
 
 <svelte:window onmousemove={onMouseMove} />
@@ -68,35 +142,6 @@
 		<div class="bordered blurred-bg name">
 			<h1 id="name"><span style:color="var(--accent)">#_</span> Vagahbond</h1>
 			<div class="navbar">
-				<!--
-				<div class="navbar-item clickable">
-					<a href={resolve('/[lang]/experience', { lang: lang })} class="navbar-link">
-						<div class="navbar-link-icon">
-							<Icon width="auto" height="100%" icon={IconEnum.EXPERIENCES} class="clickable" />
-						</div>
-						Career</a
-					>
-				</div>
-
-				<div class="navbar-item clickable">
-					<a href={resolve('/[lang]/projects', { lang: lang })} class="navbar-link">
-						<div class="navbar-link-icon">
-							<Icon width="auto" height="100%" icon={IconEnum.CODE} class="clickable" />
-						</div>
-						Projects</a
-					>
-				</div>
-
-				<div class="navbar-item clickable">
-					<a href={resolve('/[lang]/about', { lang: lang })} class="navbar-link">
-						<div class="navbar-link-icon">
-							<Icon width="auto" height="100%" icon={IconEnum.CONTACT} class="clickable" />
-						</div>
-						About</a
-					>
-				</div>
-        -->
-
 				<Links links={data.labels.nav} />
 			</div>
 
@@ -105,13 +150,15 @@
 					{data.labels.title}
 				</h2>
 				<h2 style:color="var(--accent)">&amp;</h2>
-				<h2 id="other-title" class="glitch-text">
-					{data.labels.subtitle}
+				<h2 id="other-title" class="glitch-text exclude">
+					{subTitle}
 				</h2>
 			</div>
 
 			<h2 id="location" class="glitch-text">
-				<span id="location-name">{data.labels.location}</span>
+				<span id="location-name">
+					{data.labels.location}
+				</span>
 			</h2>
 		</div>
 	</div>

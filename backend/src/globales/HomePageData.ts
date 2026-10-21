@@ -15,12 +15,20 @@ export const HomePageData: GlobalConfig = {
       required: true
     },
     {
-      label: 'Subtitle',
-      localized: true,
-      name: 'subtitle',
-      type: 'text',
+      label: 'Subtitles',
+      localized: false,
+      name: 'subtitles',
+      type: 'array',
       required: true,
-      defaultValue: ''
+      defaultValue: [],
+      fields: [
+        {
+          name: 'label',
+          label: 'Label',
+          type: 'text',
+          localized: true
+        }
+      ],
     },
 
     {
