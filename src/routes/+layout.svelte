@@ -10,14 +10,35 @@
 	import type { RouteId } from '$app/types';
 	import LangSelector from '$lib/components/langSelector.svelte';
 	import NavButtons from '$lib/components/navButtons.svelte';
+	import { isSupportedLanguage, supportedLanguages } from '$lib/utils/language';
+	import { PUBLIC_SITE_ORIGIN } from '$env/static/public';
+	import { getSiteOrigin } from '$lib/utils/site';
+	import type { RoutesWithLang } from '$lib/utils/nav';
 
 	let { children } = $props();
+
+	const siteOrigin = getSiteOrigin(PUBLIC_SITE_ORIGIN);
 
 	let accentColor = $state('');
 
 	onMount(() => {
 		accentColor = getAccentColor();
 	});
+
+	$effect(() => {
+		const lang = page.params.lang;
+		document.documentElement.lang = isSupportedLanguage(lang) ? lang : 'en';
+		if (isSupportedLanguage(lang)) {
+			document.cookie = `lang=${lang}; Path=/; Max-Age=31536000; SameSite=Lax`;
+		}
+	});
+
+	const localizedRoute = $derived(
+		page.route.id?.startsWith('/[lang]') ? (page.route.id as RoutesWithLang) : '/[lang]'
+	);
+	const defaultPath = $derived(
+		localizedRoute === '/[lang]' ? resolve('/') : resolve(localizedRoute, { lang: 'en' })
+	);
 
 	const screens: Array<RouteId> = [
 		'/[lang]',
@@ -29,7 +50,7 @@
 	let curScreen = $state<RouteId>(page.route.id ?? '/[lang]');
 
 	let forward = $state<boolean>(false);
-	let showPage = $state(false);
+	let showPage = $state(true);
 
 	function navigateHome(): void {
 		navigate('/[lang]');
@@ -79,11 +100,19 @@
 			}
 		}
 	}
-
-	onMount(() => {
-		showPage = true;
-	});
 </script>
+
+<svelte:head>
+	<link rel="canonical" href={new URL(page.url.pathname, siteOrigin).href} />
+	{#each supportedLanguages as lang (lang)}
+		<link
+			rel="alternate"
+			hreflang={lang}
+			href={new URL(resolve(localizedRoute, { lang }), siteOrigin).href}
+		/>
+	{/each}
+	<link rel="alternate" hreflang="x-default" href={new URL(defaultPath, siteOrigin).href} />
+</svelte:head>
 
 <svelte:window on:keydown={on_key_down} />
 <div class="crt">

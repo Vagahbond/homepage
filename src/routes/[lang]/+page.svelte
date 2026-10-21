@@ -68,6 +68,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Yoni Firroloni | {data.labels.title}</title>
+</svelte:head>
+
 <svelte:window onmousemove={onMouseMove} />
 
 <div class="container">

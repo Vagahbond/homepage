@@ -3,21 +3,31 @@
 	import { page } from '$app/state';
 	import type { RoutesWithLang } from '$lib/utils/nav';
 
-	const route = $derived(page.route.id as RoutesWithLang);
+	const route = $derived(
+		page.route.id?.startsWith('/[lang]') ? (page.route.id as RoutesWithLang) : '/[lang]'
+	);
 </script>
 
-<div class="lang-selector ">
-	<!-- eslint-disable-next-line @typescript-eslint/ban-ts-comment -->
-	<!-- @ts-ignore -->
+<div class="lang-selector">
 	<a
-		class={`screen-shape ${page.params.lang === 'fr' && 'selected'}`}
+		class="screen-shape"
+		class:selected={page.params.lang === 'fr'}
 		href={resolve(route, { lang: 'fr' })}
+		lang="fr"
+		hreflang="fr"
+		aria-label="Français"
+		aria-current={page.params.lang === 'fr' ? 'page' : undefined}
 	>
 		<span> 🇫🇷 </span>
 	</a>
 	<a
-		class={`screen-shape ${page.params.lang === 'en' && 'selected'}`}
-		href={resolve(route, { lang: 'en' })}>🇺🇸</a
+		class="screen-shape"
+		class:selected={page.params.lang === 'en'}
+		href={resolve(route, { lang: 'en' })}
+		lang="en"
+		hreflang="en"
+		aria-label="English"
+		aria-current={page.params.lang === 'en' ? 'page' : undefined}>🇺🇸</a
 	>
 </div>
 

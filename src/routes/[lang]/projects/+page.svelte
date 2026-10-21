@@ -22,6 +22,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Yoni Firroloni | {data.labels.title}</title>
+</svelte:head>
+
 <div class="projects-screen">
 	<div class="title bordered blurred-bg">
 		<h1><span style:color="var(--fg)">❯_</span> {data.labels.title}</h1>

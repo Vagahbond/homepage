@@ -100,6 +100,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Yoni Firroloni | {data.labels.title}</title>
+</svelte:head>
+
 <svelte:window
 	onwheel={onScroll}
 	ontouchstart={onSwipe}

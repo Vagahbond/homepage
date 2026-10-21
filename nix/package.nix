@@ -2,6 +2,7 @@
   pkgs,
   lib,
   buildNpmPackage,
+  siteOrigin ? null,
 }:
 let
   db = import ./database.nix { inherit pkgs; };
@@ -10,6 +11,7 @@ in
 buildNpmPackage {
   name = "homepage";
   src = ../.;
+  PUBLIC_SITE_ORIGIN = lib.optionalString (siteOrigin != null) siteOrigin;
   # Does not matter as Payload is only ran durign build
   PAYLOAD_SECRET = "YOUR_SECRET_HERE";
 

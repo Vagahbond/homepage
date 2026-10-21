@@ -20,6 +20,10 @@
 	onMount(() => glitch(document));
 </script>
 
+<svelte:head>
+	<title>Yoni Firroloni | {data.article.title}</title>
+</svelte:head>
+
 <div class="about-screen">
 	<h1 class="title"><span style:color="var(--fg)">󱄅❯</span> {data.article.title}</h1>
 	<div class="rich-text">
@@ -97,9 +101,9 @@
 		backdrop-filter: blur(10px);
 	}
 
-  @media (max-width: 800px) {
-    .rich-text {
-      padding: 0 1em;
-    }
-  }
+	@media (max-width: 800px) {
+		.rich-text {
+			padding: 0 1em;
+		}
+	}
 </style>
