@@ -60,6 +60,14 @@
 		}, 300);
 	}
 
+	function onKeyDown(e: KeyboardEvent) {
+		if (e.key === 'ArrowDown') {
+			incrementIndex();
+		} else if (e.key === 'ArrowUp') {
+			incrementIndex(true);
+		}
+	}
+
 	function onSwipe(e: TouchEvent) {
 		if (!e.changedTouches.length) return;
 
@@ -92,7 +100,12 @@
 	}
 </script>
 
-<svelte:window onwheel={onScroll} ontouchstart={onSwipe} ontouchend={onSwipe} />
+<svelte:window
+	onwheel={onScroll}
+	ontouchstart={onSwipe}
+	ontouchend={onSwipe}
+	onkeydown={onKeyDown}
+/>
 
 <div class="experiences-screen">
 	<div class="title bordered blurred-bg" class:hidden-on-mobile={currentIndex > 0}>
