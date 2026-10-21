@@ -7,8 +7,8 @@
 </script>
 
 <div
-	out:fly={{ delay: 0, duration: 500, x: -animXCoord, easing: cubicIn }}
-	in:fly={{ delay: 500, duration: 500, x: animXCoord, easing: cubicOut }}
+	out:fly={{ delay: 0, duration: 250, x: -animXCoord, easing: cubicIn }}
+	in:fly={{ delay: 0, duration: 250, x: animXCoord, easing: cubicOut }}
 >
 	{@render children()}
 </div>
