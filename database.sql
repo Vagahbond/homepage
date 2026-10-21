@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 2P5IMVeLuxwXN0Vnw9CmVrilL2eJoqluiZKdL1h0pZjCzb4K6eR8htCb6bmDvbn
+\restrict N9VOCOq5sCKg4HXJtFTtloG3jCp1ddakvJzU3NILrafz1LIk3zIySlFTmSWHPpU
 
 -- Dumped from database version 18.6
 -- Dumped by pg_dump version 18.6
@@ -519,8 +519,7 @@ CREATE TABLE public.home_page_data_locales (
     id integer NOT NULL,
     _locale public._locales NOT NULL,
     _parent_id integer NOT NULL,
-    destruction_message character varying,
-    subtitle character varying DEFAULT ''::character varying NOT NULL
+    destruction_message character varying
 );
 
 
@@ -597,6 +596,55 @@ ALTER SEQUENCE public.home_page_data_nav_locales_id_seq OWNER TO homepage;
 --
 
 ALTER SEQUENCE public.home_page_data_nav_locales_id_seq OWNED BY public.home_page_data_nav_locales.id;
+
+
+--
+-- Name: home_page_data_subtitles; Type: TABLE; Schema: public; Owner: homepage
+--
+
+CREATE TABLE public.home_page_data_subtitles (
+    _order integer NOT NULL,
+    _parent_id integer NOT NULL,
+    id character varying NOT NULL
+);
+
+
+ALTER TABLE public.home_page_data_subtitles OWNER TO homepage;
+
+--
+-- Name: home_page_data_subtitles_locales; Type: TABLE; Schema: public; Owner: homepage
+--
+
+CREATE TABLE public.home_page_data_subtitles_locales (
+    label character varying,
+    id integer NOT NULL,
+    _locale public._locales NOT NULL,
+    _parent_id character varying NOT NULL
+);
+
+
+ALTER TABLE public.home_page_data_subtitles_locales OWNER TO homepage;
+
+--
+-- Name: home_page_data_subtitles_locales_id_seq; Type: SEQUENCE; Schema: public; Owner: homepage
+--
+
+CREATE SEQUENCE public.home_page_data_subtitles_locales_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.home_page_data_subtitles_locales_id_seq OWNER TO homepage;
+
+--
+-- Name: home_page_data_subtitles_locales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: homepage
+--
+
+ALTER SEQUENCE public.home_page_data_subtitles_locales_id_seq OWNED BY public.home_page_data_subtitles_locales.id;
 
 
 --
@@ -1256,6 +1304,13 @@ ALTER TABLE ONLY public.home_page_data_nav_locales ALTER COLUMN id SET DEFAULT n
 
 
 --
+-- Name: home_page_data_subtitles_locales id; Type: DEFAULT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_subtitles_locales ALTER COLUMN id SET DEFAULT nextval('public.home_page_data_subtitles_locales_id_seq'::regclass);
+
+
+--
 -- Name: media id; Type: DEFAULT; Schema: public; Owner: homepage
 --
 
@@ -1523,11 +1578,11 @@ COPY public.home_page_data_links (_order, _parent_id, id, icon) FROM stdin;
 --
 
 COPY public.home_page_data_links_locales (label, url, id, _locale, _parent_id) FROM stdin;
-Github	https://github.com/vagahbond	58	en	6aa8c704a95bc6f1611f92a0
-	\N	59	fr	6aa8c704a95bc6f1611f92a0
-Linkedin	https://www.linkedin.com/in/yoni-f-%F0%9F%92%BB-a5002b153/	60	en	6aa8bf53ca41ce4c7d262d74
-Twitter	https://x.com/vagahbond_	61	en	6aa8c752a95bc6f1611f92a2
-Mail	mailto:pro@yoni-firroloni.com	62	en	6aa8c75ea95bc6f1611f92a4
+Github	https://github.com/vagahbond	118	en	6aa8c704a95bc6f1611f92a0
+	\N	119	fr	6aa8c704a95bc6f1611f92a0
+Linkedin	https://www.linkedin.com/in/yoni-f-%F0%9F%92%BB-a5002b153/	120	en	6aa8bf53ca41ce4c7d262d74
+Twitter	https://x.com/vagahbond_	121	en	6aa8c752a95bc6f1611f92a2
+Mail	mailto:pro@yoni-firroloni.com	122	en	6aa8c75ea95bc6f1611f92a4
 \.
 
 
@@ -1535,9 +1590,9 @@ Mail	mailto:pro@yoni-firroloni.com	62	en	6aa8c75ea95bc6f1611f92a4
 -- Data for Name: home_page_data_locales; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.home_page_data_locales (title, location, id, _locale, _parent_id, destruction_message, subtitle) FROM stdin;
-Freelance software engineer	New Zealand	58	en	1	Ooops! You just initiated the self-destroy process! There is no turning back ! (Beware if you are epileptic)	Computer enthousiast
-Développeur freelance	Nouvelle Zélande	59	fr	1	Ooops! Tu viens d'activer la procédure d'auto destruction! Tous aux abris! (Attention, dangereux pour les épileptiques)	Passionné de technologie
+COPY public.home_page_data_locales (title, location, id, _locale, _parent_id, destruction_message) FROM stdin;
+Freelance software engineer	New Zealand	82	en	1	Ooops! You just initiated the self-destroy process! There is no turning back ! (Beware if you are epileptic)
+Développeur freelance	Nouvelle Zélande	83	fr	1	Ooops! Tu viens d'activer la procédure d'auto destruction! Tous aux abris! (Attention, dangereux pour les épileptiques)
 \.
 
 
@@ -1557,12 +1612,43 @@ COPY public.home_page_data_nav (_order, _parent_id, id, icon) FROM stdin;
 --
 
 COPY public.home_page_data_nav_locales (label, url, id, _locale, _parent_id) FROM stdin;
-My career	/en/experience	19	en	6ab331d6fe9e7f8d3220efd9
-Ma carrière	/fr/experience	20	fr	6ab331d6fe9e7f8d3220efd9
-My projects	/en/projects	21	en	6ab33261fe9e7f8d3220efdb
-Mes projets	/fr/projects	22	fr	6ab33261fe9e7f8d3220efdb
-About me	/en/contact	23	en	6ab3327efe9e7f8d3220efdd
-À propos	/fr/contact	24	fr	6ab3327efe9e7f8d3220efdd
+My career	/en/experience	91	en	6ab331d6fe9e7f8d3220efd9
+Ma carrière	/fr/experience	92	fr	6ab331d6fe9e7f8d3220efd9
+My projects	/en/projects	93	en	6ab33261fe9e7f8d3220efdb
+Mes projets	/fr/projects	94	fr	6ab33261fe9e7f8d3220efdb
+About me	/en/about	95	en	6ab3327efe9e7f8d3220efdd
+À propos	/fr/about	96	fr	6ab3327efe9e7f8d3220efdd
+\.
+
+
+--
+-- Data for Name: home_page_data_subtitles; Type: TABLE DATA; Schema: public; Owner: homepage
+--
+
+COPY public.home_page_data_subtitles (_order, _parent_id, id) FROM stdin;
+1	1	6ad7c70b46edb554d06cde4d
+2	1	6ad7c71346edb554d06cde4f
+3	1	6ad7c76846edb554d06cde51
+4	1	6ad7c7c646edb554d06cde53
+5	1	6ad7c83c46edb554d06cde55
+\.
+
+
+--
+-- Data for Name: home_page_data_subtitles_locales; Type: TABLE DATA; Schema: public; Owner: homepage
+--
+
+COPY public.home_page_data_subtitles_locales (label, id, _locale, _parent_id) FROM stdin;
+Tech enthousiast	65	en	6ad7c70b46edb554d06cde4d
+Passionné de tech	66	fr	6ad7c70b46edb554d06cde4d
+Car lover	67	en	6ad7c71346edb554d06cde4f
+Fan d'automobile	68	fr	6ad7c71346edb554d06cde4f
+nixpkgs contributor	69	en	6ad7c76846edb554d06cde51
+Contributeur pour nixpkgs	70	fr	6ad7c76846edb554d06cde51
+Nature enjoyer	71	en	6ad7c7c646edb554d06cde53
+Amoureux de la nature	72	fr	6ad7c7c646edb554d06cde53
+Playlist hoarder	73	en	6ad7c83c46edb554d06cde55
+Collectionneur de playlists	74	fr	6ad7c83c46edb554d06cde55
 \.
 
 
@@ -1684,7 +1770,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-10-01 17:24:53.642+13	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-10-21 13:40:30.384+13	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -1703,10 +1789,10 @@ COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM st
 13	nav	{"groups": {"Collections": {"open": true}}}	2026-09-29 12:35:37.303+13	2026-09-29 12:35:36.38+13
 14	collection-articles	{"limit": 10, "editViewType": "default"}	2026-09-29 14:20:49.709+13	2026-09-29 12:44:07.568+13
 15	collection-projects-21	{"fields": {"links": {"collapsed": ["69bb29bc2f55f742f0342544"]}}}	2026-09-29 16:26:45.409+13	2026-09-29 16:26:41.026+13
-7	locale	"fr"	2026-09-29 16:27:21.326+13	2025-12-28 00:25:16.154+13
 3	collection-media	{"sort": "-updatedAt", "limit": 10, "editViewType": "default"}	2026-02-13 18:48:12.668+13	2025-12-18 22:23:00.699+13
 10	collection-experiences	{"limit": 10, "editViewType": "default"}	2026-03-29 00:48:05.709+13	2026-03-21 12:33:12.11+13
 11	global-experiencesPageData	{"editViewType": "default"}	2026-03-30 08:49:38.732+13	2026-03-30 08:49:38.733+13
+7	locale	"fr"	2026-10-21 14:56:32.016+13	2025-12-28 00:25:16.154+13
 \.
 
 
@@ -1722,13 +1808,13 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 90	\N	10	user	1
 91	\N	11	user	1
 155	\N	15	user	1
-156	\N	7	user	1
 32	\N	9	user	1
 103	\N	8	user	1
 106	\N	1	user	1
 111	\N	12	user	1
 117	\N	13	user	1
 122	\N	14	user	1
+164	\N	7	user	1
 \.
 
 
@@ -1920,7 +2006,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	2f9c3a5c-23f7-4362-8998-be6d1b486ce0	2026-10-01 17:25:28.902+13	2026-10-01 19:25:28.902+13
+1	1	0aea43a1-f988-4f64-b0ce-3354104cd40c	2026-10-21 14:09:05.454+13	2026-10-21 16:09:05.454+13
 \.
 
 
@@ -1991,21 +2077,28 @@ SELECT pg_catalog.setval('public.home_page_data_id_seq', 1, true);
 -- Name: home_page_data_links_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_links_locales_id_seq', 62, true);
+SELECT pg_catalog.setval('public.home_page_data_links_locales_id_seq', 122, true);
 
 
 --
 -- Name: home_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 59, true);
+SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 83, true);
 
 
 --
 -- Name: home_page_data_nav_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_nav_locales_id_seq', 24, true);
+SELECT pg_catalog.setval('public.home_page_data_nav_locales_id_seq', 96, true);
+
+
+--
+-- Name: home_page_data_subtitles_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
+--
+
+SELECT pg_catalog.setval('public.home_page_data_subtitles_locales_id_seq', 74, true);
 
 
 --
@@ -2033,14 +2126,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 312, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 326, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 486, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 500, true);
 
 
 --
@@ -2061,7 +2154,7 @@ SELECT pg_catalog.setval('public.payload_preferences_id_seq', 15, true);
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 156, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 164, true);
 
 
 --
@@ -2224,6 +2317,22 @@ ALTER TABLE ONLY public.home_page_data_nav
 
 ALTER TABLE ONLY public.home_page_data
     ADD CONSTRAINT home_page_data_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: home_page_data_subtitles_locales home_page_data_subtitles_locales_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_subtitles_locales
+    ADD CONSTRAINT home_page_data_subtitles_locales_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: home_page_data_subtitles home_page_data_subtitles_pkey; Type: CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_subtitles
+    ADD CONSTRAINT home_page_data_subtitles_pkey PRIMARY KEY (id);
 
 
 --
@@ -2486,6 +2595,27 @@ CREATE INDEX home_page_data_nav_order_idx ON public.home_page_data_nav USING btr
 --
 
 CREATE INDEX home_page_data_nav_parent_id_idx ON public.home_page_data_nav USING btree (_parent_id);
+
+
+--
+-- Name: home_page_data_subtitles_locales_locale_parent_id_unique; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE UNIQUE INDEX home_page_data_subtitles_locales_locale_parent_id_unique ON public.home_page_data_subtitles_locales USING btree (_locale, _parent_id);
+
+
+--
+-- Name: home_page_data_subtitles_order_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX home_page_data_subtitles_order_idx ON public.home_page_data_subtitles USING btree (_order);
+
+
+--
+-- Name: home_page_data_subtitles_parent_id_idx; Type: INDEX; Schema: public; Owner: homepage
+--
+
+CREATE INDEX home_page_data_subtitles_parent_id_idx ON public.home_page_data_subtitles USING btree (_parent_id);
 
 
 --
@@ -2857,6 +2987,22 @@ ALTER TABLE ONLY public.home_page_data_nav
 
 
 --
+-- Name: home_page_data_subtitles_locales home_page_data_subtitles_locales_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_subtitles_locales
+    ADD CONSTRAINT home_page_data_subtitles_locales_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.home_page_data_subtitles(id) ON DELETE CASCADE;
+
+
+--
+-- Name: home_page_data_subtitles home_page_data_subtitles_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
+--
+
+ALTER TABLE ONLY public.home_page_data_subtitles
+    ADD CONSTRAINT home_page_data_subtitles_parent_id_fk FOREIGN KEY (_parent_id) REFERENCES public.home_page_data(id) ON DELETE CASCADE;
+
+
+--
 -- Name: media_locales media_locales_parent_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: homepage
 --
 
@@ -2988,5 +3134,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 2P5IMVeLuxwXN0Vnw9CmVrilL2eJoqluiZKdL1h0pZjCzb4K6eR8htCb6bmDvbn
+\unrestrict N9VOCOq5sCKg4HXJtFTtloG3jCp1ddakvJzU3NILrafz1LIk3zIySlFTmSWHPpU
 
