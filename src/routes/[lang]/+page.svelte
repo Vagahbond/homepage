@@ -11,8 +11,6 @@
 	let subTitleIndex = $state(0);
 	let subTitle = $state('');
 
-	$inspect(subTitle);
-
 	onMount(() => glitch(document));
 
 	const onDestroy = () => {
@@ -68,32 +66,6 @@
 		arr[index] = replacement ?? '#';
 		return arr.join('');
 	}
-
-	/*
-	onMount(() => {
-		const targetLabel = data.labels.subtitles[subTitleIndex].label;
-		if (!targetLabel) return;
-
-		for (let i = 0; i < Math.max(targetLabel.length, subTitle.length); i++) {
-			const random = Math.floor(Math.random() * 500);
-
-			setTimeout(() => {
-				if (i >= targetLabel.length) {
-					const newSubTitle = (subTitle = subTitle.slice(0, i));
-					subTitle = newSubTitle;
-					return;
-				}
-
-				let glitchChar = GLITCH_CHARACTERS[Math.floor(Math.random() * GLITCH_CHARACTERS.length)];
-				let newSubTitle = replaceAt(subTitle, i, glitchChar);
-				subTitle = newSubTitle;
-				setTimeout(() => {
-					let newSubTitle = replaceAt(subTitle, i, targetLabel[i]);
-					subTitle = newSubTitle;
-				}, random);
-			}, random);
-		}
-	}); */
 </script>
 
 <svelte:window onmousemove={onMouseMove} />
@@ -101,7 +73,7 @@
 <div class="container">
 	<div class="home-screen">
 		<div class="avatar-picture-container">
-			<div class="tv" style:transform={`rotate3d(${tvSkewAmount.y}, ${tvSkewAmount.x}, 0, 10deg)`}>
+			<div class="tv">
 				<div class="antenna-container">
 					<div class="antenna section-base"></div>
 					<div class="antenna section-1"></div>
@@ -140,7 +112,7 @@
 		</div>
 
 		<div class="bordered blurred-bg name">
-			<h1 id="name"><span style:color="var(--accent)">#_</span> Vagahbond</h1>
+			<h1 id="name"><span style:color="var(--accent)">#_</span> Yoni Firroloni</h1>
 			<div class="navbar">
 				<Links links={data.labels.nav} />
 			</div>

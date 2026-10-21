@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict N9VOCOq5sCKg4HXJtFTtloG3jCp1ddakvJzU3NILrafz1LIk3zIySlFTmSWHPpU
+\restrict MNzHnt643SWMQFTi350W6DDEDad2q4YTh1EM7Kpen9DcFcNBf216divVbqrCva7
 
 -- Dumped from database version 18.6
 -- Dumped by pg_dump version 18.6
@@ -1578,11 +1578,11 @@ COPY public.home_page_data_links (_order, _parent_id, id, icon) FROM stdin;
 --
 
 COPY public.home_page_data_links_locales (label, url, id, _locale, _parent_id) FROM stdin;
-Github	https://github.com/vagahbond	118	en	6aa8c704a95bc6f1611f92a0
-	\N	119	fr	6aa8c704a95bc6f1611f92a0
-Linkedin	https://www.linkedin.com/in/yoni-f-%F0%9F%92%BB-a5002b153/	120	en	6aa8bf53ca41ce4c7d262d74
-Twitter	https://x.com/vagahbond_	121	en	6aa8c752a95bc6f1611f92a2
-Mail	mailto:pro@yoni-firroloni.com	122	en	6aa8c75ea95bc6f1611f92a4
+Github	https://github.com/vagahbond	163	en	6aa8c704a95bc6f1611f92a0
+	\N	164	fr	6aa8c704a95bc6f1611f92a0
+Linkedin	https://www.linkedin.com/in/yoni-f-%F0%9F%92%BB-a5002b153/	165	en	6aa8bf53ca41ce4c7d262d74
+Twitter	https://x.com/vagahbond_	166	en	6aa8c752a95bc6f1611f92a2
+Mail	mailto:pro@yoni-firroloni.com	167	en	6aa8c75ea95bc6f1611f92a4
 \.
 
 
@@ -1591,8 +1591,8 @@ Mail	mailto:pro@yoni-firroloni.com	122	en	6aa8c75ea95bc6f1611f92a4
 --
 
 COPY public.home_page_data_locales (title, location, id, _locale, _parent_id, destruction_message) FROM stdin;
-Freelance software engineer	New Zealand	82	en	1	Ooops! You just initiated the self-destroy process! There is no turning back ! (Beware if you are epileptic)
-Développeur freelance	Nouvelle Zélande	83	fr	1	Ooops! Tu viens d'activer la procédure d'auto destruction! Tous aux abris! (Attention, dangereux pour les épileptiques)
+Freelance software engineer	New Zealand	100	en	1	Ooops! You just initiated the self-destroy process! There is no turning back ! (Beware if you are epileptic)
+Développeur freelance	Nouvelle Zélande	101	fr	1	Ooops! Tu viens d'activer la procédure d'auto destruction! Tous aux abris! (Attention, dangereux pour les épileptiques)
 \.
 
 
@@ -1612,12 +1612,12 @@ COPY public.home_page_data_nav (_order, _parent_id, id, icon) FROM stdin;
 --
 
 COPY public.home_page_data_nav_locales (label, url, id, _locale, _parent_id) FROM stdin;
-My career	/en/experience	91	en	6ab331d6fe9e7f8d3220efd9
-Ma carrière	/fr/experience	92	fr	6ab331d6fe9e7f8d3220efd9
-My projects	/en/projects	93	en	6ab33261fe9e7f8d3220efdb
-Mes projets	/fr/projects	94	fr	6ab33261fe9e7f8d3220efdb
-About me	/en/about	95	en	6ab3327efe9e7f8d3220efdd
-À propos	/fr/about	96	fr	6ab3327efe9e7f8d3220efdd
+My career	/en/experience	145	en	6ab331d6fe9e7f8d3220efd9
+Ma carrière	/fr/experience	146	fr	6ab331d6fe9e7f8d3220efd9
+My projects	/en/projects	147	en	6ab33261fe9e7f8d3220efdb
+Mes projets	/fr/projects	148	fr	6ab33261fe9e7f8d3220efdb
+About me	/en/about	149	en	6ab3327efe9e7f8d3220efdd
+À propos	/fr/about	150	fr	6ab3327efe9e7f8d3220efdd
 \.
 
 
@@ -1626,11 +1626,9 @@ About me	/en/about	95	en	6ab3327efe9e7f8d3220efdd
 --
 
 COPY public.home_page_data_subtitles (_order, _parent_id, id) FROM stdin;
-1	1	6ad7c70b46edb554d06cde4d
-2	1	6ad7c71346edb554d06cde4f
+1	1	6ad7c71346edb554d06cde4f
+2	1	6ad7c70b46edb554d06cde4d
 3	1	6ad7c76846edb554d06cde51
-4	1	6ad7c7c646edb554d06cde53
-5	1	6ad7c83c46edb554d06cde55
 \.
 
 
@@ -1639,16 +1637,12 @@ COPY public.home_page_data_subtitles (_order, _parent_id, id) FROM stdin;
 --
 
 COPY public.home_page_data_subtitles_locales (label, id, _locale, _parent_id) FROM stdin;
-Tech enthousiast	65	en	6ad7c70b46edb554d06cde4d
-Passionné de tech	66	fr	6ad7c70b46edb554d06cde4d
-Car lover	67	en	6ad7c71346edb554d06cde4f
-Fan d'automobile	68	fr	6ad7c71346edb554d06cde4f
-nixpkgs contributor	69	en	6ad7c76846edb554d06cde51
-Contributeur pour nixpkgs	70	fr	6ad7c76846edb554d06cde51
-Nature enjoyer	71	en	6ad7c7c646edb554d06cde53
-Amoureux de la nature	72	fr	6ad7c7c646edb554d06cde53
-Playlist hoarder	73	en	6ad7c83c46edb554d06cde55
-Collectionneur de playlists	74	fr	6ad7c83c46edb554d06cde55
+Full stack web developper	145	en	6ad7c71346edb554d06cde4f
+Développeur full stack web	146	fr	6ad7c71346edb554d06cde4f
+CS lecturer	147	en	6ad7c70b46edb554d06cde4d
+Professeur en grandes écoles	148	fr	6ad7c70b46edb554d06cde4d
+Open source contributor	149	en	6ad7c76846edb554d06cde51
+Contributeur open source	150	fr	6ad7c76846edb554d06cde51
 \.
 
 
@@ -1770,7 +1764,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-10-21 13:40:30.384+13	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-10-22 08:04:22.198+13	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -1792,7 +1786,7 @@ COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM st
 3	collection-media	{"sort": "-updatedAt", "limit": 10, "editViewType": "default"}	2026-02-13 18:48:12.668+13	2025-12-18 22:23:00.699+13
 10	collection-experiences	{"limit": 10, "editViewType": "default"}	2026-03-29 00:48:05.709+13	2026-03-21 12:33:12.11+13
 11	global-experiencesPageData	{"editViewType": "default"}	2026-03-30 08:49:38.732+13	2026-03-30 08:49:38.733+13
-7	locale	"fr"	2026-10-21 14:56:32.016+13	2025-12-28 00:25:16.154+13
+7	locale	"en"	2026-10-22 08:18:16.183+13	2025-12-28 00:25:16.154+13
 \.
 
 
@@ -1814,7 +1808,7 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 111	\N	12	user	1
 117	\N	13	user	1
 122	\N	14	user	1
-164	\N	7	user	1
+173	\N	7	user	1
 \.
 
 
@@ -2006,7 +2000,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	0aea43a1-f988-4f64-b0ce-3354104cd40c	2026-10-21 14:09:05.454+13	2026-10-21 16:09:05.454+13
+1	1	035ceebf-98bc-4bdb-b08e-c42d1f02b050	2026-10-22 08:04:32.729+13	2026-10-22 10:04:32.729+13
 \.
 
 
@@ -2077,28 +2071,28 @@ SELECT pg_catalog.setval('public.home_page_data_id_seq', 1, true);
 -- Name: home_page_data_links_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_links_locales_id_seq', 122, true);
+SELECT pg_catalog.setval('public.home_page_data_links_locales_id_seq', 167, true);
 
 
 --
 -- Name: home_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 83, true);
+SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 101, true);
 
 
 --
 -- Name: home_page_data_nav_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_nav_locales_id_seq', 96, true);
+SELECT pg_catalog.setval('public.home_page_data_nav_locales_id_seq', 150, true);
 
 
 --
 -- Name: home_page_data_subtitles_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_subtitles_locales_id_seq', 74, true);
+SELECT pg_catalog.setval('public.home_page_data_subtitles_locales_id_seq', 150, true);
 
 
 --
@@ -2126,14 +2120,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 326, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 335, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 500, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 509, true);
 
 
 --
@@ -2154,7 +2148,7 @@ SELECT pg_catalog.setval('public.payload_preferences_id_seq', 15, true);
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 164, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 173, true);
 
 
 --
@@ -3134,5 +3128,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict N9VOCOq5sCKg4HXJtFTtloG3jCp1ddakvJzU3NILrafz1LIk3zIySlFTmSWHPpU
+\unrestrict MNzHnt643SWMQFTi350W6DDEDad2q4YTh1EM7Kpen9DcFcNBf216divVbqrCva7
 
