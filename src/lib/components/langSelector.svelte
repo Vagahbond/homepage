@@ -4,7 +4,7 @@
 	import type { RoutesWithLang } from '$lib/utils/nav';
 
 	const route = $derived(
-		page.route.id?.startsWith('/[lang]') ? (page.route.id as RoutesWithLang) : '/[lang]'
+		page.route.id?.startsWith('/[[lang]]') ? (page.route.id as RoutesWithLang) : '/[[lang]]'
 	);
 </script>
 
@@ -13,6 +13,7 @@
 		class="screen-shape"
 		class:selected={page.params.lang === 'fr'}
 		href={resolve(route, { lang: 'fr' })}
+		onclick={() => (document.cookie = 'lang=fr; Path=/; Max-Age=31536000; SameSite=Lax')}
 		lang="fr"
 		hreflang="fr"
 		aria-label="Français"
@@ -22,12 +23,13 @@
 	</a>
 	<a
 		class="screen-shape"
-		class:selected={page.params.lang === 'en'}
-		href={resolve(route, { lang: 'en' })}
+		class:selected={!page.params.lang}
+		href={resolve(route, { lang: undefined })}
+		onclick={() => (document.cookie = 'lang=en; Path=/; Max-Age=31536000; SameSite=Lax')}
 		lang="en"
 		hreflang="en"
 		aria-label="English"
-		aria-current={page.params.lang === 'en' ? 'page' : undefined}>🇺🇸</a
+		aria-current={!page.params.lang ? 'page' : undefined}>🇺🇸</a
 	>
 </div>
 

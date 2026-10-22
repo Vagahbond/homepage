@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { invalidateAll } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import SnailText from '$lib/components/snailText.svelte';
 	import Arrow from '$lib/icons/arrow.svelte';
@@ -8,12 +8,7 @@
 
 	const { data } = $props();
 
-	let lang = $derived(page.params.lang);
-	$effect(() => {
-		if (lang === 'fr' || lang === 'en') {
-			invalidateAll();
-		}
-	});
+	const lang = $derived(page.params.lang);
 
 	let text = $derived(data.article.text);
 
@@ -31,7 +26,7 @@
 	</div>
 	<nav>
 		{#if data.currentIndex > 1}
-			<a href={`/${lang}/about?article=${data.currentIndex - 1}`}>
+			<a href={resolve(`${lang ?? ''}/about?article=${data.currentIndex - 1}`)}>
 				<div class="arrow">
 					<Arrow direction="left" />
 				</div>
@@ -40,8 +35,8 @@
 			</a>
 		{/if}
 		{#if data.nextArticle}
-			<a href={`/${lang}/about?article=${data.currentIndex + 1}`}>
-				Next article : {data.nextArticle.title}
+			<a href={resolve(`${lang ?? ''}/about?article=${data.currentIndex + 1}`)}>
+				Next article : {data.nextArticle}
 				<div class="arrow">
 					<Arrow direction="right" />
 				</div>

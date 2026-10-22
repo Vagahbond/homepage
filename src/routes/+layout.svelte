@@ -7,7 +7,6 @@
 	import AnimatedFrame from '$lib/components/animatedFrame.svelte';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
-	import type { RouteId } from '$app/types';
 	import LangSelector from '$lib/components/langSelector.svelte';
 	import NavButtons from '$lib/components/navButtons.svelte';
 	import { isSupportedLanguage, supportedLanguages } from '$lib/utils/language';
@@ -26,40 +25,44 @@
 	});
 
 	$effect(() => {
-		const lang = page.params.lang;
-		document.documentElement.lang = isSupportedLanguage(lang) ? lang : 'en';
-		if (isSupportedLanguage(lang)) {
+		const lang = page.params.lang ?? 'en';
+		const saved = document.cookie.match(/(?:^|;\s*)lang=([^;]*)/)?.[1];
+		document.documentElement.lang = lang;
+		if (isSupportedLanguage(saved) && saved !== lang) {
+			let destination: string = resolve(localizedRoute, {
+				lang: saved === 'en' ? undefined : saved
+			});
+			destination += page.url.search + page.url.hash;
+			void goto(destination, { replaceState: true });
+		} else if (!isSupportedLanguage(saved)) {
 			document.cookie = `lang=${lang}; Path=/; Max-Age=31536000; SameSite=Lax`;
 		}
 	});
 
 	const localizedRoute = $derived(
-		page.route.id?.startsWith('/[lang]') ? (page.route.id as RoutesWithLang) : '/[lang]'
+		page.route.id?.startsWith('/[[lang]]') ? (page.route.id as RoutesWithLang) : '/[[lang]]'
 	);
-	const defaultPath = $derived(
-		localizedRoute === '/[lang]' ? resolve('/') : resolve(localizedRoute, { lang: 'en' })
-	);
+	const defaultPath = $derived(resolve(localizedRoute, { lang: undefined }));
 
-	const screens: Array<RouteId> = [
-		'/[lang]',
-		'/[lang]/experience',
-		'/[lang]/projects',
-		'/[lang]/about'
+	const screens: Array<RoutesWithLang> = [
+		'/[[lang]]',
+		'/[[lang]]/experience',
+		'/[[lang]]/projects',
+		'/[[lang]]/about'
 	];
 
-	let curScreen = $state<RouteId>(page.route.id ?? '/[lang]');
+	const curScreen = $derived(localizedRoute);
 
 	let forward = $state<boolean>(false);
 	let showPage = $state(true);
 
 	function navigateHome(): void {
-		navigate('/[lang]');
+		navigate('/[[lang]]');
 	}
 
 	function nextScreen(): void {
 		forward = true;
 		const next = screens[screens.indexOf(curScreen) + 1] ?? screens[0];
-		curScreen = next;
 
 		navigate(next);
 	}
@@ -68,17 +71,14 @@
 		forward = false;
 		const index = screens.indexOf(curScreen) - 1;
 		const prev = index < 0 ? screens[screens.length - 1] : screens[index];
-		curScreen = prev;
 
 		navigate(prev);
 	}
 
-	function navigate(dest: RouteId) {
+	function navigate(dest: RoutesWithLang) {
 		showPage = false;
 
 		setTimeout(() => {
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
 			goto(resolve(dest, { lang: page.params.lang })).finally(() => {
 				showPage = true;
 			});

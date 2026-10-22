@@ -46,7 +46,7 @@
 	</button>
 </div>
 
-{#if page.route.id !== '/[lang]'}
+{#if page.route.id !== '/[[lang]]'}
 	<button
 		onclick={() => {
 			onHomeClicked();

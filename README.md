@@ -32,6 +32,24 @@ npm run dev
 
 Change content at `localhost:3000` and inspect changes at `localhost:5173`
 
+### Language URLs
+
+English content is prerendered at `/`, `/about`, `/projects`, and `/experience`.
+French equivalents use `/fr`, `/fr/about`, `/fr/projects`, and `/fr/experience`.
+The homepage never redirects based on browser language or cookies; visitors choose
+through the language selector. Every page has a self-canonical URL and reciprocal
+English/French `hreflang` links, with its English version as `x-default`.
+
+Legacy `/en` URLs generate redirect documents for static hosting. For permanent
+HTTP redirects in production, add this location to your existing Nginx virtual host:
+
+```nix
+locations."~ ^/en(?:/(.*))?$".return = "308 /$1$is_args$args";
+```
+
+The homepage loader normalizes legacy CMS navigation links automatically, so the
+existing content snapshot does not require changes.
+
 ### Prepare for release 
 As the content is loaded at build time and what's put online is a simple static site, you need to have the db's content when building. 
 If building elsewhere than dev machine, DB needs to be exported before with `pgdump`. 
