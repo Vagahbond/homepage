@@ -15,6 +15,14 @@ export const HomePageData: GlobalConfig = {
       required: true
     },
     {
+      label: 'Meta description',
+      localized: true,
+      name: 'metaDescription',
+      type: 'textarea',
+      required: true,
+      defaultValue: ""
+    },
+    {
       label: 'Subtitles',
       localized: false,
       name: 'subtitles',

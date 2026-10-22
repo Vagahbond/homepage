@@ -14,6 +14,14 @@ export const AboutPageData: GlobalConfig = {
       required: true
     },
     {
+      label: 'Meta description',
+      localized: true,
+      name: 'metaDescription',
+      type: 'textarea',
+      required: true,
+      defaultValue: ""
+    },
+    {
       label: 'Text',
       name: 'text',
       type: 'richText',

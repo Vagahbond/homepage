@@ -13,6 +13,7 @@
 	import { PUBLIC_SITE_ORIGIN } from '$env/static/public';
 	import { getSiteOrigin } from '$lib/utils/site';
 	import type { RoutesWithLang } from '$lib/utils/nav';
+	import { KEYWORDS } from '$lib/keywords';
 
 	let { children } = $props();
 
@@ -112,6 +113,7 @@
 		/>
 	{/each}
 	<link rel="alternate" hreflang="x-default" href={new URL(defaultPath, siteOrigin).href} />
+	<meta name="keywords" content={KEYWORDS[page.params.lang ?? 'en'].join(', ')} />
 </svelte:head>
 
 <svelte:window on:keydown={on_key_down} />

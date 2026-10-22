@@ -538,6 +538,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface HomePageDatum {
   id: number;
   title: string;
+  metaDescription: string;
   subtitles: {
     label?: string | null;
     id?: string | null;
@@ -608,6 +609,7 @@ export interface HomePageDatum {
 export interface ProjectsPageDatum {
   id: number;
   title: string;
+  metaDescription: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -618,6 +620,7 @@ export interface ProjectsPageDatum {
 export interface AboutPageDatum {
   id: number;
   title: string;
+  metaDescription: string;
   text: {
     root: {
       type: string;
@@ -643,6 +646,7 @@ export interface AboutPageDatum {
 export interface ExperiencesPageDatum {
   id: number;
   title: string;
+  metaDescription: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -652,6 +656,7 @@ export interface ExperiencesPageDatum {
  */
 export interface HomePageDataSelect<T extends boolean = true> {
   title?: T;
+  metaDescription?: T;
   subtitles?:
     | T
     | {
@@ -686,6 +691,7 @@ export interface HomePageDataSelect<T extends boolean = true> {
  */
 export interface ProjectsPageDataSelect<T extends boolean = true> {
   title?: T;
+  metaDescription?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -696,6 +702,7 @@ export interface ProjectsPageDataSelect<T extends boolean = true> {
  */
 export interface AboutPageDataSelect<T extends boolean = true> {
   title?: T;
+  metaDescription?: T;
   text?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -707,6 +714,7 @@ export interface AboutPageDataSelect<T extends boolean = true> {
  */
 export interface ExperiencesPageDataSelect<T extends boolean = true> {
   title?: T;
+  metaDescription?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

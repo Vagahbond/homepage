@@ -70,6 +70,7 @@
 
 <svelte:head>
 	<title>Yoni Firroloni | {data.labels.title}</title>
+	<meta name="description" content={data.labels.metaDescription} />
 </svelte:head>
 
 <svelte:window onmousemove={onMouseMove} />

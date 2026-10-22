@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict CKFczVurohNuWF36cd1nu6dDRmZduvepfrcS7SQ8yNBIc7bECxRnESPfBxoFxyE
+\restrict LIX7L5M7GgRBCj8dM8oUaQExcvzbyg6N7STauK3kd2i3RLCkWRrEJqgO20fDanv
 
 -- Dumped from database version 18.6
 -- Dumped by pg_dump version 18.6
@@ -135,7 +135,8 @@ CREATE TABLE public.about_page_data_locales (
     text jsonb NOT NULL,
     id integer NOT NULL,
     _locale public._locales NOT NULL,
-    _parent_id integer NOT NULL
+    _parent_id integer NOT NULL,
+    meta_description character varying DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -380,7 +381,8 @@ CREATE TABLE public.experiences_page_data_locales (
     title character varying NOT NULL,
     id integer NOT NULL,
     _locale public._locales NOT NULL,
-    _parent_id integer NOT NULL
+    _parent_id integer NOT NULL,
+    meta_description character varying DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -519,7 +521,8 @@ CREATE TABLE public.home_page_data_locales (
     id integer NOT NULL,
     _locale public._locales NOT NULL,
     _parent_id integer NOT NULL,
-    destruction_message character varying
+    destruction_message character varying,
+    meta_description character varying DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -1119,7 +1122,8 @@ CREATE TABLE public.projects_page_data_locales (
     title character varying NOT NULL,
     id integer NOT NULL,
     _locale public._locales NOT NULL,
-    _parent_id integer NOT NULL
+    _parent_id integer NOT NULL,
+    meta_description character varying DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -1421,9 +1425,9 @@ COPY public.about_page_data (id, updated_at, created_at) FROM stdin;
 -- Data for Name: about_page_data_locales; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.about_page_data_locales (title, text, id, _locale, _parent_id) FROM stdin;
-A word about AI	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Everybody says programming is dead.  But is it ?", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "When I graduated, everybody was talking about how coding is an intangible craftsmanship, in which every line should be the most elegant possible way there is to solve a problem. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Now, it is even optional to understand the codebase. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Something is broken? Claude will fix it. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "The codebase is convoluted ? Just forget about it and pay for more tokens. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "The pendulum should not have to swing all the way :", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have cars, but people still ride horses and bicycles", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have pre-fab buildings, but countless people pay heaps to travel and see remains of the Roman or Greek architectures", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have Ikea, but people are still seeking hard wood furniture.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have AI, but not everyone is going to give up on man-made software.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Like an Ikea cabinet, AI-written code, depending on the use-case, can be brittle, unreliable, degrade quickly and need replacing very fast, defeating its economic advantage.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On the other end, even the most old-school craftsmen are using modern tools to save time when sanding, cutting, assembling quality wood, or the process would take them ages.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "There is no denying the activity of writing software has shifted paradigm, but every software does not have to come out of a factory. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Can we make AI the power-tool replacing manual chisels to the software engineer ? ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "AI does not have intentions: the intentions are the developer's asset.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "A good software engineer, in this new paradigm, is the same as a good engineer before AI, with the added knowledge of ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "where", "type": "text", "style": "", "detail": 0, "format": 1, "version": 1}, {"mode": "normal", "text": " the AI should intervene in the project, to optimize the trade-off between immediate economic gains, final product quality, and tech debt.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	115	en	1
-Un mot sur l'IA	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Tout le monde dit que la programmation, c'est fini. Mais est-ce vraiment le cas ?", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Quand j’ai obtenu mon diplôme, tout le monde disait que le code était un art intangible, dans lequel chaque ligne devait contribuer à résoudre un problème de la manière la plus élégante possible.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Aujourd’hui, comprendre le code n’est même plus indispensable.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Quelque chose ne fonctionne pas ? Claude s’en chargera.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Le code est alambiqué ? Tant pis, dépensez davantage de tokens.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On devrait pouvoir toruver un compromis:", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On a des voitures, mais on continue de monter à cheval ou de faire du vélo.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On a des bâtiments préfabriqués, mais d’innombrables personnes dépensent des fortunes pour voyager et admirer les vestiges de l’architecture romaine ou grecque.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On a Ikea, mais on recherche toujours des meubles en bois massif.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Nous avons l’IA, mais tout le monde ne va pas pour autant renoncer aux logiciels créés par l’homme.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "À l’instar d’un meuble Ikea, le code écrit par l’IA, selon le cas d’utilisation, peut être fragile, peu fiable, se détériorer rapidement et devoir être remplacé très vite, ce qui annule son avantage économique.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "À l’inverse, même les artisans les plus traditionnels utilisent des outils modernes pour gagner du temps lorsqu’ils poncent, coupent ou assemblent du bois de qualité, sans quoi le processus leur prendrait une éternité.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On ne peut nier que l’activité de développement logiciel a changé de paradigme, mais tous les logiciels ne doivent pas nécessairement sortir d’une usine.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pouvons-nous faire de l’IA l’outil électrique qui remplacera les ciseaux à bois manuels pour l’ingénieur logiciel ?", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"type": "linebreak", "version": 1}, {"mode": "normal", "text": "L'IA n'a pas d'intentions : les intentions ne peuvent émaner que du développeur.", "type": "text", "style": "", "detail": 0, "format": 2, "version": 1}], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Dans ce nouveau paradigme, un bon ingénieur maintenant est identique à ce qu'était un bon ingénieur avant l'avènement de l'IA, à ceci près qu'il sait désormais à quel moment l'IA doit intervenir dans le projet afin d'optimiser le compromis entre les gains économiques immédiats, la qualité du produit final et la dette technique.", "type": "text", "style": "", "detail": 0, "format": 2, "version": 1}], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}], "direction": null, "textFormat": 2}}	116	fr	1
+COPY public.about_page_data_locales (title, text, id, _locale, _parent_id, meta_description) FROM stdin;
+A word about AI	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Everybody says programming is dead.  But is it ?", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "When I graduated, everybody was talking about how coding is an intangible craftsmanship, in which every line should be the most elegant possible way there is to solve a problem. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Now, it is even optional to understand the codebase. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Something is broken? Claude will fix it. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "The codebase is convoluted ? Just forget about it and pay for more tokens. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "The pendulum should not have to swing all the way :", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have cars, but people still ride horses and bicycles", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have pre-fab buildings, but countless people pay heaps to travel and see remains of the Roman or Greek architectures", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have Ikea, but people are still seeking hard wood furniture.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "We have AI, but not everyone is going to give up on man-made software.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Like an Ikea cabinet, AI-written code, depending on the use-case, can be brittle, unreliable, degrade quickly and need replacing very fast, defeating its economic advantage.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On the other end, even the most old-school craftsmen are using modern tools to save time when sanding, cutting, assembling quality wood, or the process would take them ages.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "There is no denying the activity of writing software has shifted paradigm, but every software does not have to come out of a factory. ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Can we make AI the power-tool replacing manual chisels to the software engineer ? ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "AI does not have intentions: the intentions are the developer's asset.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "A good software engineer, in this new paradigm, is the same as a good engineer before AI, with the added knowledge of ", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}, {"mode": "normal", "text": "where", "type": "text", "style": "", "detail": 0, "format": 1, "version": 1}, {"mode": "normal", "text": " the AI should intervene in the project, to optimize the trade-off between immediate economic gains, final product quality, and tech debt.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}], "direction": null}}	125	en	1	Freelance software wizard, experienced with providing websites, back-end software, automation, dev-ops and teaching.\nA word about the current landscape of software, reflecting my position and strategy to stay relevant.
+Un mot sur l'IA	{"root": {"type": "root", "format": "", "indent": 0, "version": 1, "children": [{"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Tout le monde dit que la programmation, c'est fini. Mais est-ce vraiment le cas ?", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Quand j’ai obtenu mon diplôme, tout le monde disait que le code était un art intangible, dans lequel chaque ligne devait contribuer à résoudre un problème de la manière la plus élégante possible.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Aujourd’hui, comprendre le code n’est même plus indispensable.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Quelque chose ne fonctionne pas ? Claude s’en chargera.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "quote", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Le code est alambiqué ? Tant pis, dépensez davantage de tokens.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On devrait pouvoir toruver un compromis:", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"tag": "ul", "type": "list", "start": 1, "format": "", "indent": 0, "version": 1, "children": [{"type": "listitem", "value": 1, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On a des voitures, mais on continue de monter à cheval ou de faire du vélo.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 2, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On a des bâtiments préfabriqués, mais d’innombrables personnes dépensent des fortunes pour voyager et admirer les vestiges de l’architecture romaine ou grecque.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}, {"type": "listitem", "value": 3, "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On a Ikea, mais on recherche toujours des meubles en bois massif.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null}], "listType": "bullet", "direction": null}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Nous avons l’IA, mais tout le monde ne va pas pour autant renoncer aux logiciels créés par l’homme.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "À l’instar d’un meuble Ikea, le code écrit par l’IA, selon le cas d’utilisation, peut être fragile, peu fiable, se détériorer rapidement et devoir être remplacé très vite, ce qui annule son avantage économique.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "À l’inverse, même les artisans les plus traditionnels utilisent des outils modernes pour gagner du temps lorsqu’ils poncent, coupent ou assemblent du bois de qualité, sans quoi le processus leur prendrait une éternité.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "On ne peut nier que l’activité de développement logiciel a changé de paradigme, mais tous les logiciels ne doivent pas nécessairement sortir d’une usine.", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Pouvons-nous faire de l’IA l’outil électrique qui remplacera les ciseaux à bois manuels pour l’ingénieur logiciel ?", "type": "text", "style": "", "detail": 0, "format": 0, "version": 1}], "direction": null, "textStyle": "", "textFormat": 0}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"type": "linebreak", "version": 1}, {"mode": "normal", "text": "L'IA n'a pas d'intentions : les intentions ne peuvent émaner que du développeur.", "type": "text", "style": "", "detail": 0, "format": 2, "version": 1}], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [{"mode": "normal", "text": "Dans ce nouveau paradigme, un bon ingénieur maintenant est identique à ce qu'était un bon ingénieur avant l'avènement de l'IA, à ceci près qu'il sait désormais à quel moment l'IA doit intervenir dans le projet afin d'optimiser le compromis entre les gains économiques immédiats, la qualité du produit final et la dette technique.", "type": "text", "style": "", "detail": 0, "format": 2, "version": 1}], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}, {"type": "paragraph", "format": "", "indent": 0, "version": 1, "children": [], "direction": null, "textStyle": "", "textFormat": 2}], "direction": null, "textFormat": 2}}	126	fr	1	Expert en logiciels indépendant, fort d'une solide expérience dans la création de sites web, le développement de logiciels back-end, l'automatisation, le DevOps et la formation.\nQuelques mots sur le paysage actuel du secteur des logiciels, qui reflètent ma position et ma stratégie pour rester dans la course.
 \.
 
 
@@ -1502,9 +1506,9 @@ COPY public.experiences_page_data (id, updated_at, created_at) FROM stdin;
 -- Data for Name: experiences_page_data_locales; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.experiences_page_data_locales (title, id, _locale, _parent_id) FROM stdin;
-My career	15	en	1
-Ma carrière	16	fr	1
+COPY public.experiences_page_data_locales (title, id, _locale, _parent_id, meta_description) FROM stdin;
+My career	17	en	1	
+Ma carrière	18	fr	1	Expert indépendant en développement logiciel, spécialisé dans la création de sites web, les logiciels back-end, l'automatisation, le DevOps et la formation.\nDécouvrez qui a fait confiance à mon expérience et pour quelles missions.
 \.
 
 
@@ -1578,11 +1582,11 @@ COPY public.home_page_data_links (_order, _parent_id, id, icon) FROM stdin;
 --
 
 COPY public.home_page_data_links_locales (label, url, id, _locale, _parent_id) FROM stdin;
-Github	https://github.com/vagahbond	163	en	6aa8c704a95bc6f1611f92a0
-	\N	164	fr	6aa8c704a95bc6f1611f92a0
-Linkedin	https://www.linkedin.com/in/yoni-f-%F0%9F%92%BB-a5002b153/	165	en	6aa8bf53ca41ce4c7d262d74
-Twitter	https://x.com/vagahbond_	166	en	6aa8c752a95bc6f1611f92a2
-Mail	mailto:pro@yoni-firroloni.com	167	en	6aa8c75ea95bc6f1611f92a4
+Github	https://github.com/vagahbond	188	en	6aa8c704a95bc6f1611f92a0
+	\N	189	fr	6aa8c704a95bc6f1611f92a0
+Linkedin	https://www.linkedin.com/in/yoni-f-%F0%9F%92%BB-a5002b153/	190	en	6aa8bf53ca41ce4c7d262d74
+Twitter	https://x.com/vagahbond_	191	en	6aa8c752a95bc6f1611f92a2
+Mail	mailto:pro@yoni-firroloni.com	192	en	6aa8c75ea95bc6f1611f92a4
 \.
 
 
@@ -1590,9 +1594,9 @@ Mail	mailto:pro@yoni-firroloni.com	167	en	6aa8c75ea95bc6f1611f92a4
 -- Data for Name: home_page_data_locales; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.home_page_data_locales (title, location, id, _locale, _parent_id, destruction_message) FROM stdin;
-Freelance software engineer	New Zealand	100	en	1	Ooops! You just initiated the self-destroy process! There is no turning back ! (Beware if you are epileptic)
-Développeur freelance	Nouvelle Zélande	101	fr	1	Ooops! Tu viens d'activer la procédure d'auto destruction! Tous aux abris! (Attention, dangereux pour les épileptiques)
+COPY public.home_page_data_locales (title, location, id, _locale, _parent_id, destruction_message, meta_description) FROM stdin;
+Freelance software engineer	New Zealand	110	en	1	Ooops! You just initiated the self-destroy process! There is no turning back ! (Beware if you are epileptic)	Freelance software wizard, experienced with providing websites, back-end software, automation, dev-ops and teaching.
+Développeur freelance	Nouvelle Zélande	111	fr	1	Ooops! Tu viens d'activer la procédure d'auto destruction! Tous aux abris! (Attention, dangereux pour les épileptiques)	Expert en logiciels indépendant, fort d'une solide expérience dans la création de sites web, le développement de logiciels back-end, l'automatisation, le DevOps et la formation.
 \.
 
 
@@ -1612,12 +1616,12 @@ COPY public.home_page_data_nav (_order, _parent_id, id, icon) FROM stdin;
 --
 
 COPY public.home_page_data_nav_locales (label, url, id, _locale, _parent_id) FROM stdin;
-My career	/en/experience	145	en	6ab331d6fe9e7f8d3220efd9
-Ma carrière	/fr/experience	146	fr	6ab331d6fe9e7f8d3220efd9
-My projects	/en/projects	147	en	6ab33261fe9e7f8d3220efdb
-Mes projets	/fr/projects	148	fr	6ab33261fe9e7f8d3220efdb
-About me	/en/about	149	en	6ab3327efe9e7f8d3220efdd
-À propos	/fr/about	150	fr	6ab3327efe9e7f8d3220efdd
+My career	/en/experience	175	en	6ab331d6fe9e7f8d3220efd9
+Ma carrière	/fr/experience	176	fr	6ab331d6fe9e7f8d3220efd9
+My projects	/en/projects	177	en	6ab33261fe9e7f8d3220efdb
+Mes projets	/fr/projects	178	fr	6ab33261fe9e7f8d3220efdb
+About me	/en/about	179	en	6ab3327efe9e7f8d3220efdd
+À propos	/fr/about	180	fr	6ab3327efe9e7f8d3220efdd
 \.
 
 
@@ -1637,12 +1641,12 @@ COPY public.home_page_data_subtitles (_order, _parent_id, id) FROM stdin;
 --
 
 COPY public.home_page_data_subtitles_locales (label, id, _locale, _parent_id) FROM stdin;
-Full stack web developper	145	en	6ad7c71346edb554d06cde4f
-Développeur full stack web	146	fr	6ad7c71346edb554d06cde4f
-CS lecturer	147	en	6ad7c70b46edb554d06cde4d
-Professeur en grandes écoles	148	fr	6ad7c70b46edb554d06cde4d
-Open source contributor	149	en	6ad7c76846edb554d06cde51
-Contributeur open source	150	fr	6ad7c76846edb554d06cde51
+Full stack web developper	175	en	6ad7c71346edb554d06cde4f
+Développeur full stack web	176	fr	6ad7c71346edb554d06cde4f
+CS lecturer	177	en	6ad7c70b46edb554d06cde4d
+Professeur en grandes écoles	178	fr	6ad7c70b46edb554d06cde4d
+Open source contributor	179	en	6ad7c76846edb554d06cde51
+Contributeur open source	180	fr	6ad7c76846edb554d06cde51
 \.
 
 
@@ -1764,7 +1768,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-10-22 15:24:25.481+13	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-10-23 08:01:25.865+13	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -1786,7 +1790,7 @@ COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM st
 3	collection-media	{"sort": "-updatedAt", "limit": 10, "editViewType": "default"}	2026-02-13 18:48:12.668+13	2025-12-18 22:23:00.699+13
 10	collection-experiences	{"limit": 10, "editViewType": "default"}	2026-03-29 00:48:05.709+13	2026-03-21 12:33:12.11+13
 11	global-experiencesPageData	{"editViewType": "default"}	2026-03-30 08:49:38.732+13	2026-03-30 08:49:38.733+13
-7	locale	"en"	2026-10-22 08:18:16.183+13	2025-12-28 00:25:16.154+13
+7	locale	"fr"	2026-10-23 08:33:29.911+13	2025-12-28 00:25:16.154+13
 \.
 
 
@@ -1808,7 +1812,7 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 111	\N	12	user	1
 117	\N	13	user	1
 122	\N	14	user	1
-173	\N	7	user	1
+188	\N	7	user	1
 \.
 
 
@@ -1968,9 +1972,9 @@ COPY public.projects_page_data (id, updated_at, created_at) FROM stdin;
 -- Data for Name: projects_page_data_locales; Type: TABLE DATA; Schema: public; Owner: homepage
 --
 
-COPY public.projects_page_data_locales (title, id, _locale, _parent_id) FROM stdin;
-What I build for fun	40	en	1
-Mes projets personnels	41	fr	1
+COPY public.projects_page_data_locales (title, id, _locale, _parent_id, meta_description) FROM stdin;
+What I build for fun	50	en	1	Freelance software wizard, experienced with providing websites, back-end software, automation, dev-ops and teaching.\nPractice makes perfect:\nMy projects reflect my self-directed learning and my career interests.
+Mes projets personnels	51	fr	1	Expert en logiciels indépendant, fort d'une solide expérience dans la création de sites web, le développement de logiciels back-end, l'automatisation, le DevOps et la formation.\nC'est en forgeant qu'on devient forgeron:\nMes projets témoignent de mon auto-formation et de mes interéts dans ma carrière.
 \.
 
 
@@ -2000,7 +2004,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	035ceebf-98bc-4bdb-b08e-c42d1f02b050	2026-10-22 08:04:32.729+13	2026-10-22 10:04:32.729+13
+1	1	cb609b5a-a4dc-4144-b5f8-fe694e6fb8df	2026-10-23 07:54:43.053+13	2026-10-23 09:54:43.053+13
 \.
 
 
@@ -2029,7 +2033,7 @@ SELECT pg_catalog.setval('public.contact_page_data_id_seq', 1, true);
 -- Name: contact_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.contact_page_data_locales_id_seq', 116, true);
+SELECT pg_catalog.setval('public.contact_page_data_locales_id_seq', 126, true);
 
 
 --
@@ -2057,7 +2061,7 @@ SELECT pg_catalog.setval('public.experiences_page_data_id_seq', 1, true);
 -- Name: experiences_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.experiences_page_data_locales_id_seq', 16, true);
+SELECT pg_catalog.setval('public.experiences_page_data_locales_id_seq', 18, true);
 
 
 --
@@ -2071,28 +2075,28 @@ SELECT pg_catalog.setval('public.home_page_data_id_seq', 1, true);
 -- Name: home_page_data_links_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_links_locales_id_seq', 167, true);
+SELECT pg_catalog.setval('public.home_page_data_links_locales_id_seq', 192, true);
 
 
 --
 -- Name: home_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 101, true);
+SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 111, true);
 
 
 --
 -- Name: home_page_data_nav_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_nav_locales_id_seq', 150, true);
+SELECT pg_catalog.setval('public.home_page_data_nav_locales_id_seq', 180, true);
 
 
 --
 -- Name: home_page_data_subtitles_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_subtitles_locales_id_seq', 150, true);
+SELECT pg_catalog.setval('public.home_page_data_subtitles_locales_id_seq', 180, true);
 
 
 --
@@ -2120,14 +2124,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 335, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 351, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 509, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 525, true);
 
 
 --
@@ -2148,7 +2152,7 @@ SELECT pg_catalog.setval('public.payload_preferences_id_seq', 15, true);
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 173, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 188, true);
 
 
 --
@@ -2183,7 +2187,7 @@ SELECT pg_catalog.setval('public.projects_page_data_id_seq', 1, true);
 -- Name: projects_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.projects_page_data_locales_id_seq', 41, true);
+SELECT pg_catalog.setval('public.projects_page_data_locales_id_seq', 51, true);
 
 
 --
@@ -3128,5 +3132,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict CKFczVurohNuWF36cd1nu6dDRmZduvepfrcS7SQ8yNBIc7bECxRnESPfBxoFxyE
+\unrestrict LIX7L5M7GgRBCj8dM8oUaQExcvzbyg6N7STauK3kd2i3RLCkWRrEJqgO20fDanv
 

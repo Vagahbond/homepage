@@ -17,6 +17,7 @@
 
 <svelte:head>
 	<title>Yoni Firroloni | {data.article.title}</title>
+	<meta name="description" content={data.labels.metaDescription} />
 </svelte:head>
 
 <div class="about-screen">

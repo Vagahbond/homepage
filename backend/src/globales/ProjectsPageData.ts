@@ -13,5 +13,14 @@ export const ProjectsPageData: GlobalConfig = {
       type: 'text',
       required: true
     },
+    {
+      label: 'Meta description',
+      localized: true,
+      name: 'metaDescription',
+      type: 'textarea',
+      required: true,
+      defaultValue: ""
+    },
+
   ]
 }
