@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict LIX7L5M7GgRBCj8dM8oUaQExcvzbyg6N7STauK3kd2i3RLCkWRrEJqgO20fDanv
+\restrict ySeywIFplqR8gzmoMvvROjDDXw7TLMyoDEJ9pWjf0TIriwG6jlsHA7227s0epvC
 
 -- Dumped from database version 18.6
 -- Dumped by pg_dump version 18.6
@@ -1582,11 +1582,11 @@ COPY public.home_page_data_links (_order, _parent_id, id, icon) FROM stdin;
 --
 
 COPY public.home_page_data_links_locales (label, url, id, _locale, _parent_id) FROM stdin;
-Github	https://github.com/vagahbond	188	en	6aa8c704a95bc6f1611f92a0
-	\N	189	fr	6aa8c704a95bc6f1611f92a0
-Linkedin	https://www.linkedin.com/in/yoni-f-%F0%9F%92%BB-a5002b153/	190	en	6aa8bf53ca41ce4c7d262d74
-Twitter	https://x.com/vagahbond_	191	en	6aa8c752a95bc6f1611f92a2
-Mail	mailto:pro@yoni-firroloni.com	192	en	6aa8c75ea95bc6f1611f92a4
+Github	https://github.com/vagahbond	193	en	6aa8c704a95bc6f1611f92a0
+	\N	194	fr	6aa8c704a95bc6f1611f92a0
+Linkedin	https://www.linkedin.com/in/yoni-f-%F0%9F%92%BB-a5002b153/	195	en	6aa8bf53ca41ce4c7d262d74
+Twitter	https://x.com/vagahbond_	196	en	6aa8c752a95bc6f1611f92a2
+Mail	mailto:pro@yoni-firroloni.com	197	en	6aa8c75ea95bc6f1611f92a4
 \.
 
 
@@ -1595,8 +1595,8 @@ Mail	mailto:pro@yoni-firroloni.com	192	en	6aa8c75ea95bc6f1611f92a4
 --
 
 COPY public.home_page_data_locales (title, location, id, _locale, _parent_id, destruction_message, meta_description) FROM stdin;
-Freelance software engineer	New Zealand	110	en	1	Ooops! You just initiated the self-destroy process! There is no turning back ! (Beware if you are epileptic)	Freelance software wizard, experienced with providing websites, back-end software, automation, dev-ops and teaching.
-Développeur freelance	Nouvelle Zélande	111	fr	1	Ooops! Tu viens d'activer la procédure d'auto destruction! Tous aux abris! (Attention, dangereux pour les épileptiques)	Expert en logiciels indépendant, fort d'une solide expérience dans la création de sites web, le développement de logiciels back-end, l'automatisation, le DevOps et la formation.
+Freelance software engineer	New Zealand	112	en	1	Ooops! You just initiated the self-destroy process! There is no turning back ! (Beware if you are epileptic)	Freelance software wizard, experienced with providing websites, back-end software, automation, dev-ops and teaching.
+Développeur freelance	Nouvelle Zélande	113	fr	1	Ooops! Tu viens d'activer la procédure d'auto destruction! Tous aux abris! (Attention, dangereux pour les épileptiques)	Expert en logiciels indépendant, fort d'une solide expérience dans la création de sites web, le développement de logiciels back-end, l'automatisation, le DevOps et la formation.
 \.
 
 
@@ -1616,12 +1616,12 @@ COPY public.home_page_data_nav (_order, _parent_id, id, icon) FROM stdin;
 --
 
 COPY public.home_page_data_nav_locales (label, url, id, _locale, _parent_id) FROM stdin;
-My career	/en/experience	175	en	6ab331d6fe9e7f8d3220efd9
-Ma carrière	/fr/experience	176	fr	6ab331d6fe9e7f8d3220efd9
-My projects	/en/projects	177	en	6ab33261fe9e7f8d3220efdb
-Mes projets	/fr/projects	178	fr	6ab33261fe9e7f8d3220efdb
-About me	/en/about	179	en	6ab3327efe9e7f8d3220efdd
-À propos	/fr/about	180	fr	6ab3327efe9e7f8d3220efdd
+My career	/en/experience	181	en	6ab331d6fe9e7f8d3220efd9
+Ma carrière	/fr/experience	182	fr	6ab331d6fe9e7f8d3220efd9
+My projects	/en/projects	183	en	6ab33261fe9e7f8d3220efdb
+Mes projets	/fr/projects	184	fr	6ab33261fe9e7f8d3220efdb
+About me	/en/about	185	en	6ab3327efe9e7f8d3220efdd
+À propos	/fr/about	186	fr	6ab3327efe9e7f8d3220efdd
 \.
 
 
@@ -1641,12 +1641,12 @@ COPY public.home_page_data_subtitles (_order, _parent_id, id) FROM stdin;
 --
 
 COPY public.home_page_data_subtitles_locales (label, id, _locale, _parent_id) FROM stdin;
-Full stack web developper	175	en	6ad7c71346edb554d06cde4f
-Développeur full stack web	176	fr	6ad7c71346edb554d06cde4f
-CS lecturer	177	en	6ad7c70b46edb554d06cde4d
-Professeur en grandes écoles	178	fr	6ad7c70b46edb554d06cde4d
-Open source contributor	179	en	6ad7c76846edb554d06cde51
-Contributeur open source	180	fr	6ad7c76846edb554d06cde51
+Full stack web developer	181	en	6ad7c71346edb554d06cde4f
+Développeur full stack web	182	fr	6ad7c71346edb554d06cde4f
+CS lecturer	183	en	6ad7c70b46edb554d06cde4d
+Professeur en grandes écoles	184	fr	6ad7c70b46edb554d06cde4d
+Open source contributor	185	en	6ad7c76846edb554d06cde51
+Contributeur open source	186	fr	6ad7c76846edb554d06cde51
 \.
 
 
@@ -1768,7 +1768,7 @@ COPY public.payload_locked_documents_rels (id, "order", parent_id, path, users_i
 --
 
 COPY public.payload_migrations (id, name, batch, updated_at, created_at) FROM stdin;
-1	dev	-1	2026-10-23 08:01:25.865+13	2025-12-17 21:14:43.66+13
+1	dev	-1	2026-11-03 11:38:41.351+13	2025-12-17 21:14:43.66+13
 \.
 
 
@@ -1790,7 +1790,7 @@ COPY public.payload_preferences (id, key, value, updated_at, created_at) FROM st
 3	collection-media	{"sort": "-updatedAt", "limit": 10, "editViewType": "default"}	2026-02-13 18:48:12.668+13	2025-12-18 22:23:00.699+13
 10	collection-experiences	{"limit": 10, "editViewType": "default"}	2026-03-29 00:48:05.709+13	2026-03-21 12:33:12.11+13
 11	global-experiencesPageData	{"editViewType": "default"}	2026-03-30 08:49:38.732+13	2026-03-30 08:49:38.733+13
-7	locale	"fr"	2026-10-23 08:33:29.911+13	2025-12-28 00:25:16.154+13
+7	locale	"en"	2026-11-03 11:39:12.061+13	2025-12-28 00:25:16.154+13
 \.
 
 
@@ -1812,7 +1812,7 @@ COPY public.payload_preferences_rels (id, "order", parent_id, path, users_id) FR
 111	\N	12	user	1
 117	\N	13	user	1
 122	\N	14	user	1
-188	\N	7	user	1
+189	\N	7	user	1
 \.
 
 
@@ -2004,7 +2004,7 @@ COPY public.users (id, updated_at, created_at, email, reset_password_token, rese
 --
 
 COPY public.users_sessions (_order, _parent_id, id, created_at, expires_at) FROM stdin;
-1	1	cb609b5a-a4dc-4144-b5f8-fe694e6fb8df	2026-10-23 07:54:43.053+13	2026-10-23 09:54:43.053+13
+1	1	24ed362c-c7df-4db4-b2b2-5b97715d99c6	2026-11-03 11:38:54.986+13	2026-11-03 13:38:54.986+13
 \.
 
 
@@ -2075,28 +2075,28 @@ SELECT pg_catalog.setval('public.home_page_data_id_seq', 1, true);
 -- Name: home_page_data_links_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_links_locales_id_seq', 192, true);
+SELECT pg_catalog.setval('public.home_page_data_links_locales_id_seq', 197, true);
 
 
 --
 -- Name: home_page_data_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 111, true);
+SELECT pg_catalog.setval('public.home_page_data_locales_id_seq', 113, true);
 
 
 --
 -- Name: home_page_data_nav_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_nav_locales_id_seq', 180, true);
+SELECT pg_catalog.setval('public.home_page_data_nav_locales_id_seq', 186, true);
 
 
 --
 -- Name: home_page_data_subtitles_locales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.home_page_data_subtitles_locales_id_seq', 180, true);
+SELECT pg_catalog.setval('public.home_page_data_subtitles_locales_id_seq', 186, true);
 
 
 --
@@ -2124,14 +2124,14 @@ SELECT pg_catalog.setval('public.payload_kv_id_seq', 1, false);
 -- Name: payload_locked_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 351, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_id_seq', 352, true);
 
 
 --
 -- Name: payload_locked_documents_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 525, true);
+SELECT pg_catalog.setval('public.payload_locked_documents_rels_id_seq', 526, true);
 
 
 --
@@ -2152,7 +2152,7 @@ SELECT pg_catalog.setval('public.payload_preferences_id_seq', 15, true);
 -- Name: payload_preferences_rels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: homepage
 --
 
-SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 188, true);
+SELECT pg_catalog.setval('public.payload_preferences_rels_id_seq', 189, true);
 
 
 --
@@ -3132,5 +3132,5 @@ ALTER TABLE ONLY public.users_sessions
 -- PostgreSQL database dump complete
 --
 
-\unrestrict LIX7L5M7GgRBCj8dM8oUaQExcvzbyg6N7STauK3kd2i3RLCkWRrEJqgO20fDanv
+\unrestrict ySeywIFplqR8gzmoMvvROjDDXw7TLMyoDEJ9pWjf0TIriwG6jlsHA7227s0epvC
 
